@@ -23,16 +23,19 @@ public class LoginVC: UIViewController{
     @IBAction func segueToRegister(_ sender: UIButton) {
        performSegue(withIdentifier: "segueRegister", sender: sender)
     }
-    @IBAction func dismiss(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func backtoMain(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "logintomain", sender: self)
     }
     @IBAction func loginPressed(_ sender: UIButton) {
         if let email=emailTextField.text, let password=passwordTextField.text{
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                 if let e=error{
                     print(e)
-                }else{
+                }else if self.people.text=="民眾登入"{
                     self.performSegue(withIdentifier: "segueCustomer", sender: self)
+                }
+                else{
+                    self.performSegue(withIdentifier: "segueFarmer", sender: self)
                 }
             }
         }

@@ -7,10 +7,25 @@
 //
 
 import UIKit
-
+import CoreLocation
 class MainVC: UIViewController {
     var peopleText:String!
     var peopleColor:UIColor!
+    var locManager = CLLocationManager()
+        var currentLocation: CLLocation!
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            locManager.requestWhenInUseAuthorization()
+            if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+                guard let currentLocation = locManager.location else {
+                    return
+                }
+//                print(currentLocation.coordinate.latitude)
+//                print(currentLocation.coordinate.longitude)
+            }
+        }
     @IBAction func segueToLogin(_ sender: UIButton) {
         if(sender.accessibilityLabel=="customer"){
             peopleText="民眾登入"
@@ -27,7 +42,5 @@ class MainVC: UIViewController {
             loginVC.People = peopleText // someValue.text
             loginVC.view.backgroundColor=peopleColor
       }
-//    @IBAction override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
-//    }
 }
 
