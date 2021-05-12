@@ -15,6 +15,7 @@
 		4C18AC512629BE25003C5B16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C18AC4F2629BE25003C5B16 /* LaunchScreen.storyboard */; };
 		4C6793302648B75D003E0726 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67932F2648B75D003E0726 /* LoginVC.swift */; };
 		4C6793342648C323003E0726 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6793332648C323003E0726 /* RegisterVC.swift */; };
+		4CC82F9E264B51300097AE8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC82F9D264B51300097AE8D /* Constants.swift */; };
 		4CCDA221264933C800410611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CCDA220264933C800410611 /* GoogleService-Info.plist */; };
 		4CCDA225264A5E7500410611 /* CustomerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA224264A5E7500410611 /* CustomerController.swift */; };
 		4CCDA227264A5EA600410611 /* FarmerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA226264A5EA600410611 /* FarmerController.swift */; };
@@ -33,6 +34,7 @@
 		4C18AC522629BE25003C5B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C67932F2648B75D003E0726 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		4C6793332648C323003E0726 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		4CC82F9D264B51300097AE8D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4CCDA220264933C800410611 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CCDA224264A5E7500410611 /* CustomerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerController.swift; sourceTree = "<group>"; };
 		4CCDA226264A5EA600410611 /* FarmerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmerController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				4C18AC4F2629BE25003C5B16 /* LaunchScreen.storyboard */,
 				4C18AC522629BE25003C5B16 /* Info.plist */,
 				4CCDA220264933C800410611 /* GoogleService-Info.plist */,
+				4CC82F9D264B51300097AE8D /* Constants.swift */,
 			);
 			path = growingFarm;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				4CCDA227264A5EA600410611 /* FarmerController.swift in Sources */,
 				4C6793342648C323003E0726 /* RegisterVC.swift in Sources */,
 				4CCDA225264A5E7500410611 /* CustomerController.swift in Sources */,
+				4CC82F9E264B51300097AE8D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
