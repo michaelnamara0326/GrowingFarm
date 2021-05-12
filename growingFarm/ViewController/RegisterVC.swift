@@ -29,7 +29,7 @@ class RegisterVC:UIViewController{
     }
     @IBAction func registerPressed(_ sender: UIButton) {
             emailAuth()
-            setUserDataToDatabase()
+            setCustomerDataToDatabase()
             updateCustomerCnt()
             clearUserInput()
         self.performSegue(withIdentifier:"registertologin" , sender: self)
@@ -48,10 +48,10 @@ class RegisterVC:UIViewController{
             }
         }
     }
-    func setUserDataToDatabase(){
+    func setCustomerDataToDatabase(){
         let customerCountString="customer\(String(customerNum))"
         //    let customerGamedataString="customerGamedata\(String(customerCnt))"
-        db.document("customer/\(customerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!]) { Error in
+        db.document("customer/\(customerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"identity":"customer"]) { Error in
             if let err=Error{
                 print("there must have problem to save data \(err)")
             }

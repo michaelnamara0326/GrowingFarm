@@ -7,7 +7,16 @@
 //
 
 import Foundation
-
-class FarmerController{
-    
+import UIKit
+import Firebase
+class FarmerController:UIViewController{
+    @IBAction func signoutButton(_ sender: UIButton) {
+        let firebaseAuth = Auth.auth()
+    do {
+      try firebaseAuth.signOut()
+    } catch let signOutError as NSError {
+      print ("Error signing out: %@", signOutError)
+    }
+      performSegue(withIdentifier: "customerToMain", sender: self)
+    }
 }

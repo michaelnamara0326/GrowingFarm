@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SwiftLocation
 class MainVC: UIViewController {
     var peopleText:String!
     var peopleIdentity:String!
@@ -17,15 +18,15 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locManager.requestWhenInUseAuthorization()
-        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
-                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
-            guard let currentLocation = locManager.location else {
-                return
-            }
-            //                print(currentLocation.coordinate.latitude)
-            //                print(currentLocation.coordinate.longitude)
-        }
+//        locManager.requestWhenInUseAuthorization()
+//        if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
+//                CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
+//            guard let currentLocation = locManager.location else {
+//                return
+//            }
+//                            print(currentLocation.coordinate.latitude)
+//                            print(currentLocation.coordinate.longitude)
+//        }
     }
     @IBAction func segueToLogin(_ sender: UIButton) {
         if(sender.accessibilityLabel=="customer"){

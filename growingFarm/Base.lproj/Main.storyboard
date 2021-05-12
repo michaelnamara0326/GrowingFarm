@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OID-Vr-ueA">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -494,6 +494,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zg-5h-t3Y">
+                                <rect key="frame" x="164" y="82" width="134" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="sign out"/>
+                                <connections>
+                                    <action selector="signoutButton:" destination="pS0-64-F09" eventType="touchUpInside" id="QGb-MM-dmH"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="customerToMain" modalPresentationStyle="fullScreen" id="6TP-1n-C7S"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1vc-BS-IEL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -522,6 +532,16 @@
                                 <color key="textColor" red="0.94509803920000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZjC-bg-21U">
+                                <rect key="frame" x="236" y="99" width="134" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="sign out"/>
+                                <connections>
+                                    <action selector="signoutButton:" destination="pS0-64-F09" eventType="touchUpInside" id="Het-fD-IyN"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="farmerToMain" modalPresentationStyle="fullScreen" id="hsh-uJ-7H3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ozQ-W3-Lfa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -533,8 +553,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hmo-Iu-G4E"/>
-        <segue reference="8ba-Tp-ZSQ"/>
+        <segue reference="dRr-ix-004"/>
+        <segue reference="hsh-uJ-7H3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Icon feather-mail" width="21.5" height="17"/>

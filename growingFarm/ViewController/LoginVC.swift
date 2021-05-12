@@ -9,57 +9,77 @@
 import Foundation
 import UIKit
 import Firebase
-public class LoginVC: UIViewController{
+
+class LoginVC: UIViewController{
     @IBOutlet weak var people: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     let db=Firestore.firestore()
     var People:String?
+//    static var identify:Bool = false
     public override func viewDidLoad() {
-        people.text=People!
+        //        people.text=People
     }
-    
+    struct variable {
+        static var identify=false
+    }
     @IBAction func segueToRegister(_ sender: UIButton) {
-       performSegue(withIdentifier: "segueRegister", sender: sender)
+        performSegue(withIdentifier: "segueRegister", sender: sender)
     }
     @IBAction func backtoMain(_ sender: UIButton) {
         self.performSegue(withIdentifier: "logintomain", sender: self)
     }
     @IBAction func loginPressed(_ sender: UIButton) {
         if let email=emailTextField.text, let password=passwordTextField.text{
-        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                 if let e=error{
                     print(e)
                 }else{
-                    if self.isCustomer(email){
-                        //                    self.performSegue(withIdentifier: "segueCustomer", sender: self)
+                    self.isCustomer(email)
+                    print("back\(variable.identify)")
+                    if variable.identify == true{
+                        self.performSegue(withIdentifier: "segueCustomer", sender: self)
                     }
                     else{
-                        //                    self.performSegue(withIdentifier: "segueFarmer", sender: self)
+                        self.performSegue(withIdentifier: "segueFarmer", sender: self)
                     }
-                    
-                }
-
-                
-                
-
-                
-            }
-        }
-        }
-    func isCustomer(_ email: String) -> Bool{
-        db.collection("customer").getDocuments { snapshot, error in
-            if let err = error {
-                print("Error getting documents: \(err)")
-            }
-            else {
-                for document in snapshot!.documents {
-                    let customerNum=document.get("customerNum") as! Int
-                    print(customerNum)
                 }
             }
         }
-        return true
     }
+    func isCustomer(_ email:String) {
+        db.collection("customer").whereField("email", isEqualTo: email).getDocuments() {  (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("=> \(document.get("name"))" )
+                    variable.identify=true
+                }
+            }
+            print(variable.identify)
+        }
+//    db.collection("customer").whereField("email", isEqualTo: "test@1.com")
+//            .addSnapshotListener { querySnapshot, error in
+//                guard let documents = querySnapshot?.documents else {
+//                    print("Error fetching documents: \(error!)")
+//                    return
+//                }
+//
+//            }
+        //print(self.identify)
+    }
+//    func isFarmer(_ email:String) -> Bool{
+//        db.collection("farmer").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("=> \(document.data()["identity"]!)")
+//                }
+//            }
+//        }
+//        return true
+//    }
 }
 
