@@ -11,19 +11,22 @@ import UIKit
 import Firebase
 
 class LoginVC: UIViewController{
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var people: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     let db=Firestore.firestore()
     var People:String?
     var customerEmail:[String] = []
+    var farmerEmail:[String]=[]
 //    static var identify:Bool = false
     public override func viewDidLoad() {
         if let People=People{
             people.text=People
         }
         getCustomerEmail()
-        
+        getFarmerEmail()
+        self.hideKeyboardWhenTappedAround()
     }
 
     @IBAction func segueToRegister(_ sender: UIButton) {
@@ -36,15 +39,21 @@ class LoginVC: UIViewController{
         if let email=emailTextField.text, let password=passwordTextField.text{
             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                 if let e=error{
-                    print(e)
+                    self.errorLabel.text="Invalid to login\(e)"
                 }else{
-
-                    if self.customerEmail.contains(email){
+                    if self.customerEmail.contains(email) && self.People == "民眾登入" {
                         self.performSegue(withIdentifier: "segueCustomer", sender: self)
                     }
                     else{
+                        self.errorLabel.text="身份錯誤"
+                    }
+                    if self.farmerEmail.contains(email) && self.People=="農家登入"{
                         self.performSegue(withIdentifier: "segueFarmer", sender: self)
                     }
+                    else{
+                        self.errorLabel.text="身份錯誤"
+                    }
+                    
                 }
             }
         }
@@ -52,13 +61,24 @@ class LoginVC: UIViewController{
     func getCustomerEmail() {
         db.collection("customer").getDocuments() {  (querySnapshot, err) in
             if let err = err {
-                print("Error getting documents: \(err)")
+                print("Error getting customer email: \(err)")
             } else {
                 for document in querySnapshot!.documents {
                     self.customerEmail.append(document.get("email") as! String)
                 }
             }
         }
+    }
+        func getFarmerEmail() {
+            db.collection("farmer").getDocuments() {  (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting farmer email: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        self.farmerEmail.append(document.get("email") as! String)
+                    }
+                }
+            }
 //    db.collection("customer").whereField("email", isEqualTo: "test@1.com")
 //            .addSnapshotListener { querySnapshot, error in
 //                guard let documents = querySnapshot?.documents else {
@@ -69,19 +89,5 @@ class LoginVC: UIViewController{
 //            }
 //            print(variable.identify)
         }
-            
-    
-//    func isFarmer(_ email:String) -> Bool{
-//        db.collection("farmer").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("=> \(document.data()["identity"]!)")
-//                }
-//            }
-//        }
-//        return true
-//    }
 }
 

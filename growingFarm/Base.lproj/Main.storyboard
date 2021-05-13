@@ -205,6 +205,13 @@
                                     <segue destination="BYZ-38-t0r" kind="presentation" identifier="logintomain" modalPresentationStyle="fullScreen" id="1sE-fN-1oh"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgN-ZA-xGJ">
+                                <rect key="frame" x="88" y="148" width="179" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="00a-Rc-3cd"/>
                         <color key="backgroundColor" red="0.87220245600000001" green="0.93857383729999999" blue="0.90672820809999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -231,6 +238,7 @@
                     <navigationItem key="navigationItem" id="IgZ-zA-Ksb"/>
                     <connections>
                         <outlet property="emailTextField" destination="xwZ-rb-QbZ" id="wAP-vZ-hOJ"/>
+                        <outlet property="errorLabel" destination="dgN-ZA-xGJ" id="Tuc-6M-406"/>
                         <outlet property="passwordTextField" destination="dJh-c6-PXK" id="BwD-2j-sc5"/>
                         <outlet property="people" destination="p15-Vy-p1k" id="xzU-yD-onT"/>
                         <segue destination="pjN-9J-itj" kind="presentation" identifier="segueRegister" modalPresentationStyle="fullScreen" id="hmo-Iu-G4E"/>
@@ -554,7 +562,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="dRr-ix-004"/>
-        <segue reference="hsh-uJ-7H3"/>
+        <segue reference="1sE-fN-1oh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Icon feather-mail" width="21.5" height="17"/>
