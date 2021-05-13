@@ -32,12 +32,10 @@ class MainVC: UIViewController {
         if(sender.accessibilityLabel=="customer"){
             peopleText="民眾登入"
             peopleColor=#colorLiteral(red: 0.8703275323, green: 0.9357070327, blue: 0.9039972425, alpha: 1)
-            peopleIdentity="customer"
         }
         if(sender.accessibilityLabel=="farmer"){
             peopleText="農家登入"
             peopleColor=#colorLiteral(red: 0.8185235262, green: 0.9557378888, blue: 1, alpha: 1)
-            peopleIdentity="farmer"
         }
         self.performSegue(withIdentifier: "segueLogin", sender: self)
     }

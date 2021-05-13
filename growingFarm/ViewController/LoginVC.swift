@@ -16,13 +16,16 @@ class LoginVC: UIViewController{
     @IBOutlet weak var passwordTextField: UITextField!
     let db=Firestore.firestore()
     var People:String?
+    var customerEmail:[String] = []
 //    static var identify:Bool = false
     public override func viewDidLoad() {
-        //        people.text=People
+        if let People=People{
+            people.text=People
+        }
+        getCustomerEmail()
+        
     }
-    struct variable {
-        static var identify=false
-    }
+
     @IBAction func segueToRegister(_ sender: UIButton) {
         performSegue(withIdentifier: "segueRegister", sender: sender)
     }
@@ -35,9 +38,8 @@ class LoginVC: UIViewController{
                 if let e=error{
                     print(e)
                 }else{
-                    self.isCustomer(email)
-                    print("back\(variable.identify)")
-                    if variable.identify == true{
+
+                    if self.customerEmail.contains(email){
                         self.performSegue(withIdentifier: "segueCustomer", sender: self)
                     }
                     else{
@@ -47,17 +49,15 @@ class LoginVC: UIViewController{
             }
         }
     }
-    func isCustomer(_ email:String) {
-        db.collection("customer").whereField("email", isEqualTo: email).getDocuments() {  (querySnapshot, err) in
+    func getCustomerEmail() {
+        db.collection("customer").getDocuments() {  (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("=> \(document.get("name"))" )
-                    variable.identify=true
+                    self.customerEmail.append(document.get("email") as! String)
                 }
             }
-            print(variable.identify)
         }
 //    db.collection("customer").whereField("email", isEqualTo: "test@1.com")
 //            .addSnapshotListener { querySnapshot, error in
@@ -65,10 +65,12 @@ class LoginVC: UIViewController{
 //                    print("Error fetching documents: \(error!)")
 //                    return
 //                }
-//
+//                variable.identify=true
 //            }
-        //print(self.identify)
-    }
+//            print(variable.identify)
+        }
+            
+    
 //    func isFarmer(_ email:String) -> Bool{
 //        db.collection("farmer").whereField("email", isEqualTo: email).getDocuments() { (querySnapshot, err) in
 //            if let err = err {
