@@ -19,16 +19,14 @@ class LoginVC: UIViewController{
     var People:String?
     var customerEmail:[String] = []
     var farmerEmail:[String]=[]
-//    static var identify:Bool = false
+    //    static var identify:Bool = false
     public override func viewDidLoad() {
-        if let People=People{
-            people.text=People
-        }
+        people.text=People
         getCustomerEmail()
         getFarmerEmail()
         self.hideKeyboardWhenTappedAround()
     }
-
+    
     @IBAction func segueToRegister(_ sender: UIButton) {
         performSegue(withIdentifier: "segueRegister", sender: sender)
     }
@@ -44,10 +42,7 @@ class LoginVC: UIViewController{
                     if self.customerEmail.contains(email) && self.People == "民眾登入" {
                         self.performSegue(withIdentifier: "segueCustomer", sender: self)
                     }
-                    else{
-                        self.errorLabel.text="身份錯誤"
-                    }
-                    if self.farmerEmail.contains(email) && self.People=="農家登入"{
+                    else if self.farmerEmail.contains(email) && self.People=="農家登入"{
                         self.performSegue(withIdentifier: "segueFarmer", sender: self)
                     }
                     else{
@@ -69,25 +64,16 @@ class LoginVC: UIViewController{
             }
         }
     }
-        func getFarmerEmail() {
-            db.collection("farmer").getDocuments() {  (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting farmer email: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        self.farmerEmail.append(document.get("email") as! String)
-                    }
+    func getFarmerEmail() {
+        db.collection("farmer").getDocuments() {  (querySnapshot, err) in
+            if let err = err {
+                print("Error getting farmer email: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    self.farmerEmail.append(document.get("email") as! String)
                 }
             }
-//    db.collection("customer").whereField("email", isEqualTo: "test@1.com")
-//            .addSnapshotListener { querySnapshot, error in
-//                guard let documents = querySnapshot?.documents else {
-//                    print("Error fetching documents: \(error!)")
-//                    return
-//                }
-//                variable.identify=true
-//            }
-//            print(variable.identify)
         }
+    }
 }
 
