@@ -33,7 +33,7 @@ class customerRegisterVC:UIViewController{
             setCustomerDataToDatabase()
             updateCustomerCnt()
             clearUserInput()
-        self.performSegue(withIdentifier:"registertologin" , sender: self)
+//        self.performSegue(withIdentifier:"customerRegisterToLogin" , sender: self)
     }
     
     // MARK: function

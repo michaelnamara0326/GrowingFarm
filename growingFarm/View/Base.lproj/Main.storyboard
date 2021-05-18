@@ -439,8 +439,8 @@
                                 <rect key="frame" x="207.5" y="560" width="137.5" height="45.5"/>
                                 <state key="normal" image="registerbtn"/>
                                 <connections>
+                                    <action selector="dismiss:" destination="pjN-9J-itj" eventType="touchUpInside" id="72J-gd-Ubf"/>
                                     <action selector="registerPressed:" destination="pjN-9J-itj" eventType="touchUpInside" id="bOS-yG-CNe"/>
-                                    <segue destination="OID-Vr-ueA" kind="presentation" identifier="registertologin" modalPresentationStyle="fullScreen" id="8ba-Tp-ZSQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -661,18 +661,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khH-cK-XGS" userLabel="完成註冊">
-                                <rect key="frame" x="207.5" y="560" width="137.5" height="45.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="registerbtn"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khH-cK-XGS" userLabel="完成註冊">
+                                <rect key="frame" x="207.5" y="574" width="137.5" height="45.5"/>
+                                <state key="normal" image="btn_farmerRegister"/>
                                 <connections>
+                                    <action selector="dismiss:" destination="5PF-bJ-LjK" eventType="touchUpInside" id="1Dq-zh-MTq"/>
                                     <action selector="registerPressed:" destination="5PF-bJ-LjK" eventType="touchUpInside" id="4Su-1y-4bz"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="-18" translatesAutoresizingMaskIntoConstraints="NO" id="45A-ic-I9B">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-18" translatesAutoresizingMaskIntoConstraints="NO" id="45A-ic-I9B">
                                 <rect key="frame" x="29" y="86" width="315" height="486"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xQ0-4O-VQe">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQ0-4O-VQe">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="農場名稱*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJj-tJ-IRs">
@@ -701,7 +701,7 @@
                                             </view>
                                         </subviews>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78X-yj-Iqe">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="78X-yj-Iqe">
                                         <rect key="frame" x="0.0" y="78" width="315" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="農場電話*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIy-fq-ef4">
@@ -730,7 +730,7 @@
                                             </view>
                                         </subviews>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6pf-LJ-00f">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6pf-LJ-00f">
                                         <rect key="frame" x="0.0" y="156" width="315" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="農場地址*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fe-9C-GBo">
@@ -759,7 +759,7 @@
                                             </view>
                                         </subviews>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HV8-tY-m0f">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HV8-tY-m0f">
                                         <rect key="frame" x="0.0" y="234" width="315" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E-mail*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYs-AK-dDS">
@@ -787,7 +787,7 @@
                                             </view>
                                         </subviews>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cha-pW-ScU">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cha-pW-ScU">
                                         <rect key="frame" x="0.0" y="312" width="315" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="密碼*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGe-WY-dpD">
@@ -815,7 +815,7 @@
                                             </view>
                                         </subviews>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U1a-vE-FgQ">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1a-vE-FgQ">
                                         <rect key="frame" x="0.0" y="390" width="315" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="確認密碼*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBL-cI-W6L">
@@ -844,6 +844,13 @@
                                         </subviews>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="HV8-tY-m0f" firstAttribute="top" secondItem="78X-yj-Iqe" secondAttribute="bottom" constant="60" id="28b-hw-Erq"/>
+                                    <constraint firstItem="78X-yj-Iqe" firstAttribute="top" secondItem="45A-ic-I9B" secondAttribute="top" constant="78" id="2Gh-J2-okE"/>
+                                    <constraint firstItem="cha-pW-ScU" firstAttribute="top" secondItem="6pf-LJ-00f" secondAttribute="bottom" constant="60" id="FiM-Ug-nfG"/>
+                                    <constraint firstItem="U1a-vE-FgQ" firstAttribute="top" secondItem="HV8-tY-m0f" secondAttribute="bottom" constant="60" id="aq8-r4-6j2"/>
+                                    <constraint firstItem="6pf-LJ-00f" firstAttribute="top" secondItem="xQ0-4O-VQe" secondAttribute="bottom" constant="60" id="hhv-Yw-qHH"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ica-6C-kMh"/>
@@ -852,7 +859,13 @@
                             <constraint firstItem="JQ3-ro-H3i" firstAttribute="centerX" secondItem="J2J-rD-Wp1" secondAttribute="centerX" id="0oB-9u-jIc"/>
                             <constraint firstItem="Ica-6C-kMh" firstAttribute="bottom" secondItem="JQ3-ro-H3i" secondAttribute="bottom" constant="14" id="63E-dg-SDP"/>
                             <constraint firstItem="BrI-OW-c76" firstAttribute="leading" secondItem="Ica-6C-kMh" secondAttribute="leading" constant="29" id="82q-hF-INX"/>
+                            <constraint firstItem="JQ3-ro-H3i" firstAttribute="top" secondItem="45A-ic-I9B" secondAttribute="bottom" constant="52" id="AAC-zY-ELq"/>
                             <constraint firstItem="Ica-6C-kMh" firstAttribute="trailing" secondItem="BrI-OW-c76" secondAttribute="trailing" constant="185" id="C78-Yn-0we"/>
+                            <constraint firstItem="khH-cK-XGS" firstAttribute="leading" secondItem="Ica-6C-kMh" secondAttribute="leading" constant="207.5" id="LQ4-Hj-w8C"/>
+                            <constraint firstItem="khH-cK-XGS" firstAttribute="top" secondItem="45A-ic-I9B" secondAttribute="bottom" constant="2" id="NFw-aH-j6q"/>
+                            <constraint firstItem="45A-ic-I9B" firstAttribute="leading" secondItem="Ica-6C-kMh" secondAttribute="leading" constant="29" id="SUy-eW-5az"/>
+                            <constraint firstItem="45A-ic-I9B" firstAttribute="top" secondItem="BrI-OW-c76" secondAttribute="bottom" id="dCP-AH-LCS"/>
+                            <constraint firstItem="Ica-6C-kMh" firstAttribute="trailing" secondItem="45A-ic-I9B" secondAttribute="trailing" constant="31" id="qgz-GP-LTG"/>
                             <constraint firstItem="BrI-OW-c76" firstAttribute="top" secondItem="Ica-6C-kMh" secondAttribute="top" constant="38" id="s3B-Of-ffU"/>
                         </constraints>
                     </view>
@@ -872,8 +885,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8ba-Tp-ZSQ"/>
-        <segue reference="hsh-uJ-7H3"/>
+        <segue reference="6TP-1n-C7S"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Icon feather-mail" width="21.5" height="17"/>
@@ -881,6 +893,7 @@
         <image name="arrow-long-left" width="30" height="13"/>
         <image name="btn_custom" width="176.5" height="39.5"/>
         <image name="btn_farmer" width="190" height="40.5"/>
+        <image name="btn_farmerRegister" width="137.5" height="45.5"/>
         <image name="btn_login" width="302" height="50.5"/>
         <image name="btn_map" width="45.5" height="51.5"/>
         <image name="btn_qrcode" width="45" height="51"/>
