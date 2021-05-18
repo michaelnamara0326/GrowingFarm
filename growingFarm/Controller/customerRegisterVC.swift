@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import Firebase
 
-class RegisterVC:UIViewController{
+class customerRegisterVC:UIViewController{
+    //MARK: View Controller Element
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
@@ -18,7 +19,6 @@ class RegisterVC:UIViewController{
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     var customerNum :Int = 0
     let db=Firestore.firestore()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -27,6 +27,7 @@ class RegisterVC:UIViewController{
     @IBAction func dismiss(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    // MARK: buttonPressed
     @IBAction func registerPressed(_ sender: UIButton) {
             emailAuth()
             setCustomerDataToDatabase()
@@ -35,7 +36,7 @@ class RegisterVC:UIViewController{
         self.performSegue(withIdentifier:"registertologin" , sender: self)
     }
     
-    
+    // MARK: function
     func emailAuth(){
         if let email=emailTextField.text,let password=passwordTextField.text{
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in

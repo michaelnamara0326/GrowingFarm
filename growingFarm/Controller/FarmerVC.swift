@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
-class FarmerController:UIViewController{
+class FarmerVC:UIViewController{
     @IBAction func signoutButton(_ sender: UIButton) {
         let firebaseAuth = Auth.auth()
     do {

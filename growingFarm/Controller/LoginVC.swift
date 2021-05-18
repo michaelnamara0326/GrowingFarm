@@ -15,6 +15,8 @@ class LoginVC: UIViewController{
     @IBOutlet weak var people: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+
     let db=Firestore.firestore()
     var People:String?
     var customerEmail:[String] = []
@@ -28,7 +30,17 @@ class LoginVC: UIViewController{
     }
     
     @IBAction func segueToRegister(_ sender: UIButton) {
-        performSegue(withIdentifier: "segueRegister", sender: sender)
+        switch People {
+        case "民眾登入":
+            performSegue(withIdentifier: "loginToCustomerRegister", sender: sender)
+            break
+        case "農家登入":
+            performSegue(withIdentifier: "loginToFarmerRegister", sender: sender)
+            break
+        default:
+            break
+        }
+        
     }
     @IBAction func backtoMain(_ sender: UIButton) {
         self.performSegue(withIdentifier: "logintomain", sender: self)
