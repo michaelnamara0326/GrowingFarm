@@ -439,7 +439,6 @@
                                 <rect key="frame" x="207.5" y="560" width="137.5" height="45.5"/>
                                 <state key="normal" image="registerbtn"/>
                                 <connections>
-                                    <action selector="dismiss:" destination="pjN-9J-itj" eventType="touchUpInside" id="72J-gd-Ubf"/>
                                     <action selector="registerPressed:" destination="pjN-9J-itj" eventType="touchUpInside" id="bOS-yG-CNe"/>
                                 </connections>
                             </button>
@@ -885,7 +884,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6TP-1n-C7S"/>
+        <segue reference="1sE-fN-1oh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Icon feather-mail" width="21.5" height="17"/>

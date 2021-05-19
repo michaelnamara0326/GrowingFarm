@@ -30,29 +30,60 @@ class customerRegisterVC:UIViewController{
     // MARK: buttonPressed
     @IBAction func registerPressed(_ sender: UIButton) {
             emailAuth()
-            setCustomerDataToDatabase()
-            updateCustomerCnt()
-            clearUserInput()
-//        self.performSegue(withIdentifier:"customerRegisterToLogin" , sender: self)
     }
     
+
+    func alertController(_ alertTitle:String, _ alertMessage:String){
+        let controller = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+           let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+           controller.addAction(okAction)
+        self.present(controller, animated: true, completion: nil)
+    }
+    func sendVerificationMail() {
+        if Auth.auth().currentUser!.isEmailVerified{
+            self.alertController("此信箱已驗證", "請返回登入")
+        }
+        else{
+            Auth.auth().currentUser?.sendEmailVerification{ err in
+                if let err=err{
+                    print("send email verification faild \(err)")
+                }
+                else{
+                    self.alertController("已發送驗證信", "請前往查看信件")
+                }
+                
+            }
+        }
+    }
     // MARK: function
     func emailAuth(){
         if let email=emailTextField.text,let password=passwordTextField.text{
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                if let err=error{
-                    print("email auth error \(err)")
+                if error != nil{
+                    if let errCode = AuthErrorCode(rawValue: error!._code){
+                        switch errCode {
+                        case .invalidEmail:
+                            self.alertController("信箱格式錯誤", "請重新輸入")
+                        case .emailAlreadyInUse:
+                            self.alertController("信箱已存在", "請返回登入畫面")
+                        default:
+                            break
+                        }
+                    }
                 }
                 else{
-                    print("email auth add success")
+                    self.sendVerificationMail()
+                    self.setCustomerDataToDatabase()
+                    self.updateCustomerCnt()
+                    self.clearUserInput()
+                    
                 }
             }
         }
     }
     func setCustomerDataToDatabase(){
         let customerCountString="customer\(String(customerNum))"
-        //    let customerGamedataString="customerGamedata\(String(customerCnt))"
-        db.document("customer/\(customerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"identity":"customer"]) { Error in
+        db.document("customer/\(customerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!]) { Error in
             if let err=Error{
                 print("there must have problem to save data \(err)")
             }
@@ -91,5 +122,9 @@ class customerRegisterVC:UIViewController{
         self.phoneTextField.text=""
         self.passwordTextField.text=""
         self.confirmPasswordTextField.text=""
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let loginVC = segue.destination as! LoginVC
+        loginVC.getCustomerEmail()
     }
 }

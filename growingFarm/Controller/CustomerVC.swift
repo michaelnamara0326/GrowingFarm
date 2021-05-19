@@ -46,6 +46,7 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+        locationManager.stopUpdatingLocation()
         performSegue(withIdentifier: "customerToMain", sender: self)
     }
     
