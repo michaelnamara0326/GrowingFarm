@@ -29,24 +29,55 @@ class farmerRegisterVC:UIViewController{
     }
     @IBAction func registerPressed(_ sender: UIButton) {
             emailAuth()
-            setCustomerDataToDatabase()
-            updateFarmerCnt()
-            clearUserInput()
-//        self.performSegue(withIdentifier:"farmerRegisterToLogin" , sender: self)
+    }
+    func alertController(_ alertTitle:String, _ alertMessage:String){
+        let controller = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+           let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+           controller.addAction(okAction)
+        self.present(controller, animated: true, completion: nil)
+    }
+    func sendVerificationMail() {
+        if Auth.auth().currentUser!.isEmailVerified{
+            self.alertController("此信箱已驗證", "請返回登入")
+        }
+        else{
+            Auth.auth().currentUser?.sendEmailVerification{ err in
+                if let err=err{
+                    print("send email verification faild \(err)")
+                }
+                else{
+                    self.alertController("已發送驗證信", "請前往查看信件")
+                }
+                
+            }
+        }
     }
     func emailAuth(){
         if let email=emailTextField.text,let password=passwordTextField.text{
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                if let err=error{
-                    print("email auth error \(err)")
+                if error != nil{
+                    if let errCode = AuthErrorCode(rawValue: error!._code){
+                        switch errCode {
+                        case .invalidEmail:
+                            self.alertController("信箱格式錯誤", "請重新輸入")
+                        case .emailAlreadyInUse:
+                            self.alertController("信箱已存在", "請返回登入畫面")
+                        default:
+                            break
+                        }
+                    }
                 }
                 else{
-                    print("email auth add success")
+                    self.sendVerificationMail()
+                    self.setFarmerDataToDatabase()
+                    self.updateFarmerCnt()
+                    self.clearUserInput()
+                    
                 }
             }
         }
     }
-    func setCustomerDataToDatabase(){
+    func setFarmerDataToDatabase(){
         let farmerCountString="farmer\(String(farmerNum))"
         //    let customerGamedataString="customerGamedata\(String(customerCnt))"
         db.document("farmer/\(farmerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"address":addressTextField.text!]) { Error in

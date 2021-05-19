@@ -334,7 +334,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                                             </textField>
                                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyR-yB-Znb" userLabel="seperator">
                                                 <rect key="frame" x="23" y="75" width="273" height="1"/>
@@ -664,7 +664,6 @@
                                 <rect key="frame" x="207.5" y="574" width="137.5" height="45.5"/>
                                 <state key="normal" image="btn_farmerRegister"/>
                                 <connections>
-                                    <action selector="dismiss:" destination="5PF-bJ-LjK" eventType="touchUpInside" id="1Dq-zh-MTq"/>
                                     <action selector="registerPressed:" destination="5PF-bJ-LjK" eventType="touchUpInside" id="4Su-1y-4bz"/>
                                 </connections>
                             </button>
@@ -777,7 +776,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
                                             </textField>
                                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="niW-Eq-Ldu" userLabel="seperator">
                                                 <rect key="frame" x="23" y="75" width="273" height="1"/>
@@ -805,7 +804,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gdb-FU-GAv" userLabel="seperator">
                                                 <rect key="frame" x="23" y="75" width="273" height="1"/>
@@ -833,7 +832,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f7P-BY-KkE" userLabel="seperator">
                                                 <rect key="frame" x="23" y="75" width="273" height="1"/>

@@ -123,8 +123,4 @@ class customerRegisterVC:UIViewController{
         self.passwordTextField.text=""
         self.confirmPasswordTextField.text=""
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let loginVC = segue.destination as! LoginVC
-        loginVC.getCustomerEmail()
-    }
 }
