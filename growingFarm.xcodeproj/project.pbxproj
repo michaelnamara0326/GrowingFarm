@@ -13,12 +13,14 @@
 		4C18AC4C2629BE22003C5B16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C18AC4A2629BE22003C5B16 /* Main.storyboard */; };
 		4C18AC4E2629BE25003C5B16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C18AC4D2629BE25003C5B16 /* Assets.xcassets */; };
 		4C18AC512629BE25003C5B16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C18AC4F2629BE25003C5B16 /* LaunchScreen.storyboard */; };
+		4C3E83B52653FB7A00836FC2 /* farmerRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E83B42653FB7900836FC2 /* farmerRegisterVC.swift */; };
 		4C6793302648B75D003E0726 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67932F2648B75D003E0726 /* LoginVC.swift */; };
-		4C6793342648C323003E0726 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6793332648C323003E0726 /* RegisterVC.swift */; };
+		4C6793342648C323003E0726 /* customerRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6793332648C323003E0726 /* customerRegisterVC.swift */; };
+		4C9E9C1D265002AC009C5237 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E9C1C265002AC009C5237 /* MapVC.swift */; };
 		4CC82F9E264B51300097AE8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC82F9D264B51300097AE8D /* Constants.swift */; };
 		4CCDA221264933C800410611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CCDA220264933C800410611 /* GoogleService-Info.plist */; };
-		4CCDA225264A5E7500410611 /* CustomerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA224264A5E7500410611 /* CustomerController.swift */; };
-		4CCDA227264A5EA600410611 /* FarmerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA226264A5EA600410611 /* FarmerController.swift */; };
+		4CCDA225264A5E7500410611 /* CustomerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA224264A5E7500410611 /* CustomerVC.swift */; };
+		4CCDA227264A5EA600410611 /* FarmerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA226264A5EA600410611 /* FarmerVC.swift */; };
 		EC2F88D23215823082AD84AF /* Pods_growingFarm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E4E9071E8544647743E689 /* Pods_growingFarm.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,12 +34,14 @@
 		4C18AC4D2629BE25003C5B16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C18AC502629BE25003C5B16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C18AC522629BE25003C5B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C3E83B42653FB7900836FC2 /* farmerRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = farmerRegisterVC.swift; sourceTree = "<group>"; };
 		4C67932F2648B75D003E0726 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		4C6793332648C323003E0726 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		4C6793332648C323003E0726 /* customerRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customerRegisterVC.swift; sourceTree = "<group>"; };
+		4C9E9C1C265002AC009C5237 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		4CC82F9D264B51300097AE8D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4CCDA220264933C800410611 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		4CCDA224264A5E7500410611 /* CustomerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerController.swift; sourceTree = "<group>"; };
-		4CCDA226264A5EA600410611 /* FarmerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmerController.swift; sourceTree = "<group>"; };
+		4CCDA224264A5E7500410611 /* CustomerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerVC.swift; sourceTree = "<group>"; };
+		4CCDA226264A5EA600410611 /* FarmerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FarmerVC.swift; sourceTree = "<group>"; };
 		97F1BB2CB2AD118E0D6A7550 /* Pods-growingFarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-growingFarm.release.xcconfig"; path = "Target Support Files/Pods-growingFarm/Pods-growingFarm.release.xcconfig"; sourceTree = "<group>"; };
 		DB7576CA07A0F82748B870AC /* Pods-growingFarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-growingFarm.debug.xcconfig"; path = "Target Support Files/Pods-growingFarm/Pods-growingFarm.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,8 +81,8 @@
 			children = (
 				4C18AC442629BE22003C5B16 /* AppDelegate.swift */,
 				4C18AC462629BE22003C5B16 /* SceneDelegate.swift */,
-				4C6793322648BDDD003E0726 /* ViewController */,
-				4C18AC4A2629BE22003C5B16 /* Main.storyboard */,
+				4C5AE7EB2653902200ADD63B /* View */,
+				4C6793322648BDDD003E0726 /* Controller */,
 				4C18AC4D2629BE25003C5B16 /* Assets.xcassets */,
 				4C18AC4F2629BE25003C5B16 /* LaunchScreen.storyboard */,
 				4C18AC522629BE25003C5B16 /* Info.plist */,
@@ -88,16 +92,26 @@
 			path = growingFarm;
 			sourceTree = "<group>";
 		};
-		4C6793322648BDDD003E0726 /* ViewController */ = {
+		4C5AE7EB2653902200ADD63B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4C18AC4A2629BE22003C5B16 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C6793322648BDDD003E0726 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				4C18AC482629BE22003C5B16 /* MainVC.swift */,
 				4C67932F2648B75D003E0726 /* LoginVC.swift */,
-				4C6793332648C323003E0726 /* RegisterVC.swift */,
-				4CCDA224264A5E7500410611 /* CustomerController.swift */,
-				4CCDA226264A5EA600410611 /* FarmerController.swift */,
+				4C6793332648C323003E0726 /* customerRegisterVC.swift */,
+				4C3E83B42653FB7900836FC2 /* farmerRegisterVC.swift */,
+				4CCDA224264A5E7500410611 /* CustomerVC.swift */,
+				4CCDA226264A5EA600410611 /* FarmerVC.swift */,
+				4C9E9C1C265002AC009C5237 /* MapVC.swift */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		69ECBD09203245E7D30BA6CE /* Pods */ = {
@@ -237,9 +251,11 @@
 				4C18AC492629BE22003C5B16 /* MainVC.swift in Sources */,
 				4C18AC452629BE22003C5B16 /* AppDelegate.swift in Sources */,
 				4C18AC472629BE22003C5B16 /* SceneDelegate.swift in Sources */,
-				4CCDA227264A5EA600410611 /* FarmerController.swift in Sources */,
-				4C6793342648C323003E0726 /* RegisterVC.swift in Sources */,
-				4CCDA225264A5E7500410611 /* CustomerController.swift in Sources */,
+				4CCDA227264A5EA600410611 /* FarmerVC.swift in Sources */,
+				4C6793342648C323003E0726 /* customerRegisterVC.swift in Sources */,
+				4C3E83B52653FB7A00836FC2 /* farmerRegisterVC.swift in Sources */,
+				4CCDA225264A5E7500410611 /* CustomerVC.swift in Sources */,
+				4C9E9C1D265002AC009C5237 /* MapVC.swift in Sources */,
 				4CC82F9E264B51300097AE8D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

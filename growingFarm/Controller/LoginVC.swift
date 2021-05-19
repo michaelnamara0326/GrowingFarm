@@ -15,6 +15,8 @@ class LoginVC: UIViewController{
     @IBOutlet weak var people: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
+
     let db=Firestore.firestore()
     var People:String?
     var customerEmail:[String] = []
@@ -22,33 +24,50 @@ class LoginVC: UIViewController{
     //    static var identify:Bool = false
     public override func viewDidLoad() {
         people.text=People
+        self.hideKeyboardWhenTappedAround()
+    }
+    override func viewDidAppear(_ animated: Bool) {
         getCustomerEmail()
         getFarmerEmail()
-        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func segueToRegister(_ sender: UIButton) {
-        performSegue(withIdentifier: "segueRegister", sender: sender)
+        switch People {
+        case "民眾登入":
+            performSegue(withIdentifier: "loginToCustomerRegister", sender: sender)
+            break
+        case "農家登入":
+            performSegue(withIdentifier: "loginToFarmerRegister", sender: sender)
+            break
+        default:
+            break
+        }
+        
     }
     @IBAction func backtoMain(_ sender: UIButton) {
         self.performSegue(withIdentifier: "logintomain", sender: self)
     }
     @IBAction func loginPressed(_ sender: UIButton) {
         if let email=emailTextField.text, let password=passwordTextField.text{
-            Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            Auth.auth().signIn(withEmail: email, password: password) { user, error in
                 if let e=error{
                     self.errorLabel.text="Invalid to login\(e)"
-                }else{
-                    if self.customerEmail.contains(email) && self.People == "民眾登入" {
-                        self.performSegue(withIdentifier: "segueCustomer", sender: self)
-                    }
-                    else if self.farmerEmail.contains(email) && self.People=="農家登入"{
-                        self.performSegue(withIdentifier: "segueFarmer", sender: self)
+                }
+                else{
+                    if !Auth.auth().currentUser!.isEmailVerified{
+                        self.errorLabel.text="尚未驗證信箱"
                     }
                     else{
-                        self.errorLabel.text="身份錯誤"
+                        if self.customerEmail.contains(email) && self.People == "民眾登入" {
+                            self.performSegue(withIdentifier: "segueCustomer", sender: self)
+                        }
+                        else if self.farmerEmail.contains(email) && self.People=="農家登入"{
+                            self.performSegue(withIdentifier: "segueFarmer", sender: self)
+                        }
+                        else{
+                            self.errorLabel.text="身份錯誤"
+                        }
                     }
-                    
                 }
             }
         }
@@ -63,6 +82,7 @@ class LoginVC: UIViewController{
                 }
             }
         }
+        print("trigger getcustomeremail")
     }
     func getFarmerEmail() {
         db.collection("farmer").getDocuments() {  (querySnapshot, err) in
@@ -74,6 +94,7 @@ class LoginVC: UIViewController{
                 }
             }
         }
+        print("trigger getfarmeremail")
     }
 }
 

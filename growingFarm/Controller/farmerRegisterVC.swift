@@ -1,28 +1,28 @@
 //
-//  RegisterVC.swift
+//  farmerRegisterVC.swift
 //  growingFarm
 //
-//  Created by Michael on 2021/5/10.
+//  Created by Michael on 2021/5/18.
 //  Copyright © 2021 Michael. All rights reserved.
 //
 
 import Foundation
 import UIKit
 import Firebase
-
-class RegisterVC:UIViewController{
+class farmerRegisterVC:UIViewController{
+    
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
-    var customerNum :Int = 0
+    var farmerNum :Int = 0
     let db=Firestore.firestore()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        getCustomerCnt()
+        getFarmerCnt()
     }
     @IBAction func dismiss(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
@@ -30,12 +30,10 @@ class RegisterVC:UIViewController{
     @IBAction func registerPressed(_ sender: UIButton) {
             emailAuth()
             setCustomerDataToDatabase()
-            updateCustomerCnt()
+            updateFarmerCnt()
             clearUserInput()
-        self.performSegue(withIdentifier:"registertologin" , sender: self)
+//        self.performSegue(withIdentifier:"farmerRegisterToLogin" , sender: self)
     }
-    
-    
     func emailAuth(){
         if let email=emailTextField.text,let password=passwordTextField.text{
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
@@ -49,9 +47,9 @@ class RegisterVC:UIViewController{
         }
     }
     func setCustomerDataToDatabase(){
-        let customerCountString="customer\(String(customerNum))"
+        let farmerCountString="farmer\(String(farmerNum))"
         //    let customerGamedataString="customerGamedata\(String(customerCnt))"
-        db.document("customer/\(customerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"identity":"customer"]) { Error in
+        db.document("farmer/\(farmerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"address":addressTextField.text!]) { Error in
             if let err=Error{
                 print("there must have problem to save data \(err)")
             }
@@ -60,22 +58,22 @@ class RegisterVC:UIViewController{
             }
         }
     }
-    func getCustomerCnt(){
+    func getFarmerCnt(){
         db.collection("appGlobal").getDocuments { snapshot, error in
             if let err = error {
                 print("Error getting documents: \(err)")
             }
             else {
                 for document in snapshot!.documents {
-                    self.customerNum=document.get("customerNum") as! Int
-                    print(self.customerNum)
+                    self.farmerNum=document.get("farmerNum") as! Int
+                    print(self.farmerNum)
                 }
             }
         }
     }
-    func updateCustomerCnt(){
+    func updateFarmerCnt(){
         let dbRef=self.db.collection("appGlobal").document("appGlobal1")
-        dbRef.updateData(["customerNum":self.customerNum+1]){err in
+        dbRef.updateData(["farmerNum":self.farmerNum+1]){err in
             if let err=err{
                 print(err)
             }
@@ -85,10 +83,11 @@ class RegisterVC:UIViewController{
         }
     }
     func clearUserInput(){
-        self.nameTextField.text=""
-        self.emailTextField.text=""
-        self.phoneTextField.text=""
-        self.passwordTextField.text=""
-        self.confirmPasswordTextField.text=""
+        nameTextField.text=""
+        addressTextField.text=""
+        emailTextField.text=""
+        phoneTextField.text=""
+        passwordTextField.text=""
+        confirmPasswordTextField.text=""
     }
 }
