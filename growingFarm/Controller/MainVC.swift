@@ -13,25 +13,26 @@ class MainVC: UIViewController {
     var peopleText:String!
     var peopleIdentity:String!
     var peopleColor:UIColor!
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     @IBAction func segueToLogin(_ sender: UIButton) {
-        if(sender.accessibilityLabel=="customer"){
+        if(sender.accessibilityLabel=="customerBtn"){
             peopleText="民眾登入"
+            peopleIdentity="customer"
             peopleColor=#colorLiteral(red: 0.8703275323, green: 0.9357070327, blue: 0.9039972425, alpha: 1)
         }
-        if(sender.accessibilityLabel=="farmer"){
+        if(sender.accessibilityLabel=="farmerBtn"){
             peopleText="農家登入"
+            peopleIdentity="farmer"
             peopleColor=#colorLiteral(red: 0.8185235262, green: 0.9557378888, blue: 1, alpha: 1)
         }
         self.performSegue(withIdentifier: "segueLogin", sender: self)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let loginVC = segue.destination as! LoginVC
-        loginVC.People = peopleText // someValue.text
+        loginVC.peopleLabelText = peopleText // someValue.text
+        loginVC.peopleIdentifier=peopleIdentity
         loginVC.view.backgroundColor=peopleColor
     }
 }

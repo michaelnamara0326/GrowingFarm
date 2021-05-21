@@ -17,26 +17,17 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
     var locationManager=CLLocationManager()
     override func viewDidLoad() {
         self.locationManager.requestAlwaysAuthorization()
-        
-        // For use in foreground
         self.locationManager.requestWhenInUseAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.startUpdatingLocation()
         }
         reverseGeocodeUserLocation()
-        
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        self.lat=locValue.latitude
-        self.long=locValue.longitude
-        print(locValue.latitude)
-        print(locValue.longitude)
-    }
+  
     
     
     @IBAction func signoutButton(_ sender: UIButton) {
@@ -66,6 +57,14 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
         print("pressed")
         print(lat)
         print(long)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        self.lat=locValue.latitude
+        self.long=locValue.longitude
+        print(locValue.latitude)
+        print(locValue.longitude)
     }
     func reverseGeocodeUserLocation(){
         let geocoder=CLGeocoder()

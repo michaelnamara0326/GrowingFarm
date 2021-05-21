@@ -15,86 +15,91 @@ class LoginVC: UIViewController{
     @IBOutlet weak var people: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPasswordTextField: UITextField!
-
     let db=Firestore.firestore()
-    var People:String?
-    var customerEmail:[String] = []
-    var farmerEmail:[String]=[]
-    //    static var identify:Bool = false
+    var peopleLabelText:String!
+    var peopleIdentifier:String!
+    var userInfo:[String:Any]=[:]
+    var userDocumentID:String=""
     public override func viewDidLoad() {
-        people.text=People
+        people.text=peopleLabelText
         self.hideKeyboardWhenTappedAround()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        getCustomerEmail()
-        getFarmerEmail()
-    }
-    
+    // MARK: button tapped
     @IBAction func segueToRegister(_ sender: UIButton) {
-        switch People {
-        case "民眾登入":
+        switch peopleIdentifier {
+        case "customer":
             performSegue(withIdentifier: "loginToCustomerRegister", sender: sender)
-            break
-        case "農家登入":
+        case "farmer":
             performSegue(withIdentifier: "loginToFarmerRegister", sender: sender)
-            break
         default:
             break
         }
         
     }
     @IBAction func backtoMain(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "logintomain", sender: self)
+        dismiss(animated: true, completion: nil)
     }
     @IBAction func loginPressed(_ sender: UIButton) {
-        if let email=emailTextField.text, let password=passwordTextField.text{
-            Auth.auth().signIn(withEmail: email, password: password) { user, error in
-                if let e=error{
-                    self.errorLabel.text="Invalid to login\(e)"
-                }
-                else{
-                    if !Auth.auth().currentUser!.isEmailVerified{
-                        self.errorLabel.text="尚未驗證信箱"
+        guard let email=emailTextField.text, !email.isEmpty ,let password=passwordTextField.text, !password.isEmpty else{
+            errorLabel.text="請輸入Email或密碼"
+            return
+        }
+        loginView(email,password)
+    }
+    func loginView(_ email:String, _ password:String){
+        getUserInfo(userEmail: email)
+        Auth.auth().signIn(withEmail: email, password: password) { user, error in
+            if let e=error{
+                self.errorLabel.text="Invalid to login\(e)"
+            }
+            else{
+//                if !Auth.auth().currentUser!.isEmailVerified{
+//                    self.errorLabel.text="尚未驗證信箱"
+//                }
+//                else{
+                    let identify=self.userInfo["identifier"] as? String
+                    if identify == "customer"  && self.peopleLabelText == "民眾登入" {
+                        self.performSegue(withIdentifier: "segueCustomer", sender: self)
+                    }
+                    else if identify == "farmer" && self.peopleLabelText=="農家登入"{
+                        self.performSegue(withIdentifier: "segueFarmer", sender: self)
                     }
                     else{
-                        if self.customerEmail.contains(email) && self.People == "民眾登入" {
-                            self.performSegue(withIdentifier: "segueCustomer", sender: self)
-                        }
-                        else if self.farmerEmail.contains(email) && self.People=="農家登入"{
-                            self.performSegue(withIdentifier: "segueFarmer", sender: self)
-                        }
-                        else{
-                            self.errorLabel.text="身份錯誤"
-                        }
+                        self.errorLabel.text="身份錯誤"
                     }
-                }
+//                }
             }
         }
     }
-    func getCustomerEmail() {
-        db.collection("customer").getDocuments() {  (querySnapshot, err) in
-            if let err = err {
-                print("Error getting customer email: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    self.customerEmail.append(document.get("email") as! String)
+    func getUserInfo(userEmail email:String){
+        db.collection(peopleIdentifier).whereField("email", isEqualTo: email).getDocuments { querySanpshot, error in
+            if let err=error{
+                self.errorLabel.text="查無用戶資料"
+                print(err)
+            }
+            else{
+                for document in querySanpshot!.documents{
+                    self.userInfo=document.data()
+                    self.userDocumentID=document.documentID
                 }
             }
         }
-        print("trigger getcustomeremail")
+        
     }
-    func getFarmerEmail() {
-        db.collection("farmer").getDocuments() {  (querySnapshot, err) in
-            if let err = err {
-                print("Error getting farmer email: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    self.farmerEmail.append(document.get("email") as! String)
-                }
-            }
+    func updateUserInfo(_ documentID:String){
+        let dbRef=db.collection(peopleIdentifier).document(documentID)
+        if userInfo["loginTimes"] as! Int == 0{
+            dbRef.updateData(["isVerified":true])
         }
-        print("trigger getfarmeremail")
+        dbRef.updateData(["loginTimes":userInfo["loginTimes"] as! Int + 1])
+        print("update user info successfullly")
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier=="segueCustomer" || segue.identifier=="segueFarmer"{
+//            let vc=segue.destination as! FarmerVC
+//            vc.farmerEmail=emailTextField.text!
+            updateUserInfo(userDocumentID)
+        }
     }
 }
 

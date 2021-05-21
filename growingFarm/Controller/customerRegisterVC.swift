@@ -83,7 +83,7 @@ class customerRegisterVC:UIViewController{
     }
     func setCustomerDataToDatabase(){
         let customerCountString="customer\(String(customerNum))"
-        db.document("customer/\(customerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!]) { Error in
+        db.document("customer/\(customerCountString)").setData(["No.":customerNum,"name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"identifier":"customer","isVerfied":false,"loginTimes":0]) { Error in
             if let err=Error{
                 print("there must have problem to save data \(err)")
             }
@@ -117,10 +117,10 @@ class customerRegisterVC:UIViewController{
         }
     }
     func clearUserInput(){
-        self.nameTextField.text=""
-        self.emailTextField.text=""
-        self.phoneTextField.text=""
-        self.passwordTextField.text=""
-        self.confirmPasswordTextField.text=""
+        nameTextField.text=""
+        emailTextField.text=""
+        phoneTextField.text=""
+        passwordTextField.text=""
+        confirmPasswordTextField.text=""
     }
 }

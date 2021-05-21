@@ -16,46 +16,43 @@ class MapVC: UIViewController {
     
     let locationManager = CLLocationManager()
     let regionInMeters: Double = 10000
-    var farmerAddress:[String]=[]
     let db=Firestore.firestore()
     override func viewDidLoad() {
         super.viewDidLoad()
-        getFarmerAddress()
+//        getFarmerAddress()
         checkLocationServices()
-        
+//        addNewFarmerAnnotation()
         }
     @IBAction func press(_ sender: UIButton) {
-        print(farmerAddress)
-        farmerAddressAnnoation(farmerAddress)
+//        print(farmerAddress)
+//        farmerAddressAnnoation(farmerAddress)
     }
-    func farmerAddressAnnoation(_ farmerAddress:[String]){
-        for address in farmerAddress{
-            coordinates(forAddress: address) { location in
+    func farmerAddressAnnoation(_ farmerAddress:String, _ farmerName:String){
+            coordinates(forAddress: farmerAddress) { location in
                 guard let location = location else {
                         // Handle error here.
                         return
                     }
-                self.openMapForPlace(lat: location.latitude, long: location.longitude)
+                self.openMapForPlace(farmerName: farmerName, farmerLat: location.latitude, farmerLong: location.longitude)
                 }
-        }
         
     }
-    func getFarmerAddress() {
-        db.collection("farmer").getDocuments() {  (querySnapshot, err) in
-            if let err = err {
-                print("Error getting customer email: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    self.farmerAddress.append(document.get("address") as! String)
-                }
-            }
-        }
-       
-    }
-    func openMapForPlace(lat:CLLocationDegrees,long:CLLocationDegrees){
-        let annotation=MKPointAnnotation()
-        annotation.coordinate=CLLocationCoordinate2D(latitude: lat, longitude: long)
-        mapView.addAnnotation(annotation)
+//    func getFarmerAddress() {
+//        db.collection("farmer").getDocuments() {  (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting customer email: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    self.farmerAddress.append(document.get("address") as! String)
+//                }
+//            }
+//        }
+//    }
+    func openMapForPlace(farmerName name:String,farmerLat lat:CLLocationDegrees,farmerLong long:CLLocationDegrees){
+            let annotation=MKPointAnnotation()
+            annotation.coordinate=CLLocationCoordinate2D(latitude: lat, longitude: long)
+            annotation.title=name
+            mapView.addAnnotation(annotation)
     }
     
     func coordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {

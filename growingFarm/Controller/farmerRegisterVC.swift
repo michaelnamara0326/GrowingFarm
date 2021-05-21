@@ -80,7 +80,7 @@ class farmerRegisterVC:UIViewController{
     func setFarmerDataToDatabase(){
         let farmerCountString="farmer\(String(farmerNum))"
         //    let customerGamedataString="customerGamedata\(String(customerCnt))"
-        db.document("farmer/\(farmerCountString)").setData(["name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"address":addressTextField.text!]) { Error in
+        db.document("farmer/\(farmerCountString)").setData(["No.":farmerNum,"name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"address":addressTextField.text!,"identifier":"farmer","isVerified":false,"isAdded":false,"loginTimes":0]) { Error in
             if let err=Error{
                 print("there must have problem to save data \(err)")
             }
