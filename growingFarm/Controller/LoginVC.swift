@@ -20,9 +20,24 @@ class LoginVC: UIViewController{
     var peopleIdentifier:String!
     var userInfo:[String:Any]=[:]
     var userDocumentID:String=""
+    var sendCustomerGameData:[String:Any]=[:]
     public override func viewDidLoad() {
         people.text=peopleLabelText
         self.hideKeyboardWhenTappedAround()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if let user=FirebaseAuth.Auth.auth().currentUser  {
+            // segue to main view controller
+            errorLabel.text="already have logged in"
+            print(user.email!)
+            getUserInfo(userEmail: user.email!)
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                self.performSegue(withIdentifier: "segueCustomer", sender: self)
+            }
+        } else {
+            // sign in
+            errorLabel.text="not yet"
+        }
     }
     // MARK: button tapped
     @IBAction func segueToRegister(_ sender: UIButton) {
@@ -48,18 +63,22 @@ class LoginVC: UIViewController{
     }
     func loginView(_ email:String, _ password:String){
         getUserInfo(userEmail: email)
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
-            if let e=error{
-                self.errorLabel.text="Invalid to login\(e)"
-            }
-            else{
-//                if !Auth.auth().currentUser!.isEmailVerified{
-//                    self.errorLabel.text="尚未驗證信箱"
-//                }
-//                else{
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            Auth.auth().signIn(withEmail: email, password: password) { user, error in
+                if let e=error{
+                    self.errorLabel.text="Invalid to login\(e)"
+                }
+                else{
+                    //                if !Auth.auth().currentUser!.isEmailVerified{
+                    //                    self.errorLabel.text="尚未驗證信箱"
+                    //                }
+                    //                else{
                     let identify=self.userInfo["identifier"] as? String
                     if identify == "customer"  && self.peopleLabelText == "民眾登入" {
-                        self.performSegue(withIdentifier: "segueCustomer", sender: self)
+                        self.getCustomerGameData()
+                        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                            self.performSegue(withIdentifier: "segueCustomer", sender: self)
+                        }
                     }
                     else if identify == "farmer" && self.peopleLabelText=="農家登入"{
                         self.performSegue(withIdentifier: "segueFarmer", sender: self)
@@ -67,7 +86,21 @@ class LoginVC: UIViewController{
                     else{
                         self.errorLabel.text="身份錯誤"
                     }
-//                }
+                    //                }
+                    print(self.userInfo)
+                }
+            }
+        }
+    }
+    func getCustomerGameData(){
+        let userNo=userInfo["No"] as! String
+        db.document("customer/customer\(userNo)/customerGameData/customerGameData\(userNo)").getDocument { snapShot, error in
+            if let err=error{
+                print("read data false\(err)")
+            }
+            else{
+                self.sendCustomerGameData=snapShot!.data()!
+                print("success send customer game data")
             }
         }
     }
@@ -84,7 +117,6 @@ class LoginVC: UIViewController{
                 }
             }
         }
-        
     }
     func updateUserInfo(_ documentID:String){
         let dbRef=db.collection(peopleIdentifier).document(documentID)
@@ -99,6 +131,11 @@ class LoginVC: UIViewController{
 //            let vc=segue.destination as! FarmerVC
 //            vc.farmerEmail=emailTextField.text!
             updateUserInfo(userDocumentID)
+            if segue.identifier=="segueCustomer"{
+                let customerVC=segue.destination as! CustomerVC
+                customerVC.customerInfo=userInfo
+                customerVC.customerGameData=sendCustomerGameData
+            }
         }
     }
 }

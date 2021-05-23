@@ -9,25 +9,30 @@
 import Foundation
 import UIKit
 import CoreLocation
-//import MapKit
 import Firebase
+
 class CustomerVC:UIViewController, CLLocationManagerDelegate{
     var lat:CLLocationDegrees=0
     var long:CLLocationDegrees=0
     var locationManager=CLLocationManager()
+    var customerInfo:[String:Any]=[:]
+    var customerGameData:[String:Any]=[:]
+    let db=Firestore.firestore()
+    
     override func viewDidLoad() {
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
-        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.desiredAccuracy=kCLLocationAccuracyHundredMeters
             locationManager.startUpdatingLocation()
         }
+    }
+    override func viewDidAppear(_ animated: Bool) {
         reverseGeocodeUserLocation()
+//        locationAddress()
     }
     
-  
     
     
     @IBAction func signoutButton(_ sender: UIButton) {
@@ -37,12 +42,13 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        locationManager.stopUpdatingLocation()
-        performSegue(withIdentifier: "customerToMain", sender: self)
+        //       performSegue(withIdentifier: "customerToMain", sender: self)
+        
     }
     
     @IBAction func weatherButton(_ sender: UIButton) {
         print("pressed")
+        print(customerGameData)
     }
     @IBAction func qrcodeButton(_ sender: UIButton) {
         print("pressed")
@@ -57,25 +63,31 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
         print("pressed")
         print(lat)
         print(long)
+        performSegue(withIdentifier: "customerToMap", sender: self)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         self.lat=locValue.latitude
         self.long=locValue.longitude
-        print(locValue.latitude)
-        print(locValue.longitude)
-    }
-    func reverseGeocodeUserLocation(){
-        let geocoder=CLGeocoder()
-        var location=CLLocation(latitude: 24.998966, longitude: 121.558004)
-        geocoder.reverseGeocodeLocation(location,preferredLocale: Locale.init(identifier: "zh-tw")) { placemarks, Error in
-            
-            var placeMark: CLPlacemark!
-            placeMark = placemarks?[0]
-            print(placemarks?.first)
-            print(placeMark.administrativeArea)
-        }
+//        print(locValue.latitude)
+//        print(locValue.longitude)
     }
  
+    func reverseGeocodeUserLocation(){
+        let geocoder=CLGeocoder()
+        let location=CLLocation(latitude: lat, longitude: long)
+        geocoder.reverseGeocodeLocation(location,preferredLocale: Locale.init(identifier: "zh-tw")) { placemark, Error in
+            if let err=Error{
+                print("reverse geodcode fail: \(err.localizedDescription)")
+            }
+            else{
+                var placeMark: CLPlacemark!
+                placeMark = placemark?[0]
+                print(placemark?.first ?? "")
+                print(placeMark.subAdministrativeArea ?? "")
+            }
+        }
+        locationManager.stopUpdatingLocation()
+    }
 }

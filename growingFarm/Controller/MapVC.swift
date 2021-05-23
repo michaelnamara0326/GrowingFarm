@@ -1,11 +1,3 @@
-//
-//  MapScreen.swift
-//  User-Location
-//
-//  Created by Sean Allen on 8/24/18.
-//  Copyright © 2018 Sean Allen. All rights reserved.
-//
-
 import UIKit
 import MapKit
 import CoreLocation
@@ -15,46 +7,78 @@ class MapVC: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
-    let regionInMeters: Double = 10000
+    let regionInMeters: Double = 5000
     let db=Firestore.firestore()
+//    var newFarmer:[[String:String]]=[]
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.showsUserLocation=true
+        mapView.delegate=self
+//        UserDefaults.standard.object(forKey: "pinStored")
 //        getFarmerAddress()
-        checkLocationServices()
+//        checkLocationServices()
 //        addNewFarmerAnnotation()
+//        centerViewOnUserLocation()
+        centerViewOnUserLocation()
+        
+        listenFarmer()
         }
-    @IBAction func press(_ sender: UIButton) {
-//        print(farmerAddress)
-//        farmerAddressAnnoation(farmerAddress)
+
+    @IBAction func backBtnPressed(_ sender: UIButton) {
+        dismiss(animated: true,completion: nil)
     }
-    func farmerAddressAnnoation(_ farmerAddress:String, _ farmerName:String){
+    @IBAction func btnPressed(_ sender: UIButton) {
+//        listenFarmerAdded()
+//        print(newFarmer)
+    }
+    func farmerAddressAnnoation(_ farmerAddress:String, _ farmerName:String, _ farmerDocumentID:String){
             coordinates(forAddress: farmerAddress) { location in
                 guard let location = location else {
                         // Handle error here.
                         return
                     }
                 self.openMapForPlace(farmerName: farmerName, farmerLat: location.latitude, farmerLong: location.longitude)
+                self.updateFarmerIsAdded(farmerDocumentID)
                 }
-        
     }
-//    func getFarmerAddress() {
-//        db.collection("farmer").getDocuments() {  (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting customer email: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    self.farmerAddress.append(document.get("address") as! String)
-//                }
-//            }
-//        }
-//    }
     func openMapForPlace(farmerName name:String,farmerLat lat:CLLocationDegrees,farmerLong long:CLLocationDegrees){
-            let annotation=MKPointAnnotation()
-            annotation.coordinate=CLLocationCoordinate2D(latitude: lat, longitude: long)
-            annotation.title=name
-            mapView.addAnnotation(annotation)
+        let annotation=MKPointAnnotation()
+        annotation.coordinate=CLLocationCoordinate2D(latitude: lat, longitude: long)
+        annotation.title=name
+        mapView.addAnnotation(annotation)
+        print("add annotation success")
     }
-    
+    func updateFarmerIsAdded(_ documentID:String){
+        let farmerRef=db.collection("farmer").document(documentID)
+        farmerRef.updateData(["isAdded":true])
+    }
+    func listenFarmer(){
+        db.collection("farmer")
+            .whereField("isVerified", isEqualTo: true)
+            .addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error fetching snapshots: \(error!)")
+                    return
+                }
+                snapshot.documentChanges.forEach { diff in
+                    if (diff.type == .added) {
+                        let add=diff.document.data()
+                        let farmerAddress=add["address"] as! String
+                        let farmerName=add["name"] as! String
+                        let farmerDocumentID=diff.document.documentID
+                        print("New farmer: \(add)")
+                        self.farmerAddressAnnoation(farmerAddress, farmerName, farmerDocumentID)
+                    }
+                    if (diff.type == .modified) {
+                        print("Modified famer: \(diff.document.data())")
+                    }
+                    if (diff.type == .removed) {
+                        print("Removed city: \(diff.document.data())")
+                        
+                    }
+                }
+            }
+    }
     func coordinates(forAddress address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) {
@@ -67,14 +91,7 @@ class MapVC: UIViewController {
             completion(placemarks?.first?.location?.coordinate)
         }
     }
-
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-    }
-    
-    
+   
     func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
@@ -82,49 +99,34 @@ class MapVC: UIViewController {
         }
     }
     
-    
-    func checkLocationServices() {
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorization()
-        } else {
-            // Show alert letting the user know they have to turn this on.
-        }
-    }
-    
-    
-    func checkLocationAuthorization() {
-        switch CLLocationManager.authorizationStatus() {
-        case .authorizedWhenInUse:
-            mapView.showsUserLocation = true
-           // centerViewOnUserLocation()
-            locationManager.startUpdatingLocation()
-            break
-        case .denied:
-            // Show alert instructing them how to turn on permissions
-            break
-        case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
-        case .restricted:
-            // Show an alert letting them know what's up
-            break
-        case .authorizedAlways:
-            break
-        }
-    }
 }
 
 
 extension MapVC: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
         mapView.setRegion(region, animated: true)
     }
     
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthorization()
-    }
+}
+extension MapVC:MKMapViewDelegate{
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        let reuseIdentifier = "annotationView"
+//        var view = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+//        if #available(iOS 11.0, *) {
+//            if view == nil {
+//                view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+//            }
+//            view?.displayPriority = .required
+//        } else {
+//            if view == nil {
+//                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseIdentifier)
+//            }
+//        }
+//        view?.annotation = annotation
+//        view?.canShowCallout = true
+//        return view
+//    }
+
 }

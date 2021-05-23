@@ -124,7 +124,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                             </textField>
                                         </subviews>
                                     </view>
@@ -333,7 +333,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
+                                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="emailAddress"/>
                                             </textField>
                                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gyR-yB-Znb" userLabel="seperator">
                                                 <rect key="frame" x="23" y="75" width="273" height="1"/>
@@ -361,7 +361,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                             </textField>
                                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3x5-jI-ggD" userLabel="seperator">
                                                 <rect key="frame" x="23" y="75" width="273" height="1"/>
@@ -519,6 +519,7 @@
                                                 <state key="normal" image="btn_map"/>
                                                 <connections>
                                                     <action selector="mapButton:" destination="pS0-64-F09" eventType="touchUpInside" id="AC1-kM-Fdk"/>
+                                                    <segue destination="0bX-Hv-LKN" kind="presentation" identifier="customerToMap" modalPresentationStyle="fullScreen" id="VE5-AO-z1s"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -572,12 +573,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aih-aM-Tod">
-                                <rect key="frame" x="191" y="136" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVg-hO-Upz">
+                                <rect key="frame" x="16" y="46" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="back-button-1"/>
+                                <connections>
+                                    <action selector="backBtnPressed:" destination="0bX-Hv-LKN" eventType="touchUpInside" id="qGO-Nw-Nzw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PUU-ky-tza">
+                                <rect key="frame" x="273" y="59" width="79" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="press:" destination="0bX-Hv-LKN" eventType="touchUpInside" id="dO2-QR-qOG"/>
+                                    <action selector="btnPressed:" destination="0bX-Hv-LKN" eventType="touchUpInside" id="X7V-kg-izc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -590,7 +599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Q3-c4-EKs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="548" y="797.45127436281871"/>
+            <point key="canvasLocation" x="538" y="797"/>
         </scene>
         <!--FarmerVC-->
         <scene sceneID="RCz-y0-39B">
@@ -614,7 +623,7 @@
                                 <state key="normal" title="sign out"/>
                                 <connections>
                                     <action selector="signoutButton:" destination="gFv-el-XF4" eventType="touchUpInside" id="n0N-v0-WiO"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="farmerToMain" id="De0-Sn-WzL"/>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="farmerToMain" modalPresentationStyle="fullScreen" id="De0-Sn-WzL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -718,7 +727,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                             </textField>
                                             <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yPV-7h-gav" userLabel="seperator">
                                                 <rect key="frame" x="23" y="75" width="273" height="1"/>
@@ -888,6 +897,7 @@
         <image name="Icon feather-mail" width="21.5" height="17"/>
         <image name="Icon feather-phone" width="20.5" height="20"/>
         <image name="arrow-long-left" width="30" height="13"/>
+        <image name="back-button-1" width="128" height="128"/>
         <image name="btn_custom" width="176.5" height="39.5"/>
         <image name="btn_farmer" width="190" height="40.5"/>
         <image name="btn_farmerRegister" width="137.5" height="45.5"/>

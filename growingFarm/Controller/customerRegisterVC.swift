@@ -83,12 +83,21 @@ class customerRegisterVC:UIViewController{
     }
     func setCustomerDataToDatabase(){
         let customerCountString="customer\(String(customerNum))"
+        let customerGameDataCountString="customerGameData\(String(customerNum))"
         db.document("customer/\(customerCountString)").setData(["No.":customerNum,"name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"identifier":"customer","isVerfied":false,"loginTimes":0]) { Error in
             if let err=Error{
                 print("there must have problem to save data \(err)")
             }
             else{
                 print("data saved successfully")
+            }
+        }
+        db.document("customer/\(customerCountString)/customerGameData/\(customerGameDataCountString)").setData(["coin":0,"exp":0,"location":GeoPoint(latitude: 0.0, longitude: 0.0)]) { error in
+            if let err=error{
+                print("failed to set customer game data \(err)")
+            }
+            else{
+                print("save customer game data successfully")
             }
         }
     }

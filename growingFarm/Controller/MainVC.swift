@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import CoreLocation
-import SwiftLocation
+
 class MainVC: UIViewController {
     var peopleText:String!
     var peopleIdentity:String!
