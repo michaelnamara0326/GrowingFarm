@@ -97,7 +97,7 @@
 				4C18AC522629BE25003C5B16 /* Info.plist */,
 				4CCDA220264933C800410611 /* GoogleService-Info.plist */,
 				4CC82F9D264B51300097AE8D /* Constants.swift */,
-				4C8816EB265DFDF300C56D9A /* Yuanti.ttc */,
+				4C8C8744265E16790059D695 /* Font */,
 			);
 			path = growingFarm;
 			sourceTree = "<group>";
@@ -123,6 +123,14 @@
 				4CD181CD265AAE1C000E83F2 /* FarmerIntroVC.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		4C8C8744265E16790059D695 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				4C8816EB265DFDF300C56D9A /* Yuanti.ttc */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		4CA8A40E265671C800E83C89 /* Model */ = {

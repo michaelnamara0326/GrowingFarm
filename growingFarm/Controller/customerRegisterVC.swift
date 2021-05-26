@@ -76,7 +76,6 @@ class customerRegisterVC:UIViewController{
                     self.setCustomerDataToDatabase()
                     self.updateCustomerCnt()
                     self.clearUserInput()
-                    
                 }
             }
         }

@@ -12,6 +12,7 @@ struct K{
     struct GameData{
         static let stageExp:[String:Int]=["1":100,"2":300,"3":500]
         static let autoExp:[String:Int]=["1":2,"2":5,"3":7]
+        static let wateringExp:[String:Int]=["1":5,"2":10,"3":15]
     }
     
 }

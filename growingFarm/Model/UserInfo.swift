@@ -54,8 +54,11 @@ struct customer {
         static var Location:GeoPoint{
             get{return customerGameData["location"] as! GeoPoint}
         }
-        static var TimeStamp:Timestamp{
-            get{return customerGameData["timestamp"] as! Timestamp}
+        static var WateringTimestamp:Timestamp{
+            get{return customerGameData["wateringTimestamp"] as! Timestamp}
+        }
+        static var LastTimestamp:Timestamp{
+            get{return customerGameData["lastTimestamp"] as! Timestamp}
         }
     }
 }

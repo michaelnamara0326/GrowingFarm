@@ -20,8 +20,6 @@ struct FetchData {
             }
             customer.customerInfo=(document.first?.data())!
             customer.customerInfo["DocumentID"]=document.first!.documentID
-//            print(customer.customerInfo)
-//            print(customer.customerInfos.Name)
         }
     }
     func getCustomerGameData(){
