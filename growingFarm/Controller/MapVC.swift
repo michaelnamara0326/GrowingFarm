@@ -21,7 +21,7 @@ class MapVC: UIViewController {
 //        centerViewOnUserLocation()
         centerViewOnUserLocation()
         
-        listenFarmer()
+//        listenFarmer()
         }
 
     @IBAction func backBtnPressed(_ sender: UIButton) {
@@ -128,5 +128,10 @@ extension MapVC:MKMapViewDelegate{
 //        view?.canShowCallout = true
 //        return view
 //    }
-
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("select")
+    }
+    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
+        listenFarmer()
+    }
 }

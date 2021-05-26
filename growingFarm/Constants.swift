@@ -9,4 +9,9 @@
 import Foundation
 
 struct K{
+    struct GameData{
+        static let stageExp:[String:Int]=["1":100,"2":300,"3":500]
+        static let autoExp:[String:Int]=["1":2,"2":5,"3":7]
+    }
+    
 }

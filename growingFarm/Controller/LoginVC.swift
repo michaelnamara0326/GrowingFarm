@@ -15,6 +15,7 @@ class LoginVC: UIViewController{
     @IBOutlet weak var people: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginActivityIndicator: UIActivityIndicatorView!
     let db=Firestore.firestore()
     var peopleLabelText:String!
     var peopleIdentifier:String!
@@ -24,20 +25,34 @@ class LoginVC: UIViewController{
     public override func viewDidLoad() {
         people.text=peopleLabelText
         self.hideKeyboardWhenTappedAround()
+        userLoggedIn()
     }
     override func viewDidAppear(_ animated: Bool) {
-        if let user=FirebaseAuth.Auth.auth().currentUser  {
+//        userLoggedIn()
+    }
+    func userLoggedIn(){
+        if let user=Auth.auth().currentUser  {
             // segue to main view controller
             errorLabel.text="already have logged in"
             print(user.email!)
             getUserInfo(userEmail: user.email!)
-            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+            loginActivityIndicator.isHidden=false
+            loginActivityIndicator.startAnimating()
+            DispatchQueue.global().asyncAfter(deadline: .now()+2.0) {
+                self.getCustomerGameData()
+                DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
                 self.performSegue(withIdentifier: "segueCustomer", sender: self)
+                }
             }
-        } else {
+        }
+        else {
             // sign in
             errorLabel.text="not yet"
         }
+    }
+    @IBAction func testBtn(_ sender: UIButton) {
+        print(userInfo)
+        print(sendCustomerGameData)
     }
     // MARK: button tapped
     @IBAction func segueToRegister(_ sender: UIButton) {
@@ -114,6 +129,7 @@ class LoginVC: UIViewController{
                 for document in querySanpshot!.documents{
                     self.userInfo=document.data()
                     self.userDocumentID=document.documentID
+                    print("成功")
                 }
             }
         }
@@ -128,13 +144,14 @@ class LoginVC: UIViewController{
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier=="segueCustomer" || segue.identifier=="segueFarmer"{
-//            let vc=segue.destination as! FarmerVC
-//            vc.farmerEmail=emailTextField.text!
             updateUserInfo(userDocumentID)
             if segue.identifier=="segueCustomer"{
                 let customerVC=segue.destination as! CustomerVC
                 customerVC.customerInfo=userInfo
                 customerVC.customerGameData=sendCustomerGameData
+                let customerTimestamp = sendCustomerGameData["timestamp"] as! Timestamp
+                customerVC.userTimestamp = customerTimestamp.dateValue()
+                customerVC.startTime()
             }
         }
     }
