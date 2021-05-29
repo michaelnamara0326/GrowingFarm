@@ -13,12 +13,23 @@
 		4C18AC4C2629BE22003C5B16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C18AC4A2629BE22003C5B16 /* Main.storyboard */; };
 		4C18AC4E2629BE25003C5B16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C18AC4D2629BE25003C5B16 /* Assets.xcassets */; };
 		4C18AC512629BE25003C5B16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C18AC4F2629BE25003C5B16 /* LaunchScreen.storyboard */; };
+		4C198087265FAB1000B26519 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C198086265FAB1000B26519 /* TestVC.swift */; };
+		4C19808B265FEB2200B26519 /* TyphoonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19808A265FEB2200B26519 /* TyphoonManager.swift */; };
+		4C19808D265FEDA900B26519 /* TyphoonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C19808C265FEDA900B26519 /* TyphoonData.swift */; };
 		4C3E83B52653FB7A00836FC2 /* farmerRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3E83B42653FB7900836FC2 /* farmerRegisterVC.swift */; };
+		4C47ED3726620A4F001A3153 /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C47ED3626620A4F001A3153 /* QRCodeVC.swift */; };
 		4C6793302648B75D003E0726 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C67932F2648B75D003E0726 /* LoginVC.swift */; };
 		4C6793342648C323003E0726 /* customerRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6793332648C323003E0726 /* customerRegisterVC.swift */; };
 		4C8816EC265DFDF300C56D9A /* Yuanti.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 4C8816EB265DFDF300C56D9A /* Yuanti.ttc */; };
+		4C9763892660D4D100F432D5 /* RainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9763882660D4D100F432D5 /* RainManager.swift */; };
+		4C97638B2660D4DE00F432D5 /* RainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97638A2660D4DE00F432D5 /* RainData.swift */; };
+		4C97638D2660D52400F432D5 /* ColdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97638C2660D52400F432D5 /* ColdManager.swift */; };
+		4C97638F2660D53600F432D5 /* ColdData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C97638E2660D53600F432D5 /* ColdData.swift */; };
+		4C9763912660F5F500F432D5 /* ChooseBreedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9763902660F5F500F432D5 /* ChooseBreedView.xib */; };
+		4C9763932661001F00F432D5 /* ChooseBreedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9763922661001E00F432D5 /* ChooseBreedView.swift */; };
 		4C9E9C1D265002AC009C5237 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E9C1C265002AC009C5237 /* MapVC.swift */; };
 		4CA8A40D265671C500E83C89 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8A40C265671C500E83C89 /* FetchData.swift */; };
+		4CB75F6826613BB9005EB6F7 /* ChooseBreedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB75F6726613BB9005EB6F7 /* ChooseBreedVC.swift */; };
 		4CC82F9E264B51300097AE8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC82F9D264B51300097AE8D /* Constants.swift */; };
 		4CCDA221264933C800410611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CCDA220264933C800410611 /* GoogleService-Info.plist */; };
 		4CCDA225264A5E7500410611 /* CustomerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA224264A5E7500410611 /* CustomerVC.swift */; };
@@ -38,12 +49,23 @@
 		4C18AC4D2629BE25003C5B16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C18AC502629BE25003C5B16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C18AC522629BE25003C5B16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C198086265FAB1000B26519 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		4C19808A265FEB2200B26519 /* TyphoonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TyphoonManager.swift; sourceTree = "<group>"; };
+		4C19808C265FEDA900B26519 /* TyphoonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TyphoonData.swift; sourceTree = "<group>"; };
 		4C3E83B42653FB7900836FC2 /* farmerRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = farmerRegisterVC.swift; sourceTree = "<group>"; };
+		4C47ED3626620A4F001A3153 /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		4C67932F2648B75D003E0726 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		4C6793332648C323003E0726 /* customerRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customerRegisterVC.swift; sourceTree = "<group>"; };
 		4C8816EB265DFDF300C56D9A /* Yuanti.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Yuanti.ttc; sourceTree = "<group>"; };
+		4C9763882660D4D100F432D5 /* RainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainManager.swift; sourceTree = "<group>"; };
+		4C97638A2660D4DE00F432D5 /* RainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RainData.swift; sourceTree = "<group>"; };
+		4C97638C2660D52400F432D5 /* ColdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColdManager.swift; sourceTree = "<group>"; };
+		4C97638E2660D53600F432D5 /* ColdData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColdData.swift; sourceTree = "<group>"; };
+		4C9763902660F5F500F432D5 /* ChooseBreedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseBreedView.xib; sourceTree = "<group>"; };
+		4C9763922661001E00F432D5 /* ChooseBreedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseBreedView.swift; sourceTree = "<group>"; };
 		4C9E9C1C265002AC009C5237 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		4CA8A40C265671C500E83C89 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
+		4CB75F6726613BB9005EB6F7 /* ChooseBreedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseBreedVC.swift; sourceTree = "<group>"; };
 		4CC82F9D264B51300097AE8D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4CCDA220264933C800410611 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CCDA224264A5E7500410611 /* CustomerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerVC.swift; sourceTree = "<group>"; };
@@ -106,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				4C18AC4A2629BE22003C5B16 /* Main.storyboard */,
+				4C9763902660F5F500F432D5 /* ChooseBreedView.xib */,
+				4C9763922661001E00F432D5 /* ChooseBreedView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -114,13 +138,10 @@
 			isa = PBXGroup;
 			children = (
 				4C18AC482629BE22003C5B16 /* MainVC.swift */,
-				4C67932F2648B75D003E0726 /* LoginVC.swift */,
-				4C6793332648C323003E0726 /* customerRegisterVC.swift */,
-				4C3E83B42653FB7900836FC2 /* farmerRegisterVC.swift */,
-				4CCDA224264A5E7500410611 /* CustomerVC.swift */,
-				4CCDA226264A5EA600410611 /* FarmerVC.swift */,
-				4C9E9C1C265002AC009C5237 /* MapVC.swift */,
-				4CD181CD265AAE1C000E83F2 /* FarmerIntroVC.swift */,
+				4C914B3B266242B60081CA59 /* LoginSystem */,
+				4C914B3C266242D50081CA59 /* Customer */,
+				4C914B3D266242FA0081CA59 /* Farmer */,
+				4C198086265FAB1000B26519 /* TestVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -133,11 +154,55 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		4C914B3B266242B60081CA59 /* LoginSystem */ = {
+			isa = PBXGroup;
+			children = (
+				4C67932F2648B75D003E0726 /* LoginVC.swift */,
+				4C6793332648C323003E0726 /* customerRegisterVC.swift */,
+				4C3E83B42653FB7900836FC2 /* farmerRegisterVC.swift */,
+			);
+			path = LoginSystem;
+			sourceTree = "<group>";
+		};
+		4C914B3C266242D50081CA59 /* Customer */ = {
+			isa = PBXGroup;
+			children = (
+				4CD181CD265AAE1C000E83F2 /* FarmerIntroVC.swift */,
+				4CCDA224264A5E7500410611 /* CustomerVC.swift */,
+				4C9E9C1C265002AC009C5237 /* MapVC.swift */,
+				4CB75F6726613BB9005EB6F7 /* ChooseBreedVC.swift */,
+				4C47ED3626620A4F001A3153 /* QRCodeVC.swift */,
+			);
+			path = Customer;
+			sourceTree = "<group>";
+		};
+		4C914B3D266242FA0081CA59 /* Farmer */ = {
+			isa = PBXGroup;
+			children = (
+				4CCDA226264A5EA600410611 /* FarmerVC.swift */,
+			);
+			path = Farmer;
+			sourceTree = "<group>";
+		};
+		4C9763872660D3F800F432D5 /* OpenData */ = {
+			isa = PBXGroup;
+			children = (
+				4C19808A265FEB2200B26519 /* TyphoonManager.swift */,
+				4C19808C265FEDA900B26519 /* TyphoonData.swift */,
+				4C9763882660D4D100F432D5 /* RainManager.swift */,
+				4C97638A2660D4DE00F432D5 /* RainData.swift */,
+				4C97638C2660D52400F432D5 /* ColdManager.swift */,
+				4C97638E2660D53600F432D5 /* ColdData.swift */,
+			);
+			path = OpenData;
+			sourceTree = "<group>";
+		};
 		4CA8A40E265671C800E83C89 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				4CA8A40C265671C500E83C89 /* FetchData.swift */,
 				4CE7C93E265D3D89000B0723 /* UserInfo.swift */,
+				4C9763872660D3F800F432D5 /* OpenData */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,6 +286,7 @@
 			files = (
 				4C8816EC265DFDF300C56D9A /* Yuanti.ttc in Resources */,
 				4C18AC512629BE25003C5B16 /* LaunchScreen.storyboard in Resources */,
+				4C9763912660F5F500F432D5 /* ChooseBreedView.xib in Resources */,
 				4CCDA221264933C800410611 /* GoogleService-Info.plist in Resources */,
 				4C18AC4E2629BE25003C5B16 /* Assets.xcassets in Resources */,
 				4C18AC4C2629BE22003C5B16 /* Main.storyboard in Resources */,
@@ -281,13 +347,23 @@
 				4C18AC452629BE22003C5B16 /* AppDelegate.swift in Sources */,
 				4C18AC472629BE22003C5B16 /* SceneDelegate.swift in Sources */,
 				4CD181CE265AAE1C000E83F2 /* FarmerIntroVC.swift in Sources */,
+				4C97638B2660D4DE00F432D5 /* RainData.swift in Sources */,
 				4CCDA227264A5EA600410611 /* FarmerVC.swift in Sources */,
+				4C198087265FAB1000B26519 /* TestVC.swift in Sources */,
+				4C97638D2660D52400F432D5 /* ColdManager.swift in Sources */,
+				4C19808D265FEDA900B26519 /* TyphoonData.swift in Sources */,
 				4CA8A40D265671C500E83C89 /* FetchData.swift in Sources */,
 				4C6793342648C323003E0726 /* customerRegisterVC.swift in Sources */,
+				4C19808B265FEB2200B26519 /* TyphoonManager.swift in Sources */,
+				4C97638F2660D53600F432D5 /* ColdData.swift in Sources */,
 				4C3E83B52653FB7A00836FC2 /* farmerRegisterVC.swift in Sources */,
 				4CCDA225264A5E7500410611 /* CustomerVC.swift in Sources */,
+				4C47ED3726620A4F001A3153 /* QRCodeVC.swift in Sources */,
 				4C9E9C1D265002AC009C5237 /* MapVC.swift in Sources */,
 				4CE7C93F265D3D89000B0723 /* UserInfo.swift in Sources */,
+				4C9763892660D4D100F432D5 /* RainManager.swift in Sources */,
+				4C9763932661001F00F432D5 /* ChooseBreedView.swift in Sources */,
+				4CB75F6826613BB9005EB6F7 /* ChooseBreedVC.swift in Sources */,
 				4CC82F9E264B51300097AE8D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

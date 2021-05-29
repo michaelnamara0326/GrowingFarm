@@ -101,7 +101,7 @@ class LoginVC: UIViewController{
                     else{
                         self.errorLabel.text="身份錯誤"
                     }
-                    //                }
+                    //                 }
                     print(self.userInfo)
                 }
             }
@@ -147,11 +147,8 @@ class LoginVC: UIViewController{
             updateUserInfo(userDocumentID)
             if segue.identifier=="segueCustomer"{
                 let customerVC=segue.destination as! CustomerVC
-                customerVC.customerInfo=userInfo
-                customerVC.customerGameData=sendCustomerGameData
-                let customerTimestamp = sendCustomerGameData["timestamp"] as! Timestamp
-                customerVC.userTimestamp = customerTimestamp.dateValue()
-                customerVC.startTime()
+//                customerVC.customerInfo=userInfo
+//                customerVC.customerGameData=sendCustomerGameData
             }
         }
     }

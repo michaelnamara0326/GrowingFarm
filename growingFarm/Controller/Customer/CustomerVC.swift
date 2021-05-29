@@ -11,18 +11,20 @@ import UIKit
 import CoreLocation
 import Firebase
 import LinearProgressBar
-class CustomerVC:UIViewController, CLLocationManagerDelegate{
+import SCLAlertView
+
+
+class CustomerVC:UIViewController{
     var lat:CLLocationDegrees=0
     var long:CLLocationDegrees=0
     var locationManager=CLLocationManager()
-    var customerInfo:[String:Any]=[:]
-    var customerGameData:[String:Any]=[:]
+//    var customerInfo:[String:Any]=[:]
+//    var customerGameData:[String:Any]=[:]
     let db=Firestore.firestore()
     var timer=Timer()
     var userTimestamp:Date?
     var timesUp:Bool=false
     let fetchData=FetchData()
-    
     @IBOutlet weak var linearProgressBar: LinearProgressBar!
     @IBOutlet weak var wateringExpLabel: UILabel!
     @IBOutlet weak var timeLeftLabel: UILabel!
@@ -36,7 +38,6 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
             self.fetchData.getCustomerInfo()
             self.fetchData.getCustomerGameData()
         }
-        //        linearProgressBar.progressValue=customerGameData["exp"] as! CGFloat
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
@@ -44,80 +45,83 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
             locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
-            self.updateExpProgressBarLabel()
-            self.startTime()
-            self.reverseGeocodeUserLocation()
+        DispatchQueue.main.asyncAfter(deadline: .now()+5.0) {
             self.autoExp()
         }
-        
+        fetchData.updateCustomerGameData("lastTimestamp", Timestamp(date: Date()))
     }
-    func alertController(_ identify:Int,_ alertTitle:String, _ alertMessage:String){
-        let controller = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let expFullAction = UIAlertAction(title: "OK", style: .default){ action in
-            self.updateExpProgressBarLabel()
+    override func viewDidAppear(_ animated: Bool) {
+//        if customer.customerGameDatas.Breed == nil {
+            // remind user to select the breed before play and control chooseBreed button enabled
+//        }
+//        else{
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                self.updateExpProgressBarLabel()
+                self.startTime()
+                self.reverseGeocodeUserLocation()
+            }
+//        }
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
         }
-        let overTimeAction=UIAlertAction(title:"知道了",style: .default)
-        let totalAutoExpAction=UIAlertAction(title: "OK", style: .default)
-        switch identify{
-        case 1:
-            controller.addAction(expFullAction)
-        case 2:
-            controller.addAction(overTimeAction)
-        case 3:
-            controller.addAction(totalAutoExpAction)
-        default:
-            break
-        }
-        self.present(controller, animated: true, completion: nil)
+
     }
-    
     func autoExp(){
         let time=updateTime(customer.customerGameDatas.LastTimestamp)
         if(-(time.0) > 12){
-            alertController(2,"超過12小時未查看農場", "系統未自動增加您的經驗值")
+            _ = SCLAlertView().showWarning("超過12小時未查看農場", subTitle: "系統未自動增加您的經驗值")
         }
         else{
-            let exp = -(time.0) * K.GameData.autoExp[customer.customerGameDatas.Stage]!
+            let exp = -(time.0) * K.GameData.breed1.autoExp[customer.customerGameDatas.Stage]!
             pushExpProgessBar(exp)
-            alertController(3, "歡迎回來!", "自動獲得\(exp)經驗值")
+            _ = SCLAlertView().showInfo("歡迎回來!", subTitle: "離開總計:\(-(time.0))小時，自動獲得\(exp)經驗值")
         }
     }
     
     
     func updateExpProgressBarLabel(){
-        let userDataPath="customer/\(customer.customerInfos.DocumentId)/customerGameData/\(customer.customerInfos.DocumentId)GameData"
         let userStage=customer.customerGameDatas.Stage
         stageLabel.text="Stage:\(userStage)"
-        expLabel.text="\(customer.customerGameDatas.Exp)/\(K.GameData.stageExp[userStage]!)"
-        autoExpLabel.text="+\(K.GameData.autoExp[userStage]!)/hr"
-        linearProgressBar.progressValue = CGFloat(customer.customerGameDatas.Exp) / CGFloat(K.GameData.stageExp[userStage]!) * 100
+        expLabel.text="\(customer.customerGameDatas.Exp)/\(K.GameData.breed1.stageExp[userStage]!)"
+        autoExpLabel.text="+\(K.GameData.breed1.autoExp[userStage]!)/hr"
+        linearProgressBar.progressValue = CGFloat(customer.customerGameDatas.Exp) / CGFloat(K.GameData.breed1.stageExp[userStage]!) * 100
         if(linearProgressBar.progressValue >= 100){
-            alertController(1,"恭喜完成第\(userStage)階", "前往下一階段")
+            let appearance = SCLAlertView.SCLAppearance(showCloseButton:false)
+            let alert = SCLAlertView(appearance: appearance)
+            _ = alert.addButton("Go"){
+                self.updateExpProgressBarLabel()
+            }
+            if Int(userStage)! != 3{
+                self.fetchData.updateCustomerGameData("exp", customer.customerGameDatas.Exp - K.GameData.breed1.stageExp[userStage]!)
+                self.fetchData.updateCustomerGameData("stage", String(Int(userStage)! + 1))
+                _ = alert.showSuccess("恭喜完成第\(userStage)階", subTitle: "前往下一階段")
+            }
+            else{
+                self.fetchData.updateCustomerGameData("exp", 0)
+                self.fetchData.updateCustomerGameData("stage", "1")
+                _ = alert.showSuccess("恭喜完成最後階段", subTitle: "前往收割稻米")
+            }
         }
     }
     func pushExpProgessBar(_ exp:Int){
-        let userDataPath="customer/\(customer.customerInfos.DocumentId)/customerGameData/\(customer.customerInfos.DocumentId)GameData"
-        let userStage=customer.customerGameDatas.Stage
-        db.document(userDataPath).updateData(["exp":customer.customerGameDatas.Exp + exp])
+        fetchData.updateCustomerGameData("exp", customer.customerGameDatas.Exp + exp)
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            if customer.customerGameDatas.Exp >= K.GameData.stageExp[userStage]! {
-                self.db.document(userDataPath).updateData(["exp":customer.customerGameDatas.Exp - K.GameData.stageExp[userStage]!])
-                if Int(userStage)! != 3 {
-                self.db.document(userDataPath).updateData(["stage":String(Int(userStage)! + 1)])
-                }
-                else{
-                    self.db.document(userDataPath).updateData(["stage":"1"])
-                }
-            }
             self.updateExpProgressBarLabel()
         }
-//        updateExpProgressBarLabel()
     }
 
+    @IBAction func chooseBreed(_ sender: UIButton) {
+            let chooseBreedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "chooseBreed") as! ChooseBreedVC
+            self.addChild(chooseBreedVC)
+            chooseBreedVC.view.frame=self.view.frame
+            self.view.addSubview(chooseBreedVC.view)
+            chooseBreedVC.didMove(toParent: self)
+        
+    }
     @IBAction func wateringButton(_ sender: UIButton) {
         let userDataPath="customer/\(customer.customerInfos.DocumentId)/customerGameData/\(customer.customerInfos.DocumentId)GameData"
         sender.isUserInteractionEnabled=false
@@ -125,11 +129,10 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
         let nextTime=Date().addingTimeInterval(10)
 //        linearProgressBar.progressValue+=10
         pushExpProgessBar(10)
-        db.document(userDataPath).updateData(["wateringTimestamp":Timestamp(date: nextTime)])
+//        db.document(userDataPath).updateData(["wateringTimestamp":Timestamp(date: nextTime)])
+        fetchData.updateCustomerGameData("wateringTimestamp", Timestamp(date: nextTime))
         startTime()
     }
-   
-            
     @IBAction func signoutButton(_ sender: UIButton) {
         let firebaseAuth = Auth.auth()
         do {
@@ -145,7 +148,6 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
     }
     @IBAction func qrcodeButton(_ sender: UIButton) {
         print("pressed")
-        print(updateTime(customer.customerGameDatas.LastTimestamp))
     }
     @IBAction func warehouseButton(_ sender: UIButton) {
         print("pressed")
@@ -156,7 +158,6 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
     @IBAction func mapButton(_ sender: UIButton) {
         print(lat)
         print(long)
-
     }
 
     func updateTime(_ timeStamp:Timestamp) ->(Int,Int,Int) {
@@ -194,13 +195,7 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
         }
 
     }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        self.lat=locValue.latitude
-        self.long=locValue.longitude
-//        print(locValue.latitude)
-//        print(locValue.longitude)
-    }
+   
  
     func reverseGeocodeUserLocation(){
         let geocoder=CLGeocoder()
@@ -212,14 +207,22 @@ class CustomerVC:UIViewController, CLLocationManagerDelegate{
             else{
                 var placeMark: CLPlacemark!
                 placeMark = placemark?[0]
-                print(placemark?.first ?? "")
+//                print(placemark?.first ?? "")
                 print(placeMark.subAdministrativeArea ?? "")
+//                print(placeMark.locality ?? "")
+//                print(placeMark.subLocality ?? "")
                 self.cityLabel.text=placeMark.subAdministrativeArea ?? ""
             }
         }
         locationManager.stopUpdatingLocation()
     }
-    
 }
-
-
+extension CustomerVC:CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        lat=locValue.latitude
+        long=locValue.longitude
+//        print(locValue.latitude)
+//        print(locValue.longitude)
+    }
+}
