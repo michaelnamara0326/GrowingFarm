@@ -10,17 +10,14 @@ import Foundation
 import UIKit
 import Firebase
 class FarmerVC:UIViewController{
-    var farmerEmail:String=""
-    var farmerInfo:[String:String] = [:]
-    let db=Firestore.firestore()
+    let fetchData=FetchData()
+    @IBOutlet weak var farmerImage: UIImageView!
     override func viewDidLoad() {
-        getFarmerInfo()
-//        print(farmerEmail)
+        farmerImage.makeRounded()
+        fetchData.getFarmerInfo()
+        fetchData.getFarmerGameData()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        print(farmerInfo)
-        
-    }
+
     @IBAction func signoutButton(_ sender: UIButton) {
         let firebaseAuth = Auth.auth()
         do {
@@ -28,24 +25,16 @@ class FarmerVC:UIViewController{
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-//        let map=MapVC()
-//        map.farmerAddressAnnoation(farmerInfo["Address"]!,farmerInfo["Name"]!)
-//        performSegue(withIdentifier: "farmerToMain", sender: self)
+        
     }
-    func getFarmerInfo(){
-        db.collection("farmer").whereField("email", isEqualTo: farmerEmail).getDocuments { querySnapshot, err in
-            if let err=err{
-                print(err)
-            }
-            else{
-                for document in querySnapshot!.documents{
-                    self.farmerInfo["Name"]=document.get("name") as! String
-                    self.farmerInfo["Address"]=document.get("address") as! String
-                }
-            }
-        }
-   
+
+}
+extension UIImageView {
+    func makeRounded() {
+        self.layer.borderWidth = 1
+        self.layer.masksToBounds = false
+        self.layer.borderColor = UIColor.clear.cgColor
+        self.layer.cornerRadius = self.frame.height / 2
+        self.clipsToBounds = true
     }
-    
-    
 }

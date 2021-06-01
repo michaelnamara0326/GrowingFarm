@@ -5,13 +5,13 @@
 //  Created by Michael Namara on 2021/5/27.
 //  Copyright © 2021 Michael. All rights reserved.
 //
-
 import Foundation
 import SWXMLHash
 struct TyphoonManager{
-    let typhoonURL="https://b-alertsline.cdn.hinet.net/Capstorage/CWB/2020/Typhoon_warnings/fifows_typhoon-warning_202011070716.cap"
-    func fetchThphoon(){
-        performRequest(urlString: typhoonURL)
+//    let alertURL="https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx?AlertType=5"
+    let alertURL="https://b-alertsline.cdn.hinet.net/Capstorage/CWB/2020/Typhoon_warnings/fifows_typhoon-warning_202011070614.cap"
+    func fetchTyphoon(){
+        performRequest(urlString: alertURL)
     }
     func performRequest(urlString:String){
         if let url=URL(string: urlString){
@@ -22,9 +22,12 @@ struct TyphoonManager{
                 }
                 if let safeData=data{
                     let dataString=String(data: safeData, encoding: .utf8)
-//                    print(dataString)
-//                    self.parseJSON(typhoonData: safeData)
-                    self.parseXML(typhoonData: dataString!)
+                    if(url.lastPathComponent.components(separatedBy: ".")[1] == "cap"){
+                            self.parseXML(typhoonData: dataString!)
+                    }
+                    else{
+                        self.parseJSON(typhoonData: safeData)
+                    }
                 }
             }
             task.resume()
@@ -36,7 +39,7 @@ struct TyphoonManager{
         do{
             let decodeData=try decoder.decode(TyphoonData.self, from: typhoonData)
 //            print(decodeData.updated)
-//            parseXML(urlString: decodeData.entry.last!.link.href)
+            performRequest(urlString: (decodeData.entry.last?.link.href)!)
         }catch{
             print(error)
         }
@@ -45,15 +48,28 @@ struct TyphoonManager{
         let xml=SWXMLHash.parse(typhoonData)
         var typhoonArea:[String]=[]
         do{
-            let typhoonScale = try xml["alert"]["info"]["description"]["typhoon-info"]["section"][3]["analysis"]["scale"].withAttribute("lang", "zh-TW").element!.text
-            let typhoonAlert = try xml["alert"]["info"]["description"]["section"].withAttribute("title", "警戒區域及事項").element!.text
-            for elem in xml["alert"]["info"]["area"].all{
-                typhoonArea.append(elem["areaDesc"].element!.text)
+            switch xml["alert"]["info"]["headline"].element!.text {
+            case "海上陸上颱風警報":
+                typhoon.alertType = try xml["alert"]["info"]["description"]["typhoon-info"]["section"][3]["analysis"]["scale"].withAttribute("lang", "zh-TW").element!.text
+                typhoon.alertDescription = try xml["alert"]["info"]["description"]["section"].withAttribute("title", "豪雨特報").element!.text
+                for elem in xml["alert"]["info"]["area"].all{
+                    guard elem["areaDesc"].element!.text.count == 3 else { continue }
+                    typhoonArea.append(elem["areaDesc"].element!.text)
+                }
+//                print(typhoonScale)
+//                let typhoonAlertArr = typhoonAlert.components(separatedBy: "。")
+//                print(typhoonAlertArr[0])
+                typhoon.alertArea=typhoonArea
+                print(typhoon.alertType!)
+                print(typhoon.alertDescription!)
+                print(typhoon.alertArea)
+            case "海上颱風警報":
+                print("海上颱風警報")
+            case "解除颱風警報":
+                print("解除颱風警報")
+            default:
+                return
             }
-            print(typhoonScale)
-            let typhoonAlertArr = typhoonAlert.components(separatedBy: "。")
-            print(typhoonAlertArr[0])
-            print(typhoonArea)
         }catch{
             print(error)
         }

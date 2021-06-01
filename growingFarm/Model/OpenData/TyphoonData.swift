@@ -25,4 +25,9 @@ struct Link: Codable {
         case href = "@href"
     }
 }
+struct typhoon{
+    static var alertType:String?
+    static var alertDescription:String?
+    static var alertArea:[String]=[]
+}
 

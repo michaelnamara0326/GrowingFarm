@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FarmerEventView" customModule="growingFarm" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULM-OK-sDX">
+                    <rect key="frame" x="0.0" y="0.0" width="340" height="70"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wh-RO-ify">
+                            <rect key="frame" x="0.0" y="0.0" width="330" height="70"/>
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="chevron.right" catalog="system"/>
+                            <connections>
+                                <action selector="eventPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="PJ0-WC-X0s"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="參觀市集-50點" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rIS-oU-kZ7">
+                            <rect key="frame" x="8" y="16" width="292" height="38"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.45580959319999997" green="0.54028654099999995" blue="0.61569803950000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="7wh-RO-ify" secondAttribute="bottom" id="2hY-lu-BcG"/>
+                        <constraint firstItem="rIS-oU-kZ7" firstAttribute="top" secondItem="ULM-OK-sDX" secondAttribute="top" constant="16" id="694-iV-zhX"/>
+                        <constraint firstItem="7wh-RO-ify" firstAttribute="leading" secondItem="ULM-OK-sDX" secondAttribute="leading" id="ULj-Cl-L9I"/>
+                        <constraint firstItem="rIS-oU-kZ7" firstAttribute="leading" secondItem="ULM-OK-sDX" secondAttribute="leading" constant="8" id="bFh-ev-jzN"/>
+                        <constraint firstItem="7wh-RO-ify" firstAttribute="top" secondItem="ULM-OK-sDX" secondAttribute="top" id="f20-6l-ia7"/>
+                        <constraint firstAttribute="bottom" secondItem="rIS-oU-kZ7" secondAttribute="bottom" constant="16" id="giB-zs-tvA"/>
+                        <constraint firstAttribute="trailing" secondItem="7wh-RO-ify" secondAttribute="trailing" constant="10" id="s7D-vg-kW7"/>
+                        <constraint firstAttribute="trailing" secondItem="rIS-oU-kZ7" secondAttribute="trailing" constant="40" id="zUA-rS-n4J"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ULM-OK-sDX" secondAttribute="trailing" id="hPj-FZ-OQB"/>
+                <constraint firstItem="ULM-OK-sDX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="iJt-mO-357"/>
+                <constraint firstItem="ULM-OK-sDX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jTe-14-TY4"/>
+                <constraint firstAttribute="bottom" secondItem="ULM-OK-sDX" secondAttribute="bottom" id="sSS-Gn-LpC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="eventNameLabel" destination="rIS-oU-kZ7" id="wFp-Oh-ZDa"/>
+            </connections>
+            <point key="canvasLocation" x="81.599999999999994" y="-241.07946026986508"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

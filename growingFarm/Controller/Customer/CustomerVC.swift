@@ -15,11 +15,10 @@ import SCLAlertView
 
 
 class CustomerVC:UIViewController{
+    //MARK:Parameter
     var lat:CLLocationDegrees=0
     var long:CLLocationDegrees=0
     var locationManager=CLLocationManager()
-//    var customerInfo:[String:Any]=[:]
-//    var customerGameData:[String:Any]=[:]
     let db=Firestore.firestore()
     var timer=Timer()
     var userTimestamp:Date?
@@ -33,6 +32,9 @@ class CustomerVC:UIViewController{
     @IBOutlet weak var autoExpLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var wateringBtn: UIButton!
+    @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var paddyImageView: UIImageView!
+    //MARK: view
     override func viewDidLoad() {
         DispatchQueue.main.async {
             self.fetchData.getCustomerInfo()
@@ -70,50 +72,8 @@ class CustomerVC:UIViewController{
         }
 
     }
-    func autoExp(){
-        let time=updateTime(customer.customerGameDatas.LastTimestamp)
-        if(-(time.0) > 12){
-            _ = SCLAlertView().showWarning("超過12小時未查看農場", subTitle: "系統未自動增加您的經驗值")
-        }
-        else{
-            let exp = -(time.0) * K.GameData.breed1.autoExp[customer.customerGameDatas.Stage]!
-            pushExpProgessBar(exp)
-            _ = SCLAlertView().showInfo("歡迎回來!", subTitle: "離開總計:\(-(time.0))小時，自動獲得\(exp)經驗值")
-        }
-    }
-    
-    
-    func updateExpProgressBarLabel(){
-        let userStage=customer.customerGameDatas.Stage
-        stageLabel.text="Stage:\(userStage)"
-        expLabel.text="\(customer.customerGameDatas.Exp)/\(K.GameData.breed1.stageExp[userStage]!)"
-        autoExpLabel.text="+\(K.GameData.breed1.autoExp[userStage]!)/hr"
-        linearProgressBar.progressValue = CGFloat(customer.customerGameDatas.Exp) / CGFloat(K.GameData.breed1.stageExp[userStage]!) * 100
-        if(linearProgressBar.progressValue >= 100){
-            let appearance = SCLAlertView.SCLAppearance(showCloseButton:false)
-            let alert = SCLAlertView(appearance: appearance)
-            _ = alert.addButton("Go"){
-                self.updateExpProgressBarLabel()
-            }
-            if Int(userStage)! != 3{
-                self.fetchData.updateCustomerGameData("exp", customer.customerGameDatas.Exp - K.GameData.breed1.stageExp[userStage]!)
-                self.fetchData.updateCustomerGameData("stage", String(Int(userStage)! + 1))
-                _ = alert.showSuccess("恭喜完成第\(userStage)階", subTitle: "前往下一階段")
-            }
-            else{
-                self.fetchData.updateCustomerGameData("exp", 0)
-                self.fetchData.updateCustomerGameData("stage", "1")
-                _ = alert.showSuccess("恭喜完成最後階段", subTitle: "前往收割稻米")
-            }
-        }
-    }
-    func pushExpProgessBar(_ exp:Int){
-        fetchData.updateCustomerGameData("exp", customer.customerGameDatas.Exp + exp)
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            self.updateExpProgressBarLabel()
-        }
-    }
 
+//MARK: button-pressed
     @IBAction func chooseBreed(_ sender: UIButton) {
             let chooseBreedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "chooseBreed") as! ChooseBreedVC
             self.addChild(chooseBreedVC)
@@ -123,13 +83,10 @@ class CustomerVC:UIViewController{
         
     }
     @IBAction func wateringButton(_ sender: UIButton) {
-        let userDataPath="customer/\(customer.customerInfos.DocumentId)/customerGameData/\(customer.customerInfos.DocumentId)GameData"
         sender.isUserInteractionEnabled=false
         sender.alpha=0.5
         let nextTime=Date().addingTimeInterval(10)
-//        linearProgressBar.progressValue+=10
         pushExpProgessBar(10)
-//        db.document(userDataPath).updateData(["wateringTimestamp":Timestamp(date: nextTime)])
         fetchData.updateCustomerGameData("wateringTimestamp", Timestamp(date: nextTime))
         startTime()
     }
@@ -195,7 +152,49 @@ class CustomerVC:UIViewController{
         }
 
     }
-   
+    func autoExp(){
+        let time=updateTime(customer.customerGameDatas.LastTimestamp)
+        if(-(time.0) > 12){
+            _ = SCLAlertView().showWarning("超過12小時未查看農場", subTitle: "系統未自動增加您的經驗值")
+        }
+        else{
+            let exp = -(time.0) * K.GameData.breed1.autoExp[customer.customerGameDatas.Stage]!
+            pushExpProgessBar(exp)
+            _ = SCLAlertView().showInfo("歡迎回來!", subTitle: "離開總計:\(-(time.0))小時，自動獲得\(exp)經驗值")
+        }
+    }
+    
+    
+    func updateExpProgressBarLabel(){
+        let userStage=customer.customerGameDatas.Stage
+        stageLabel.text="Stage:\(userStage)"
+        expLabel.text="\(customer.customerGameDatas.Exp)/\(K.GameData.breed1.stageExp[userStage]!)"
+        autoExpLabel.text="+\(K.GameData.breed1.autoExp[userStage]!)/hr"
+        linearProgressBar.progressValue = CGFloat(customer.customerGameDatas.Exp) / CGFloat(K.GameData.breed1.stageExp[userStage]!) * 100
+        if(linearProgressBar.progressValue >= 100){
+            let appearance = SCLAlertView.SCLAppearance(showCloseButton:false)
+            let alert = SCLAlertView(appearance: appearance)
+            _ = alert.addButton("Go"){
+                self.updateExpProgressBarLabel()
+            }
+            if Int(userStage)! != 3{
+                self.fetchData.updateCustomerGameData("exp", customer.customerGameDatas.Exp - K.GameData.breed1.stageExp[userStage]!)
+                self.fetchData.updateCustomerGameData("stage", String(Int(userStage)! + 1))
+                _ = alert.showSuccess("恭喜完成第\(userStage)階", subTitle: "前往下一階段")
+            }
+            else{
+                self.fetchData.updateCustomerGameData("exp", 0)
+                self.fetchData.updateCustomerGameData("stage", "1")
+                _ = alert.showSuccess("恭喜完成最後階段", subTitle: "前往收割稻米")
+            }
+        }
+    }
+    func pushExpProgessBar(_ exp:Int){
+        fetchData.updateCustomerGameData("exp", customer.customerGameDatas.Exp + exp)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.updateExpProgressBarLabel()
+        }
+    }
  
     func reverseGeocodeUserLocation(){
         let geocoder=CLGeocoder()
@@ -216,6 +215,7 @@ class CustomerVC:UIViewController{
         }
         locationManager.stopUpdatingLocation()
     }
+    
 }
 extension CustomerVC:CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

@@ -12,6 +12,18 @@ import CoreLocation
 
 struct FetchData {
     let db=Firestore.firestore()
+    func getAppGlobal(){
+        db.collection("appGlobal").document("appGlobal1").getDocument { snapShot, error in
+            if let err=error{
+                print(err)
+            }
+            else{
+                appGlobal.appglobal=(snapShot?.data())!
+//                print(appGlobal.appglobal)
+//                print(appGlobal.appglobals.leisurtfarmNum)
+            }
+        }
+    }
     func getCustomerInfo(){
         db.collection("customer").whereField("email", isEqualTo: "customertest@1.com").addSnapshotListener { querySnapShot, error in
             guard let document = querySnapShot?.documents else{
@@ -54,7 +66,7 @@ struct FetchData {
             else{
                 farmer.farmerGameData=(snapShot?.data())!
 //                print(farmer.farmerGameData)
-//                print(farmer.farmerGameDatas.Event["Event1"]!["exp"]!)
+                print(farmer.farmerGameDatas.Event["Event1"]!["exp"]!)
             }
         }
     }

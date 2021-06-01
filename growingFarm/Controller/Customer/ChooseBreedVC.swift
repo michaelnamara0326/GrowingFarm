@@ -13,7 +13,6 @@ class ChooseBreedVC: UIViewController {
     @IBOutlet weak var rice1Button: UIButton!
     @IBOutlet weak var rice2Button: UIButton!
     var pick:Int=1
-    let fetchData=FetchData()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor=UIColor.black.withAlphaComponent(0.5)
@@ -33,21 +32,11 @@ class ChooseBreedVC: UIViewController {
     
     @IBAction func confirmButtonPressed(_ sender: UIButton) {
         if pick==1{
-            fetchData.updateCustomerGameData("breed", "1")
+            FetchData().updateCustomerGameData("breed", "1")
         }
         else{
-            fetchData.updateCustomerGameData("breed", "2")
+            FetchData().updateCustomerGameData("breed", "2")
         }
         self.view.removeFromSuperview()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -30,11 +30,11 @@ extension QRCodeVC: QRScannerViewDelegate {
         qrScannerView.rescan()
     }
     func qrScannerView(_ qrScannerView: QRScannerView, didSuccess code: String) {
-        if let url=URL(string: code.urlEncoded()), url.scheme=="GF"{
+        if let url=URL(string: code.urlEncoded()), url.scheme=="growingfarm"{
             print(url.host!)
             print(url.pathComponents)
+            fetchData.updateCustomerGameData("exp", customer.customerGameDatas.Exp + Int(url.pathComponents.last!)!)
             dismiss(animated: true) {
-                self.fetchData.updateCustomerGameData("exp", customer.customerGameDatas.Exp + Int(url.pathComponents.last!)!)
                 _ = SCLAlertView().showSuccess("\(url.host!)", subTitle: "\(url.pathComponents[1].urlDecoded())，獲得\(url.pathComponents.last!)經驗點數")
             }
         }

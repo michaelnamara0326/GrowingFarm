@@ -9,6 +9,17 @@
 import Foundation
 import CoreLocation
 import Firebase
+struct appGlobal{
+    static var appglobal:[String:Any]=[:]
+    struct appglobals {
+        static var customerNum:Int{ return appglobal["customerNum"] as! Int}
+        static var farmerNum:Int{ return appglobal["farmerNum"] as! Int}
+        static var farmermarketNum:Int{ return appglobal["farmermarketNum"] as! Int}
+        static var farmerresturantNum:Int{ return appglobal["farmerresturantNum"] as! Int}
+        static var leisurtfarmNum:Int{ return appglobal["leisurefarmNum"] as! Int}
+    }
+}
+
 struct customer {
     static var customerInfo:[String:Any]=[:]
     static var customerGameData:[String:Any]=[:]
