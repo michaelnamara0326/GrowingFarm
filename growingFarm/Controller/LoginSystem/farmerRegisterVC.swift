@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import SCLAlertView
 class farmerRegisterVC:UIViewController{
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -22,8 +23,11 @@ class farmerRegisterVC:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        getFarmerCnt()
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            self.getFarmerCnt()
+        }
     }
+
     @IBAction func dismiss(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -90,17 +94,18 @@ class farmerRegisterVC:UIViewController{
         }
     }
     func getFarmerCnt(){
-        db.collection("appGlobal").getDocuments { snapshot, error in
-            if let err = error {
-                print("Error getting documents: \(err)")
-            }
-            else {
-                for document in snapshot!.documents {
-                    self.farmerNum=document.get("farmerNum") as! Int
-                    print(self.farmerNum)
-                }
-            }
-        }
+//        db.collection("appGlobal").getDocuments { snapshot, error in
+//            if let err = error {
+//                print("Error getting documents: \(err)")
+//            }
+//            else {
+//                for document in snapshot!.documents {
+//                    self.farmerNum=document.get("farmerNum") as! Int
+//                    print(self.farmerNum)
+//                }
+//            }
+//        }
+        farmerNum=appGlobal.appglobals.farmerNum
     }
     func updateFarmerCnt(){
         let dbRef=self.db.collection("appGlobal").document("appGlobal1")

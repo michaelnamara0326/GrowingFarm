@@ -9,13 +9,12 @@
 import Foundation
 import UIKit
 import Firebase
-
+import SCLAlertView
 class LoginVC: UIViewController{
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var people: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var loginActivityIndicator: UIActivityIndicatorView!
     let db=Firestore.firestore()
     var peopleLabelText:String!
     var peopleIdentifier:String!
@@ -27,32 +26,31 @@ class LoginVC: UIViewController{
         self.hideKeyboardWhenTappedAround()
         userLoggedIn()
     }
-    override func viewDidAppear(_ animated: Bool) {
-//        userLoggedIn()
-    }
+
     func userLoggedIn(){
         if let user=Auth.auth().currentUser  {
             // segue to main view controller
-            errorLabel.text="already have logged in"
+            errorLabel.text="已登入，請稍候..."
             print(user.email!)
-            getUserInfo(userEmail: user.email!)
-            loginActivityIndicator.isHidden=false
-            loginActivityIndicator.startAnimating()
-            DispatchQueue.global().asyncAfter(deadline: .now()+2.0) {
-                self.getCustomerGameData()
-                DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
-                self.performSegue(withIdentifier: "segueCustomer", sender: self)
+//            getUserInfo(userEmail: user.email!)
+            FetchData().getCustomerInfo()
+            FetchData().getCustomerGameData()
+            
+//                self.getCustomerGameData()
+            DispatchQueue.main.asyncAfter(deadline: .now()+2.0) {
+                if self.peopleLabelText == "民眾登入"{
+                    self.performSegue(withIdentifier: "segueCustomer", sender: self)
+                }
+                else{
+                    self.performSegue(withIdentifier: "segueFarmer", sender: self)
                 }
             }
+            
         }
         else {
             // sign in
             errorLabel.text="not yet"
         }
-    }
-    @IBAction func testBtn(_ sender: UIButton) {
-        print(userInfo)
-        print(sendCustomerGameData)
     }
     // MARK: button tapped
     @IBAction func segueToRegister(_ sender: UIButton) {
@@ -77,7 +75,9 @@ class LoginVC: UIViewController{
         loginView(email,password)
     }
     func loginView(_ email:String, _ password:String){
-        getUserInfo(userEmail: email)
+//        getUserInfo(userEmail: email)
+        FetchData().getCustomerInfo()
+        FetchData().getCustomerGameData()
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             Auth.auth().signIn(withEmail: email, password: password) { user, error in
                 if let e=error{
@@ -88,21 +88,19 @@ class LoginVC: UIViewController{
                     //                    self.errorLabel.text="尚未驗證信箱"
                     //                }
                     //                else{
-                    let identify=self.userInfo["identifier"] as? String
-                    if identify == "customer"  && self.peopleLabelText == "民眾登入" {
-                        self.getCustomerGameData()
-                        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                            self.performSegue(withIdentifier: "segueCustomer", sender: self)
-                        }
+                    
+                    if customer.customerInfos.Identifier == "customer" && self.peopleLabelText == "民眾登入" {
+//                        self.getCustomerGameData()
+                        self.performSegue(withIdentifier: "segueCustomer", sender: self)
                     }
-                    else if identify == "farmer" && self.peopleLabelText=="農家登入"{
+                    else if farmer.farmerInfos.Identifier == "farmer" && self.peopleLabelText=="農家登入"{
                         self.performSegue(withIdentifier: "segueFarmer", sender: self)
                     }
                     else{
                         self.errorLabel.text="身份錯誤"
                     }
                     //                 }
-                    print(self.userInfo)
+//                    print(self.userInfo)
                 }
             }
         }
@@ -143,13 +141,20 @@ class LoginVC: UIViewController{
         print("update user info successfullly")
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier=="segueCustomer" || segue.identifier=="segueFarmer"{
-            updateUserInfo(userDocumentID)
-            if segue.identifier=="segueCustomer"{
-                let customerVC=segue.destination as! CustomerVC
-//                customerVC.customerInfo=userInfo
-//                customerVC.customerGameData=sendCustomerGameData
-            }
+        if segue.identifier == "segueCustomer"{
+            FetchData().getAppGlobal()
+            FetchData().getCustomerInfo()
+            FetchData().getCustomerGameData()
+            cityPrice().fetchPrice()
+//            cityArea().fetchArea()
+            CityWeather().fetchWeather()
+            TyphoonManager().fetchTyphoon()
+//            updateUserInfo(userDocumentID)
+        }
+        else {
+            FetchData().getAppGlobal()
+            FetchData().getFarmerInfo()
+            FetchData().getFarmerGameData()
         }
     }
 }

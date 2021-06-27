@@ -8,10 +8,10 @@
 import Foundation
 import SWXMLHash
 struct TyphoonManager{
-//    let alertURL="https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx?AlertType=5"
-    let alertURL="https://b-alertsline.cdn.hinet.net/Capstorage/CWB/2020/Typhoon_warnings/fifows_typhoon-warning_202011070614.cap"
+    let alertURL="https://alerts.ncdr.nat.gov.tw/JSONAtomFeed.ashx?AlertType=5"
+    let demoURL="https://b-alertsline.cdn.hinet.net/Capstorage/CWB/2020/Typhoon_warnings/fifows_typhoon-warning_202011061917.cap"
     func fetchTyphoon(){
-        performRequest(urlString: alertURL)
+        performRequest(urlString: demoURL)
     }
     func performRequest(urlString:String){
         if let url=URL(string: urlString){

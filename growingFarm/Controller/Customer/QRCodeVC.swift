@@ -1,11 +1,3 @@
-//
-//  QRCodeVC.swift
-//  growingFarm
-//
-//  Created by Michael Namara on 2021/5/29.
-//  Copyright © 2021 Michael. All rights reserved.
-//
-
 import UIKit
 import MercariQRScanner
 import SCLAlertView

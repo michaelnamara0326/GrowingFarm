@@ -9,29 +9,49 @@
 import Foundation
 import UIKit
 import EFQRCode
+import Lottie
 class TestVC:UIViewController{
     let fetchData=FetchData()
-    @IBOutlet weak var testview: UIImageView!
     
+    @IBOutlet weak var animationView1: AnimationView!
+    @IBOutlet weak var animationView3: AnimationView!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        fetchData.getFarmerInfo()
-//        fetchData.getFarmerGameData()
-        fetchData.getAppGlobal()
+        //        fetchData.getFarmerInfo()
+        //        fetchData.getFarmerGameData()
+        //        fetchData.getAppGlobal()
+//        CityWeather().fetchWeather()
+        cityPrice().fetchPrice()
+        let sunny=Animation.named("4804-weather-sunny")
+        animationView1.animation=sunny
+        animationView1.play()
+        animationView1.loopMode = .loop
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+//        updateAnimationView()
+    }
     @IBAction func pressed(_ sender: UIButton) {
-        LeisureFarm().fetchFarm()
-
+        //        LeisureFarm().fetchFarm()
+        //        cityArea().fetchArea()
+        cityPrice().fetchPrice()
+//        cityArea().fetchArea()
     }
-    @IBAction func showButtonPressed(_ sender: UIButton) {
-//        let subview=ChooseBreedView(frame: CGRect(x: 0, y: 0, width: 337, height: 229))
-//        view.addSubview(subview)
-        let popOverVC=UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "chooseBreed") as! ChooseBreedVC
-        self.addChild(popOverVC)
-        popOverVC.view.frame=self.view.frame
-        self.view.addSubview(popOverVC.view)
-        popOverVC.didMove(toParent: self)
+    func updateAnimationView(){
+        var animationView2=AnimationView(name: "4804-weather-sunny")
+//        if K.GameData.weather.weather.contains("晴"){
+//            animationView2=AnimationView(name: "4804-weather-sunny")
+//        }
+//        else{
+//            animationView2=AnimationView(name: "4801-weather-partly-shower")
+//        }
+        animationView2.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        animationView2.center = CGPoint(x: animationView3.bounds.width/2, y: animationView3.bounds.height/2)
+        animationView2.contentMode = .scaleAspectFit
+        animationView2.play()
+        animationView2.loopMode = .loop
+//        animationView2.contentMode = .scaleAspectFit
+//        animationView2.play()
+//        animationView2.loopMode = .loop
+        animationView3.addSubview(animationView2)
     }
-    
 }

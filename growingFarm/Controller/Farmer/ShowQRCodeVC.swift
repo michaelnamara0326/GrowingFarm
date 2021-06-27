@@ -17,12 +17,13 @@ class ShowQRCodeVC: UIViewController {
         super.viewDidLoad()
         let name=farmer.farmerGameDatas.Event["Event\(indexPathRow)"]!["name"]!
         let exp=farmer.farmerGameDatas.Event["Event\(indexPathRow)"]!["exp"]!
-        if let image=EFQRCode.generate(for:"growingfarm://\(farmer.farmerInfos.Name)/\(farmer.farmerGameDatas.Event["Event\(indexPathRow)"]!["name"]!)/\(farmer.farmerGameDatas.Event["Event\(indexPathRow)"]!["exp"]!)",size: EFIntSize(width: 300, height: 300)){
+        if let image=EFQRCode.generate(for:"growingfarm://\(farmer.farmerInfos.Name)/\(farmer.farmerGameDatas.Event["Event\(indexPathRow)"]!["name"]!)/\(farmer.farmerGameDatas.Event["Event\(indexPathRow)"]!["exp"]!)",size: EFIntSize(width: 300, height: 300),foregroundColor: #colorLiteral(red: 0, green: 0.7770907283, blue: 0.4363682866, alpha: 1), icon: UIImage(named: "logo1")?.cgImage){
             print("create success\(image)")
             let qrCode = UIImage(cgImage: image)
             let qrCodeView = UIImageView(image: qrCode)
             qrcodeImageView.addSubview(qrCodeView)
         }
+        
         else{
             print("failed")
         }

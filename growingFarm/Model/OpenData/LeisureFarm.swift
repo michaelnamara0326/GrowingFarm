@@ -11,7 +11,6 @@ import Firebase
 
 struct LeisureFarm{
     let url="https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvAttractions.aspx?$filter=City+like+"
-    
     let db=Firestore.firestore()
     func fetchFarm(){
         let cityURL="\(url)新北市".urlEncoded()
@@ -40,7 +39,7 @@ struct LeisureFarm{
             let decodeData=try decoder.decode([LeisureFarmData].self, from: farmerData)
 //            print(decodeData.count)
             for i in 0..<decodeData.count{
-                db.document("leisurefarm/leisurefarm\(count)").setData(["No":count,"name":decodeData[i].name,"address":decodeData[i].address,"phone":decodeData[i].tel,"photo":decodeData[i].photo,"intro":decodeData[i].introduction,"isVerified":true])
+                db.document("leisurefarm/leisurefarm\(count)").setData(["category":"leisurefarm","No":count,"name":decodeData[i].name,"address":decodeData[i].address,"phone":decodeData[i].tel,"photo":decodeData[i].photo,"intro":decodeData[i].introduction,"isVerified":true])
                 count += 1
             }
             db.document("appGlobal/appGlobal1").updateData(["leisurefarmNum":count])

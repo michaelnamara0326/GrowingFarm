@@ -20,10 +20,14 @@ class customerRegisterVC:UIViewController{
     var customerNum :Int = 0
     let db=Firestore.firestore()
     override func viewDidLoad() {
+//        FetchData().getAppGlobal()
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        getCustomerCnt()
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            self.getCustomerCnt()
+        }
     }
+
     @IBAction func dismiss(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
@@ -83,6 +87,7 @@ class customerRegisterVC:UIViewController{
     func setCustomerDataToDatabase(){
         let customerCountString="customer\(String(customerNum))"
         let customerGameDataCountString="customerGameData\(String(customerNum))"
+        
         db.document("customer/\(customerCountString)").setData(["No.":customerNum,"name":nameTextField.text!,"email":emailTextField.text!,"phone":phoneTextField.text!,"password":passwordTextField.text!,"identifier":"customer","isVerfied":false,"loginTimes":0]) { Error in
             if let err=Error{
                 print("there must have problem to save data \(err)")
@@ -91,7 +96,7 @@ class customerRegisterVC:UIViewController{
                 print("data saved successfully")
             }
         }
-        db.document("customer/\(customerCountString)/customerGameData/\(customerGameDataCountString)").setData(["coin":0,"exp":0,"location":GeoPoint(latitude: 0.0, longitude: 0.0)]) { error in
+        db.document("customer/\(customerCountString)/customerGameData/\(customerGameDataCountString)").setData(["wateringTimestamp":Timestamp(),"lastTimestamp":Timestamp(),"city":"","breed":"","stage":"1","coin":0,"exp":0,"location":GeoPoint(latitude: 0.0, longitude: 0.0)]) { error in
             if let err=error{
                 print("failed to set customer game data \(err)")
             }
@@ -101,17 +106,18 @@ class customerRegisterVC:UIViewController{
         }
     }
     func getCustomerCnt(){
-        db.collection("appGlobal").getDocuments { snapshot, error in
-            if let err = error {
-                print("Error getting documents: \(err)")
-            }
-            else {
-                for document in snapshot!.documents {
-                    self.customerNum=document.get("customerNum") as! Int
-                    print(self.customerNum)
-                }
-            }
-        }
+//        db.collection("appGlobal/appGlobal1").getDocuments { snapshot, error in
+//            if let err = error {
+//                print("Error getting documents: \(err)")
+//            }
+//            else {
+//                for document in snapshot!.documents {
+//                    self.customerNum=document.get("customerNum") as! Int
+//                    print(self.customerNum)
+//                }
+//            }
+//        }
+        customerNum=appGlobal.appglobals.customerNum
     }
     func updateCustomerCnt(){
         let dbRef=self.db.collection("appGlobal").document("appGlobal1")

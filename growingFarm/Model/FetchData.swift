@@ -19,13 +19,19 @@ struct FetchData {
             }
             else{
                 appGlobal.appglobal=(snapShot?.data())!
-//                print(appGlobal.appglobal)
-//                print(appGlobal.appglobals.leisurtfarmNum)
+            }
+        }
+        db.collection("appGlobal").document("CityData").getDocument { snapShot, error in
+            if let err=error{
+                print(err)
+            }
+            else{
+                appGlobal.cityData=(snapShot?.data())!
             }
         }
     }
     func getCustomerInfo(){
-        db.collection("customer").whereField("email", isEqualTo: "customertest@1.com").addSnapshotListener { querySnapShot, error in
+        db.collection("customer").whereField("email", isEqualTo: "opendatanews1@gmail.com").addSnapshotListener { querySnapShot, error in
             guard let document = querySnapShot?.documents else{
                 print("fetching data error\(error)")
                 return
@@ -45,10 +51,10 @@ struct FetchData {
         }
     }
     func updateCustomerGameData(_ string:String, _ type:Any){
-        db.document("customer/customer1/customerGameData/customer1GameData").updateData([string:type])
+        db.document("customer/\(customer.customerInfos.DocumentId)/customerGameData/\(customer.customerInfos.DocumentId)GameData").updateData([string:type])
     }
     func getFarmerInfo(){
-        db.collection("farmer").whereField("email", isEqualTo: "farmertest@1.com").addSnapshotListener { querySnapShot, error in
+        db.collection("farmer").whereField("email", isEqualTo: "opendatanews1@gmail.com").addSnapshotListener { querySnapShot, error in
             guard let document = querySnapShot?.documents else{
                 print("fetching data error\(error)")
                 return
@@ -65,11 +71,32 @@ struct FetchData {
             }
             else{
                 farmer.farmerGameData=(snapShot?.data())!
-//                print(farmer.farmerGameData)
-                print(farmer.farmerGameDatas.Event["Event1"]!["exp"]!)
             }
         }
     }
+    func getFarmInfo(category:String, name:String){
+        db.collection(category).whereField("name", isEqualTo: name).getDocuments { querySnapShot, err in
+            guard let document = querySnapShot?.documents else{
+                print("fetching data error\(err)")
+                return
+            }
+            Farm.FarmInfo=(document.first?.data())!
+            Farm.FarmInfo["DocumentID"]=document.first?.documentID
+            print(Farm.FarmInfo)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+            db.document("\(category)/\(Farm.FarmerInfos.DocumentId)/\(category)GameData/\(Farm.FarmerInfos.DocumentId)GameData").getDocument { snapShot, error in
+                if let err=error{
+                    print(err)
+                }
+                else{
+                    Farm.FarmGameData=(snapShot?.data())!
+                    print(Farm.FarmGameData)
+                }
+            }
+        }
+    }
+    
 }
 
 

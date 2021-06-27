@@ -15,31 +15,29 @@ class AlertVC: UIViewController {
     @IBOutlet weak var alertNoneLabel:UILabel!
     @IBOutlet weak var alertView: UIView!
     @IBOutlet weak var priceView: UIView!
-    let manager=TyphoonManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager.fetchTyphoon()
+        updateAlertView()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            self.updateAlertView()
-        }
-    }
-    
-    @IBAction func alertSegementedAction(_ sender: UISegmentedControl) {
-        if sender.selectedSegmentIndex==0{
-            alertView.isHidden=false
-        }
-        else{
-            alertView.isHidden=true
-        }
+    @IBAction func backBtn(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     func updateAlertView(){
+        var cityStr=""
         alertTypeLabel.text="特報類型：\(typhoon.alertType!)"
         alertDescriptionLabel.text="特報敘述：\(typhoon.alertDescription!)"
-        alertAreaLabel.text="影響區域：\(typhoon.alertArea)"
+        for city in typhoon.alertArea{
+            if cityStr.contains(city){
+                cityStr+=""
+            }
+            else{
+                cityStr+="\(city)、"
+            }
+        }
+        alertAreaLabel.text="影響區域：\(cityStr.trimmingCharacters(in: .punctuationCharacters))"
     }
     func updatePriceView(){
         return
     }
 }
+
