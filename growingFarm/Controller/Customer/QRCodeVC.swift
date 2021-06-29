@@ -1,15 +1,42 @@
 import UIKit
 import MercariQRScanner
 import SCLAlertView
+import Photos
 class QRCodeVC: UIViewController {
     @IBOutlet weak var qrView: UIView!
     let fetchData=FetchData()
     override func viewDidLoad() {
         super.viewDidLoad()
-        let qrScannerView = QRScannerView(frame: view.bounds)
+        if AVCaptureDevice.authorizationStatus(for: .video) !=  .authorized {
+            // 如果一開始就允許使用相機權限，那麼就建置 QR code 掃瞄器
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { status in
+                if status{
+                    return
+                }
+                else{
+                    let alertController = UIAlertController(title: "尚未開啟相機權限", message: "請前往設定設置", preferredStyle: .alert)
+                    let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: { _ in self.dismiss(animated: true, completion: nil)})
+                    let okAction = UIAlertAction(title: "設定", style: .default, handler: { _ in
+                        let url = URL(string: UIApplication.openSettingsURLString)
+                        if let url = url, UIApplication.shared.canOpenURL(url) {
+                            if #available(iOS 10, *) {
+                                UIApplication.shared.open(url, options: [:],completionHandler: {(success) in})
+                            } else {
+                                UIApplication.shared.openURL(url)
+                            }
+                        }
+                    })
+                    alertController.addAction(cancelAction)
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        } else {
+            let qrScannerView = QRScannerView(frame: view.bounds)
             qrView.addSubview(qrScannerView)
             qrScannerView.configure(delegate: self)
             qrScannerView.startRunning()
+        }
     }
  
     @IBAction func backButtonPressed(_ sender: UIButton) {

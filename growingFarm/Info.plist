@@ -39,6 +39,8 @@
 	<string>取得目前所在位置</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>取得目前所在位置</string>
+	<key>NSCameraUsageDescription</key>
+	<string>取得相機</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Yuanti.ttc</string>

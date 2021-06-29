@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import SCLAlertView
+
 class LoginVC: UIViewController{
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var people: UILabel!
@@ -49,7 +50,7 @@ class LoginVC: UIViewController{
         }
         else {
             // sign in
-            errorLabel.text="not yet"
+            errorLabel.text="尚未登入"
         }
     }
     // MARK: button tapped
@@ -79,9 +80,10 @@ class LoginVC: UIViewController{
         FetchData().getCustomerInfo()
         FetchData().getCustomerGameData()
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.errorLabel.text="登入中,請稍候..."
             Auth.auth().signIn(withEmail: email, password: password) { user, error in
                 if let e=error{
-                    self.errorLabel.text="Invalid to login\(e)"
+                    self.errorLabel.text="登入失敗！"
                 }
                 else{
                     //                if !Auth.auth().currentUser!.isEmailVerified{
@@ -90,10 +92,12 @@ class LoginVC: UIViewController{
                     //                else{
                     
                     if customer.customerInfos.Identifier == "customer" && self.peopleLabelText == "民眾登入" {
+                        self.errorLabel.text="登入成功！"
 //                        self.getCustomerGameData()
                         self.performSegue(withIdentifier: "segueCustomer", sender: self)
                     }
                     else if farmer.farmerInfos.Identifier == "farmer" && self.peopleLabelText=="農家登入"{
+                        self.errorLabel.text="登入成功！"
                         self.performSegue(withIdentifier: "segueFarmer", sender: self)
                     }
                     else{

@@ -37,15 +37,16 @@ extension WarehouseVC:UITableViewDelegate,UITableViewDataSource{
                 DispatchQueue.main.asyncAfter(deadline: .now()+1){
                     self.coinLabel.text=String(customer.customerGameDatas.Coin)
                 }
+                _ = SCLAlertView().showSuccess("兌換成功", subTitle: "帳號剩餘\(customer.customerGameDatas.Coin - 100)稻穗幣")
             }
             else{
                 _ = SCLAlertView().showError("您的金幣不足", subTitle: "無法兌換")
             }
         }
         switch indexPath.row{
-        case 1:
+        case 0:
             _ = alert.showWarning("農產品折扣券", subTitle: "確定要兌換嗎")
-        case 2:
+        case 1:
             _ = alert.showWarning("免費兌換有機蔬菜", subTitle: "確定要兌換嗎")
         default:
             _ = alert.showWarning("休閒農場門票折扣", subTitle: "確定要兌換嗎")

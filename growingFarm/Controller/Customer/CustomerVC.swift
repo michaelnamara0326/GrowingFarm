@@ -25,6 +25,7 @@ class CustomerVC:UIViewController{
     var timesUp:Bool=false
     var userCity:String=""
     let fetchData=FetchData()
+    let warning=AnimationView(name: "8750-alert")
     @IBOutlet weak var linearProgressBar: LinearProgressBar!
     @IBOutlet weak var warningAnimation: UIView!
     @IBOutlet weak var wateringExpLabel: UILabel!
@@ -39,57 +40,71 @@ class CustomerVC:UIViewController{
     @IBOutlet weak var moneyBtn: UIButton!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var paddyImageView: UIImageView!
-   
+    
     //MARK: view
     override func viewDidLoad() {
-       var warning=AnimationView(name: "8750-alert")
+        
         warning.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        warning.center = CGPoint(x: warningAnimation.bounds.width/2, y: warningAnimation.bounds.height/2)
+        warning.center = CGPoint(x: self.warningAnimation.bounds.width/2, y: self.warningAnimation.bounds.height/2)
         warning.contentMode = .scaleAspectFit
-        warning.play()
-        warning.loopMode = .loop
-        warningAnimation.addSubview(warning)
-//        DispatchQueue.main.async {
-//            self.fetchData.getCustomerInfo()
-//            self.fetchData.getCustomerGameData()
-//        }
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
+        //        warning.play()
+        //        warning.loopMode = .loop
+        self.warningAnimation.addSubview(warning)
+        //        DispatchQueue.main.async {
+        //            self.fetchData.getCustomerInfo()
+        //            self.fetchData.getCustomerGameData()
+        //        }
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
+        if (CLLocationManager.locationServicesEnabled()) {
             locationManager.delegate = self
             locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
-        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-            self.autoExp()
-        }
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+//            if(customer.customerGameDatas.Breed != ""){
+//                self.autoExp()
+//            }
+//        }
     }
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-            K.GameData.city.cityArea=appGlobal.citydata.cityArea
-            K.GameData.city.cityPrice=appGlobal.citydata.cityPrice
-            self.reverseGeocodeUserLocation()
-            if(customer.customerInfos.LoginTime == 0){
-                let appearance = SCLAlertView.SCLAppearance(showCloseButton: false, dynamicAnimatorActive: true)
-                let alert = SCLAlertView(appearance: appearance)
-                _ = alert.addButton("開始遊戲吧！"){
-                    _ = SCLAlertView().showNotice("如何進行", subTitle: "請先點選左下方秧苗圖示選取種植品種")
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                K.GameData.city.cityArea=appGlobal.citydata.cityArea
+                K.GameData.city.cityPrice=appGlobal.citydata.cityPrice
+                self.reverseGeocodeUserLocation()
+                if(customer.customerInfos.LoginTime == 0){
+                    let appearance = SCLAlertView.SCLAppearance(showCloseButton: false, dynamicAnimatorActive: true)
+                    let alert = SCLAlertView(appearance: appearance)
+                    _ = alert.addButton("開始遊戲吧！"){
+                        _ = SCLAlertView().showNotice("如何進行", subTitle: "請先點選左下方秧苗圖示選取種植品種")
+                    }
+                    _ = alert.showSuccess("嗨~\(customer.customerInfos.Name),歡迎加入成長農場",subTitle: "這是一款能讓你虛擬體驗農夫的APP")
+                    self.fetchData.updateCustomerGameData("lastTimestamp", Timestamp(date: Date()))
                 }
-                _ = alert.showSuccess("嗨~\(customer.customerInfos.Name),歡迎加入成長農場",subTitle: "這是一款能讓你虛擬體驗農夫的APP")
-                self.fetchData.updateCustomerGameData("lastTimestamp", Timestamp(date: Date()))
-            }
-            else{
-                if(customer.customerGameDatas.Breed != ""){
-                    self.breedBtn.isEnabled=false
-                    self.updateExpProgressBarLabel()
-                    self.updateWeather()
-                    self.startTime()
-                    self.cityLabel.text=customer.customerGameDatas.City ?? "縣市"
-                    self.degreeLabel.text="\(Int(Double(K.GameData.weather.temp) ?? 0.0)  )°C"
+                else{
+                    if(customer.customerGameDatas.Breed != ""){
+                        self.breedBtn.isEnabled=false
+                        self.updateExpProgressBarLabel()
+                        self.updateWeather()
+                        self.startTime()
+                        self.autoExp()
+                        self.cityLabel.text=customer.customerGameDatas.City ?? "新北市"
+                        self.degreeLabel.text="\(Int(Double(K.GameData.weather.temp) ?? 28.0)  )°C"
+                    }
+                    else{
+                        self.breedBtn.isEnabled=true
+                        _ = SCLAlertView().showWarning("您尚未選擇秧苗", subTitle: "請至秧苗圖示選取")
+                    }
+                    if(typhoon.alertType != nil){
+                        self.warningAnimation.isHidden=false
+                        self.warning.play()
+                        self.warning.loopMode = .loop
+                        
+                    }
                 }
             }
-        }
-       
+        
     }
     //MARK: button-pressed
     @IBAction func chooseBreed(_ sender: UIButton) {
@@ -115,7 +130,7 @@ class CustomerVC:UIViewController{
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-
+        
     }
     
     @IBAction func moneyButton(_ sender: UIButton) {
@@ -163,7 +178,7 @@ class CustomerVC:UIViewController{
         var animationView=AnimationView()
         animationView=createAnimationView(weather: "晴")
         if(K.GameData.weather.weather.contains("晴")){
-           animationView=createAnimationView(weather: "晴")
+            animationView=createAnimationView(weather: "晴")
         }
         else if(K.GameData.weather.weather.contains("多雲")){
             animationView=createAnimationView(weather: "多雲")
@@ -198,6 +213,9 @@ class CustomerVC:UIViewController{
         case "雷":
             let lightining=Animation.named("4803-weather-storm")
             animationview.animation=lightining
+        case "警報":
+            let alert=Animation.named("8750-alert")
+            animationview.animation=alert
         default:
             break
         }
@@ -310,15 +328,12 @@ class CustomerVC:UIViewController{
             else{
                 var placeMark: CLPlacemark!
                 placeMark = placemark?[0]
-                //                print(placemark?.first ?? "")
                 print(placeMark.subAdministrativeArea ?? "")
-                //                print(placeMark.locality ?? "")
-                //                print(placeMark.subLocality ?? "")
-//                self.cityLabel.text=placeMark.subAdministrativeArea ?? ""
                 self.userCity=placeMark.subAdministrativeArea!
             }
         }
         locationManager.stopUpdatingLocation()
+        print("get loc done")
     }
     
 }
