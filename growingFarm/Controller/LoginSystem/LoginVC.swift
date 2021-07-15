@@ -25,13 +25,15 @@ class LoginVC: UIViewController{
     public override func viewDidLoad() {
         people.text=peopleLabelText
         self.hideKeyboardWhenTappedAround()
-        userLoggedIn()
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+       userLoggedIn()
+    }
     func userLoggedIn(){
         if let user=Auth.auth().currentUser  {
             // segue to main view controller
-            errorLabel.text="已登入，請稍候..."
+            alertLoginView(title: "已登入")
+//            errorLabel.text="已登入，請稍候..."
             print(user.email!)
 //            getUserInfo(userEmail: user.email!)
             FetchData().getCustomerInfo()
@@ -46,12 +48,15 @@ class LoginVC: UIViewController{
                     self.performSegue(withIdentifier: "segueFarmer", sender: self)
                 }
             }
-            
         }
         else {
             // sign in
             errorLabel.text="尚未登入"
         }
+    }
+    func alertLoginView(title:String){
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        let _ = SCLAlertView(appearance: appearance).showWait(title, subTitle: "請稍候...", closeButtonTitle: nil, timeout: nil, colorStyle: nil, colorTextButton: 0xFFFFFF, circleIconImage: nil, animationStyle: SCLAnimationStyle.topToBottom)
     }
     // MARK: button tapped
     @IBAction func segueToRegister(_ sender: UIButton) {
@@ -77,10 +82,12 @@ class LoginVC: UIViewController{
     }
     func loginView(_ email:String, _ password:String){
 //        getUserInfo(userEmail: email)
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        let alert = SCLAlertView(appearance: appearance).showWait("登入中", subTitle: "請稍候...", closeButtonTitle: nil, timeout: nil, colorStyle: nil, colorTextButton: 0xFFFFFF, circleIconImage: nil, animationStyle: SCLAnimationStyle.topToBottom)
         FetchData().getCustomerInfo()
         FetchData().getCustomerGameData()
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            self.errorLabel.text="登入中,請稍候..."
+//            self.errorLabel.text="登入中,請稍候..."
             Auth.auth().signIn(withEmail: email, password: password) { user, error in
                 if let e=error{
                     self.errorLabel.text="登入失敗！"
@@ -106,7 +113,9 @@ class LoginVC: UIViewController{
                     //                 }
 //                    print(self.userInfo)
                 }
+                alert.close()
             }
+            
         }
     }
     func getCustomerGameData(){
@@ -149,8 +158,8 @@ class LoginVC: UIViewController{
             FetchData().getAppGlobal()
             FetchData().getCustomerInfo()
             FetchData().getCustomerGameData()
-            cityPrice().fetchPrice()
-//            cityArea().fetchArea()
+//            cityPrice().fetchPrice()
+            cityArea().fetchArea()
             CityWeather().fetchWeather()
             TyphoonManager().fetchTyphoon()
 //            updateUserInfo(userDocumentID)

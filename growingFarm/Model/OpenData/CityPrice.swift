@@ -53,7 +53,7 @@ class cityPrice{
             else{
 //                print(decodeData.last!.name, decodeData.last!.pt1Japt, decodeData.last!.pt1Tsait)
 //                K.GameData.city.cityPrice["\(decodeData.last!.name.trimmingCharacters(in: .whitespaces))"]=["蓬萊":decodeData.last!.pt1Japt,"在來":decodeData.last!.pt1Tsait]
-                db.document("appGlobal/CityData").updateData(["price":[decodeData.last!.name.trimmingCharacters(in: .whitespaces):["蓬萊":decodeData.last!.pt1Japt,"在來":decodeData.last!.pt1Tsait]]])
+                db.document("appGlobal/CityData").setData(["price":[decodeData.last!.name.trimmingCharacters(in: .whitespaces):["蓬萊":decodeData.last!.pt1Japt,"在來":decodeData.last!.pt1Tsait]]],merge: true)
             }
 
         }

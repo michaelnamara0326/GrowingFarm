@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Photos
+import SCLAlertView
 class MainVC: UIViewController,CLLocationManagerDelegate {
     var peopleText:String!
     var peopleIdentity:String!
@@ -17,6 +18,7 @@ class MainVC: UIViewController,CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
@@ -25,6 +27,8 @@ class MainVC: UIViewController,CLLocationManagerDelegate {
 //            locationManager.desiredAccuracy=kCLLocationAccuracyNearestTenMeters
 //            locationManager.startUpdatingLocation()
 //        }
+       
+                
     }
     @IBAction func segueToLogin(_ sender: UIButton) {
         if(sender.accessibilityLabel=="customerBtn"){

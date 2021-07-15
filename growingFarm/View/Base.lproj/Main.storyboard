@@ -610,7 +610,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="CKU-lc-sRE" firstAttribute="leading" secondItem="LPJ-ab-fyB" secondAttribute="leading" id="KZe-rF-Bag"/>
                                     <constraint firstAttribute="trailing" secondItem="CKU-lc-sRE" secondAttribute="trailing" id="bvp-zX-TiO"/>
@@ -852,9 +852,12 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="595"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqd-az-RtP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqd-az-RtP">
                                 <rect key="frame" x="16" y="14" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="1BT-kI-fX9"/>
+                                    <constraint firstAttribute="height" constant="50" id="RY1-sq-Zba"/>
+                                </constraints>
                                 <state key="normal" image="previous"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="hox-MD-Pw6" eventType="touchUpInside" id="nuj-Js-sn3"/>
@@ -866,6 +869,8 @@
                         <constraints>
                             <constraint firstItem="4hi-VW-Tdf" firstAttribute="trailing" secondItem="8PQ-xk-g3d" secondAttribute="trailing" id="4t9-R9-zEX"/>
                             <constraint firstItem="4hi-VW-Tdf" firstAttribute="leading" secondItem="8PQ-xk-g3d" secondAttribute="leading" id="FUk-3D-XcL"/>
+                            <constraint firstItem="yqd-az-RtP" firstAttribute="leading" secondItem="8PQ-xk-g3d" secondAttribute="leading" constant="16" id="PSU-br-j0J"/>
+                            <constraint firstItem="yqd-az-RtP" firstAttribute="top" secondItem="8PQ-xk-g3d" secondAttribute="top" constant="14" id="SE7-wW-8Bz"/>
                             <constraint firstItem="4hi-VW-Tdf" firstAttribute="bottom" secondItem="qOG-gV-pru" secondAttribute="bottom" id="eH9-CR-E7n"/>
                             <constraint firstItem="4hi-VW-Tdf" firstAttribute="top" secondItem="qOG-gV-pru" secondAttribute="top" constant="72" id="geY-75-e5j"/>
                         </constraints>
@@ -2617,6 +2622,23 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tKN-B8-24Q">
+                                        <rect key="frame" x="75" y="35" width="193.5" height="20"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可分配經驗點數：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gun-bV-4hf">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="20"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="20"/>
+                                                <color key="textColor" systemColor="systemRedColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVL-B6-Yhy">
+                                                <rect key="frame" x="160" y="0.0" width="33.5" height="20"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="20"/>
+                                                <color key="textColor" systemColor="systemRedColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -3008,6 +3030,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

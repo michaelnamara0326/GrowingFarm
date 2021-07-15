@@ -62,11 +62,13 @@ class CustomerVC:UIViewController{
             locationManager.startUpdatingLocation()
         }
         
-//        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-//            if(customer.customerGameDatas.Breed != ""){
-//                self.autoExp()
-//            }
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+            if(customer.customerGameDatas.Breed != ""){
+                self.autoExp()
+//                _ = SCLAlertView().showWarning("颱風侵襲", subTitle: "被扣除50點經驗值！")
+            }
+           
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
             DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
@@ -88,7 +90,6 @@ class CustomerVC:UIViewController{
                         self.updateExpProgressBarLabel()
                         self.updateWeather()
                         self.startTime()
-                        self.autoExp()
                         self.cityLabel.text=customer.customerGameDatas.City ?? "新北市"
                         self.degreeLabel.text="\(Int(Double(K.GameData.weather.temp) ?? 28.0)  )°C"
                     }
@@ -156,7 +157,7 @@ class CustomerVC:UIViewController{
             }
             _ = SCLAlertView().showSuccess("收割成功！", subTitle: "已重置帳號稻作品種，請重新選取秧苗")
         }
-        _ = alert.showNotice("確定收割交付嗎？", subTitle: "\(customerCity)-收穫面積:\(customerAreaOutput)，今日\(customerBreed)米價錢:\(customerBreedPrice)。總計\(customerAreaOutput*customerBreedPrice)")
+        _ = alert.showNotice("確定收割交付嗎？", subTitle: "\(customerCity)-產量:\(customerAreaOutput)，今日\(customerBreed)米價錢:\(customerBreedPrice)。總計\(customerAreaOutput*customerBreedPrice)")
     }
     @IBAction func weatherButton(_ sender: UIButton) {
         print("pressed")
@@ -220,7 +221,7 @@ class CustomerVC:UIViewController{
             break
         }
         animationview.frame=CGRect(x: 0, y: 0, width: 245, height: 245)
-        animationview.center = CGPoint(x: weatherImageView.bounds.width/2, y: weatherImageView.bounds.height/2)
+        animationview.center = CGPoint(x: weatherImageView.bounds.width/2, y: weatherImageView.bounds.height/2-30)
         animationview.contentMode = .scaleAspectFit
         animationview.play()
         animationview.loopMode = .loop

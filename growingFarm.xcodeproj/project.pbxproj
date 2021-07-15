@@ -47,12 +47,12 @@
 		4C9DD96C2679F3C700A23AE0 /* CreateEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DD96B2679F3C700A23AE0 /* CreateEventVC.swift */; };
 		4C9E9C1D265002AC009C5237 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E9C1C265002AC009C5237 /* MapVC.swift */; };
 		4CA8A40D265671C500E83C89 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8A40C265671C500E83C89 /* FetchData.swift */; };
+		4CAEB6CE268CA63500ADA1F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CCDA220264933C800410611 /* GoogleService-Info.plist */; };
 		4CB75F6826613BB9005EB6F7 /* ChooseBreedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB75F6726613BB9005EB6F7 /* ChooseBreedVC.swift */; };
 		4CC82F9E264B51300097AE8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC82F9D264B51300097AE8D /* Constants.swift */; };
 		4CC92A93268716190085AC4D /* 4800-weather-partly-cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC92A90268716170085AC4D /* 4800-weather-partly-cloudy.json */; };
 		4CC92A94268716190085AC4D /* 4803-weather-storm.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC92A91268716180085AC4D /* 4803-weather-storm.json */; };
 		4CC92A95268716190085AC4D /* 4806-weather-windy.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC92A92268716190085AC4D /* 4806-weather-windy.json */; };
-		4CCDA221264933C800410611 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CCDA220264933C800410611 /* GoogleService-Info.plist */; };
 		4CCDA225264A5E7500410611 /* CustomerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA224264A5E7500410611 /* CustomerVC.swift */; };
 		4CCDA227264A5EA600410611 /* FarmerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCDA226264A5EA600410611 /* FarmerVC.swift */; };
 		4CD181CE265AAE1C000E83F2 /* FarmerIntroVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD181CD265AAE1C000E83F2 /* FarmerIntroVC.swift */; };
@@ -385,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CAEB6CE268CA63500ADA1F3 /* GoogleService-Info.plist in Resources */,
 				4CDF1ABD2686297D005A8770 /* 4804-weather-sunny.json in Resources */,
 				4C59443126639CBF00CC6167 /* FarmerEventView.xib in Resources */,
 				4C67E47D266527CD003DA1AD /* TyphoonAlertView.xib in Resources */,
@@ -396,7 +397,6 @@
 				4CC92A93268716190085AC4D /* 4800-weather-partly-cloudy.json in Resources */,
 				4C9763912660F5F500F432D5 /* ChooseBreedView.xib in Resources */,
 				4CDF1AC326866172005A8770 /* TaipeiSansTCBeta-Regular.ttf in Resources */,
-				4CCDA221264933C800410611 /* GoogleService-Info.plist in Resources */,
 				4C18AC4E2629BE25003C5B16 /* Assets.xcassets in Resources */,
 				4CDF1AC126863B4E005A8770 /* 8750-alert.json in Resources */,
 				4CDF1AC52686DA66005A8770 /* TaipeiSansTCBeta-Bold.ttf in Resources */,
@@ -645,6 +645,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFJM9B968C;
 				INFOPLIST_FILE = growingFarm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -666,6 +667,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HFJM9B968C;
 				INFOPLIST_FILE = growingFarm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
