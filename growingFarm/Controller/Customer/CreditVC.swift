@@ -10,6 +10,13 @@ import UIKit
 import SCLAlertView
 class CreditVC: UIViewController {
 
+    @IBOutlet weak var BananaView: UIView!
+    @IBOutlet weak var MilkView: UIView!
+    @IBOutlet weak var ChiliView: UIView!
+    @IBOutlet weak var quantitiyTextField: UITextField!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var returnLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,19 +25,13 @@ class CreditVC: UIViewController {
     @IBAction func backBtn(_ sender: UIButton) {
     dismiss(animated: true, completion: nil)
     }
+    @IBAction func quantityBtn(_ sender: UIButton){
+    
+    
+    }
     
     @IBAction func buyBtn(_ sender: UIButton) {
         _ = SCLAlertView().showInfo("確定購買？", subTitle: "")
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

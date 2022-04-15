@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.MichaelNamara.growingFarm</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -35,12 +35,12 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>取得相機</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>取得目前所在位置</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>取得目前所在位置</string>
-	<key>NSCameraUsageDescription</key>
-	<string>取得相機</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Yuanti.ttc</string>

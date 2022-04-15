@@ -15,15 +15,22 @@ class FarmerVC:UIViewController{
     @IBOutlet weak var nameLabel: UILabel!
     override func viewDidLoad() {
         farmerImage.makeRounded()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             if let url=farmer.farmerInfos.Photo{
                 self.farmerImage.kf.setImage(with: URL(string: url.urlEncoded()))
             }
             self.nameLabel.text="哈囉，\(farmer.farmerInfos.Name)！"
         }
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+//            if let url=farmer.farmerInfos.Photo{
+//                self.farmerImage.kf.setImage(with: URL(string: url.urlEncoded()))
+//            }
+//            self.nameLabel.text="哈囉，\(farmer.farmerInfos.Name)！"
+//        }
+//    }
    
 
     @IBAction func signoutButton(_ sender: UIButton) {

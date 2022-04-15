@@ -17,7 +17,7 @@ import Lottie
 class CustomerVC:UIViewController{
     //MARK:Parameter
     var lat:CLLocationDegrees=0
-    var long:CLLocationDegrees=0
+    @objc var long:CLLocationDegrees=0
     var locationManager=CLLocationManager()
     let db=Firestore.firestore()
     var timer=Timer()
@@ -38,12 +38,16 @@ class CustomerVC:UIViewController{
     @IBOutlet weak var wateringBtn: UIButton!
     @IBOutlet weak var breedBtn: UIButton!
     @IBOutlet weak var moneyBtn: UIButton!
+    @IBOutlet weak var weatherBtn: UIButton!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var paddyImageView: UIImageView!
     
     //MARK: view
     override func viewDidLoad() {
-        
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTap))
+        let longGesture1 = UILongPressGestureRecognizer(target: self, action: #selector(longTap1))
+        wateringBtn.addGestureRecognizer(longGesture1)
+        weatherBtn.addGestureRecognizer(longGesture)
         warning.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         warning.center = CGPoint(x: self.warningAnimation.bounds.width/2, y: self.warningAnimation.bounds.height/2)
         warning.contentMode = .scaleAspectFit
@@ -65,23 +69,25 @@ class CustomerVC:UIViewController{
         DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
             if(customer.customerGameDatas.Breed != ""){
                 self.autoExp()
-//                _ = SCLAlertView().showWarning("颱風侵襲", subTitle: "被扣除50點經驗值！")
             }
-           
+            DispatchQueue.main.asyncAfter(deadline: .now()+2){
+                self.fetchData.updateCustomerGameData("loginTimes", customer.customerGameDatas.LoginTime+1)
+            }
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
             DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
                 K.GameData.city.cityArea=appGlobal.citydata.cityArea
                 K.GameData.city.cityPrice=appGlobal.citydata.cityPrice
                 self.reverseGeocodeUserLocation()
-                if(customer.customerInfos.LoginTime == 0){
+                if(customer.customerGameDatas.LoginTime == 0){
                     let appearance = SCLAlertView.SCLAppearance(showCloseButton: false, dynamicAnimatorActive: true)
                     let alert = SCLAlertView(appearance: appearance)
                     _ = alert.addButton("開始遊戲吧！"){
                         _ = SCLAlertView().showNotice("如何進行", subTitle: "請先點選左下方秧苗圖示選取種植品種")
                     }
-                    _ = alert.showSuccess("嗨~\(customer.customerInfos.Name),歡迎加入成長農場",subTitle: "這是一款能讓你虛擬體驗農夫的APP")
+                    _ = alert.showSuccess("嗨~\(customer.customerInfos.Name)\n歡迎加入成長農場",subTitle: "這是一款能讓你虛擬體驗農夫的APP")
                     self.fetchData.updateCustomerGameData("lastTimestamp", Timestamp(date: Date()))
                 }
                 else{
@@ -95,17 +101,40 @@ class CustomerVC:UIViewController{
                     }
                     else{
                         self.breedBtn.isEnabled=true
-                        _ = SCLAlertView().showWarning("您尚未選擇秧苗", subTitle: "請至秧苗圖示選取")
+//                        _ = SCLAlertView().showWarning("您尚未選擇秧苗", subTitle: "請至秧苗圖示選取")
                     }
                     if(typhoon.alertType != nil){
                         self.warningAnimation.isHidden=false
                         self.warning.play()
                         self.warning.loopMode = .loop
-                        
                     }
                 }
             }
         
+    }
+    @objc func longTap(_ sender: UIGestureRecognizer){
+        print("Long tap")
+        if sender.state == .ended {
+            print("UIGestureRecognizerStateEnded")
+            //Do Whatever You want on End of Gesture
+        }
+        else if sender.state == .began {
+            print("UIGestureRecognizerStateBegan.")
+            _ = SCLAlertView().showWarning("颱風侵襲", subTitle: "被扣除50點經驗值！")
+            //Do Whatever You want on Began of Gesture
+        }
+    }
+    @objc func longTap1(_ sender: UIGestureRecognizer){
+        print("Long tap")
+        if sender.state == .ended {
+            print("UIGestureRecognizerStateEnded")
+            //Do Whatever You want on End of Gesture
+        }
+        else if sender.state == .began {
+            print("UIGestureRecognizerStateBegan.")
+           autoExp()
+            //Do Whatever You want on Began of Gesture
+        }
     }
     //MARK: button-pressed
     @IBAction func chooseBreed(_ sender: UIButton) {
@@ -114,6 +143,7 @@ class CustomerVC:UIViewController{
         chooseBreedVC.view.frame=self.view.frame
         self.view.addSubview(chooseBreedVC.view)
         chooseBreedVC.didMove(toParent: self)
+        
         chooseBreedVC.city=userCity
     }
     @IBAction func wateringButton(_ sender: UIButton) {
@@ -125,13 +155,13 @@ class CustomerVC:UIViewController{
         startTime()
     }
     @IBAction func signoutButton(_ sender: UIButton) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
+//        let firebaseAuth = Auth.auth()
+//        do {
+//            try firebaseAuth.signOut()
+//        } catch let signOutError as NSError {
+//            print ("Error signing out: %@", signOutError)
+//        }
+        updateUI()
     }
     
     @IBAction func moneyButton(_ sender: UIButton) {
@@ -147,7 +177,7 @@ class CustomerVC:UIViewController{
         _ = alert.addButton("確定收割"){
             self.moneyBtn.isHidden=true
             self.breedBtn.isEnabled=true
-            self.fetchData.updateCustomerGameData("coin", customer.customerGameDatas.Coin + 50)
+            self.fetchData.updateCustomerGameData("coin", customer.customerGameDatas.Coin + (customerAreaOutput*customerBreedPrice))
             self.fetchData.updateCustomerGameData("exp", 0)
             self.fetchData.updateCustomerGameData("stage", "1")
             self.fetchData.updateCustomerGameData("breed", "")
@@ -155,9 +185,9 @@ class CustomerVC:UIViewController{
             DispatchQueue.main.asyncAfter(deadline: .now()+1) {
                 self.updateExpProgressBarLabel()
             }
-            _ = SCLAlertView().showSuccess("收割成功！", subTitle: "已重置帳號稻作品種，請重新選取秧苗")
+            _ = SCLAlertView().showSuccess("恭喜豐收！", subTitle: "獲得\(customerAreaOutput*customerBreedPrice)稻穗幣")
         }
-        _ = alert.showNotice("確定收割交付嗎？", subTitle: "\(customerCity)-產量:\(customerAreaOutput)，今日\(customerBreed)米價錢:\(customerBreedPrice)。總計\(customerAreaOutput*customerBreedPrice)")
+        _ = alert.showNotice("確定收割交付嗎？", subTitle: "\(customerCity)\n產量:\(customerAreaOutput)\n今日\(customerBreed)米價格:\(customerBreedPrice)\n總計\(customerAreaOutput*customerBreedPrice)")
     }
     @IBAction func weatherButton(_ sender: UIButton) {
         print("pressed")
@@ -221,7 +251,7 @@ class CustomerVC:UIViewController{
             break
         }
         animationview.frame=CGRect(x: 0, y: 0, width: 245, height: 245)
-        animationview.center = CGPoint(x: weatherImageView.bounds.width/2, y: weatherImageView.bounds.height/2-30)
+        animationview.center = CGPoint(x: weatherImageView.bounds.width/2, y: weatherImageView.bounds.height/2-10)
         animationview.contentMode = .scaleAspectFit
         animationview.play()
         animationview.loopMode = .loop
@@ -270,12 +300,46 @@ class CustomerVC:UIViewController{
         else{
             let exp = -(time.0) * K.GameData.breed1.autoExp[customer.customerGameDatas.Stage]!
             pushExpProgessBar(exp)
-            _ = SCLAlertView().showInfo("歡迎回來!", subTitle: "離開總計:\(-(time.0))小時，自動獲得\(exp)經驗值")
+            _ = SCLAlertView().showInfo("歡迎回來!", subTitle: "離開總計:\(-(time.0))小時\n自動獲得\(exp)經驗值")
         }
         fetchData.updateCustomerGameData("lastTimestamp", Timestamp(date: Date()))
     }
     
-    
+    func updateUI(){
+        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+            K.GameData.city.cityArea=appGlobal.citydata.cityArea
+            K.GameData.city.cityPrice=appGlobal.citydata.cityPrice
+            self.reverseGeocodeUserLocation()
+            if(customer.customerGameDatas.LoginTime == 0){
+                let appearance = SCLAlertView.SCLAppearance(showCloseButton: false, dynamicAnimatorActive: true)
+                let alert = SCLAlertView(appearance: appearance)
+                _ = alert.addButton("開始遊戲吧！"){
+                    _ = SCLAlertView().showNotice("如何進行", subTitle: "請先點選左下方秧苗圖示選取種植品種")
+                }
+                _ = alert.showSuccess("嗨~\(customer.customerInfos.Name),歡迎加入成長農場",subTitle: "這是一款能讓你虛擬體驗農夫的APP")
+                self.fetchData.updateCustomerGameData("lastTimestamp", Timestamp(date: Date()))
+            }
+            else{
+                if(customer.customerGameDatas.Breed != ""){
+                    self.breedBtn.isEnabled=false
+                    self.updateExpProgressBarLabel()
+                    self.updateWeather()
+                    self.startTime()
+                    self.cityLabel.text=customer.customerGameDatas.City ?? "新北市"
+                    self.degreeLabel.text="\(Int(Double(K.GameData.weather.temp) ?? 28.0)  )°C"
+                }
+                else{
+                    self.breedBtn.isEnabled=true
+                    _ = SCLAlertView().showWarning("您尚未選擇秧苗", subTitle: "請至秧苗圖示選取")
+                }
+                if(typhoon.alertType != nil){
+                    self.warningAnimation.isHidden=false
+                    self.warning.play()
+                    self.warning.loopMode = .loop
+                }
+            }
+        }
+    }
     func updateExpProgressBarLabel(){
         let userStage=customer.customerGameDatas.Stage
         let userBreed=customer.customerGameDatas.Breed == "1" ? K.GameData.breed1.stageExp[userStage]! : K.GameData.breed2.stageExp[userStage]!

@@ -23,12 +23,20 @@ class MapVC: UIViewController {
         centerViewOnUserLocation()
         //        listenFarmer()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.listenFarmer(category: "leisurefarm")
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            self.listenFarmer(category: "farmer")
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                self.listenFarmer(category: "market")
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.5){
+                    self.listenFarmer(category: "restaurant")
+                }
+            }
+        }
+    }
     @IBAction func backBtnPressed(_ sender: UIButton) {
         dismiss(animated: true,completion: nil)
-    }
-    @IBAction func filterPressed(_ sender:UIButton){
-       return
     }
     func farmerAddressAnnoation(_ farmerAddress:String, _ farmerName:String){
         coordinates(forAddress: farmerAddress) { location in
@@ -158,12 +166,18 @@ extension MapVC:MKMapViewDelegate {
         }
         return annotationView
     }
-    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
-        listenFarmer(category: "farmer")
-        listenFarmer(category: "market")
-        listenFarmer(category: "restaurant")
-        listenFarmer(category: "leisurefarm")
-    }
+//    func mapViewWillStartLoadingMap(_ mapView: MKMapView) {
+//        listenFarmer(category: "leisurefarm")
+//        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+//            self.listenFarmer(category: "farmer")
+//            DispatchQueue.main.asyncAfter(deadline: .now()+1){
+//                self.listenFarmer(category: "market")
+//                DispatchQueue.main.asyncAfter(deadline: .now()+1){
+//                    self.listenFarmer(category: "restaurant")
+//                }
+//            }
+//        }
+//    }
 }
 //    func listenFarmer(){
 //        db.collection("leisurefarm")

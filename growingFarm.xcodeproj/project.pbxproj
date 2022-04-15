@@ -49,6 +49,8 @@
 		4CA8A40D265671C500E83C89 /* FetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA8A40C265671C500E83C89 /* FetchData.swift */; };
 		4CAEB6CE268CA63500ADA1F3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4CCDA220264933C800410611 /* GoogleService-Info.plist */; };
 		4CB75F6826613BB9005EB6F7 /* ChooseBreedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB75F6726613BB9005EB6F7 /* ChooseBreedVC.swift */; };
+		4CC21F3E26A68FF50095802D /* 5628-favorites.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC21F3D26A68FF50095802D /* 5628-favorites.json */; };
+		4CC21F4026A7DDB80095802D /* favorites.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC21F3F26A7DDB80095802D /* favorites.json */; };
 		4CC82F9E264B51300097AE8D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC82F9D264B51300097AE8D /* Constants.swift */; };
 		4CC92A93268716190085AC4D /* 4800-weather-partly-cloudy.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC92A90268716170085AC4D /* 4800-weather-partly-cloudy.json */; };
 		4CC92A94268716190085AC4D /* 4803-weather-storm.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC92A91268716180085AC4D /* 4803-weather-storm.json */; };
@@ -115,6 +117,8 @@
 		4C9E9C1C265002AC009C5237 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		4CA8A40C265671C500E83C89 /* FetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchData.swift; sourceTree = "<group>"; };
 		4CB75F6726613BB9005EB6F7 /* ChooseBreedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseBreedVC.swift; sourceTree = "<group>"; };
+		4CC21F3D26A68FF50095802D /* 5628-favorites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "5628-favorites.json"; sourceTree = "<group>"; };
+		4CC21F3F26A7DDB80095802D /* favorites.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = favorites.json; sourceTree = "<group>"; };
 		4CC82F9D264B51300097AE8D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4CC92A90268716170085AC4D /* 4800-weather-partly-cloudy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4800-weather-partly-cloudy.json"; sourceTree = "<group>"; };
 		4CC92A91268716180085AC4D /* 4803-weather-storm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4803-weather-storm.json"; sourceTree = "<group>"; };
@@ -301,7 +305,9 @@
 				4CDF1ABC2686297C005A8770 /* 4804-weather-sunny.json */,
 				4CC92A90268716170085AC4D /* 4800-weather-partly-cloudy.json */,
 				4CC92A91268716180085AC4D /* 4803-weather-storm.json */,
+				4CC21F3D26A68FF50095802D /* 5628-favorites.json */,
 				4CC92A92268716190085AC4D /* 4806-weather-windy.json */,
+				4CC21F3F26A7DDB80095802D /* favorites.json */,
 				4CDF1AC026863B4D005A8770 /* 8750-alert.json */,
 				4CDF1ABE26862E31005A8770 /* 4801-weather-partly-shower.json */,
 			);
@@ -397,10 +403,12 @@
 				4CC92A93268716190085AC4D /* 4800-weather-partly-cloudy.json in Resources */,
 				4C9763912660F5F500F432D5 /* ChooseBreedView.xib in Resources */,
 				4CDF1AC326866172005A8770 /* TaipeiSansTCBeta-Regular.ttf in Resources */,
+				4CC21F3E26A68FF50095802D /* 5628-favorites.json in Resources */,
 				4C18AC4E2629BE25003C5B16 /* Assets.xcassets in Resources */,
 				4CDF1AC126863B4E005A8770 /* 8750-alert.json in Resources */,
 				4CDF1AC52686DA66005A8770 /* TaipeiSansTCBeta-Bold.ttf in Resources */,
 				4C18AC4C2629BE22003C5B16 /* Main.storyboard in Resources */,
+				4CC21F4026A7DDB80095802D /* favorites.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,7 +658,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MichaelNamara.growingFarm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MichaelNamara.GF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -672,7 +680,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.MichaelNamara.growingFarm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MichaelNamara.GF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

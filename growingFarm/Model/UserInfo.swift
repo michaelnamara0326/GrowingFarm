@@ -34,12 +34,13 @@ struct customer {
         static var Email:String{ return customerInfo["email"] as! String}
         static var Identifier:String{ return customerInfo["identifier"] as! String }
         static var IsVerified:Bool{ return customerInfo["isVerified"] as! Bool }
-        static var LoginTime:Int{ return customerInfo["loginTimes"] as! Int }
+//        static var LoginTime:Int{ return customerInfo["loginTimes"] as! Int }
         static var Name:String{ return customerInfo["name"] as! String }
         static var Password:String{ return customerInfo["password"] as! String }
         static var Phone:String{ return customerInfo["phone"] as! String }
     }
     struct customerGameDatas{
+        static var LoginTime:Int{ return customerGameData["loginTimes"] as! Int }
         static var Coin:Int{ return customerGameData["coin"] as! Int }
         static var Exp:Int{ return customerGameData["exp"] as! Int }
         static var City:String?{return customerGameData["city"] as? String}
@@ -69,6 +70,7 @@ struct farmer{
         static var Favoriate:Int{ return farmerGameData["favoriate"] as! Int }
         static var CustomerDone:Int{ return farmerGameData["customerDone"] as! Int}
         static var Event:[String:[String:Any]]{ return farmerGameData["Event"] as! [String:[String:Any]] }
+        static var EventExp:Int{ return farmerGameData["eventExp"] as! Int}
     }
 }
 struct Farm{

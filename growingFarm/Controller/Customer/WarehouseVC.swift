@@ -45,11 +45,11 @@ extension WarehouseVC:UITableViewDelegate,UITableViewDataSource{
         }
         switch indexPath.row{
         case 0:
-            _ = alert.showWarning("農產品折扣券", subTitle: "確定要兌換嗎")
+            _ = alert.showWarning("農產品折扣金", subTitle: "確定要兌換嗎")
         case 1:
             _ = alert.showWarning("免費兌換有機蔬菜", subTitle: "確定要兌換嗎")
         default:
-            _ = alert.showWarning("休閒農場門票折扣", subTitle: "確定要兌換嗎")
+            _ = alert.showWarning("休閒農場門票乙張", subTitle: "確定要兌換嗎")
         }
         
     }

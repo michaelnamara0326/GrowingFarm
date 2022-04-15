@@ -31,7 +31,7 @@ struct FetchData {
         }
     }
     func getCustomerInfo(){
-        db.collection("customer").whereField("email", isEqualTo: "opendatanews1@gmail.com").addSnapshotListener { querySnapShot, error in
+        db.collection("customer").whereField("email", isEqualTo: "customertest@1.com").addSnapshotListener { querySnapShot, error in
             guard let document = querySnapShot?.documents else{
                 print("fetching data error\(error)")
                 return
@@ -54,7 +54,7 @@ struct FetchData {
         db.document("customer/\(customer.customerInfos.DocumentId)/customerGameData/\(customer.customerInfos.DocumentId)GameData").updateData([string:type])
     }
     func getFarmerInfo(){
-        db.collection("farmer").whereField("email", isEqualTo: "opendatanews1@gmail.com").addSnapshotListener { querySnapShot, error in
+        db.collection("farmer").whereField("email", isEqualTo: "farmertest@1.com").addSnapshotListener { querySnapShot, error in
             guard let document = querySnapShot?.documents else{
                 print("fetching data error\(error)")
                 return

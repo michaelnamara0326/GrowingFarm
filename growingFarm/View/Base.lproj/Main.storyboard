@@ -41,22 +41,37 @@
                                 <rect key="frame" x="37" y="183" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="GpW-UP-Tqw" appends="YES" id="f9b-Tx-TKs"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQO-IJ-hQB" customClass="AnimationView" customModule="Lottie">
                                 <rect key="frame" x="67" y="503" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <gestureRecognizers/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="favoriteFrame" translatesAutoresizingMaskIntoConstraints="NO" id="P6A-A1-9OJ">
+                                <rect key="frame" x="261" y="91" width="74" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fCs-mk-YEP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                     </view>
                     <connections>
                         <outlet property="animationView1" destination="nfY-KV-QKM" id="pw7-eg-j12"/>
                         <outlet property="animationView3" destination="fQO-IJ-hQB" id="P6x-Dh-4aU"/>
+                        <outlet property="view123" destination="P6A-A1-9OJ" id="DZa-7N-fBR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M9Q-eP-rxm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="GpW-UP-Tqw">
+                    <connections>
+                        <action selector="tapgreen:" destination="1Pd-Tf-QXs" id="4gq-1S-i5W"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2405.5999999999999" y="-394.45277361319341"/>
         </scene>
@@ -639,7 +654,6 @@
                                 <state key="normal" image="gear"/>
                                 <connections>
                                     <action selector="signoutButton:" destination="pS0-64-F09" eventType="touchUpInside" id="kEJ-Ig-Nhd"/>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="VuZ-7B-Id6"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ruc-d2-uhQ" customClass="LinearProgressBar" customModule="LinearProgressBar">
@@ -833,6 +847,7 @@
                         <outlet property="warningAnimation" destination="7qr-Kj-YEx" id="2kh-8D-8qR"/>
                         <outlet property="wateringBtn" destination="tb5-db-Juc" id="c88-ux-AG5"/>
                         <outlet property="wateringExpLabel" destination="EEI-Jl-gte" id="ofk-X6-tZw"/>
+                        <outlet property="weatherBtn" destination="63e-ui-QvU" id="Bw2-AA-hEh"/>
                         <outlet property="weatherImageView" destination="1q5-Ds-K6l" id="rYS-QG-zYS"/>
                     </connections>
                 </viewController>
@@ -849,7 +864,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hi-VW-Tdf">
-                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqd-az-RtP">
@@ -868,11 +883,11 @@
                         <color key="backgroundColor" red="0.89897710080000004" green="0.9556911588" blue="0.92382764819999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4hi-VW-Tdf" firstAttribute="trailing" secondItem="8PQ-xk-g3d" secondAttribute="trailing" id="4t9-R9-zEX"/>
+                            <constraint firstItem="yqd-az-RtP" firstAttribute="top" secondItem="8PQ-xk-g3d" secondAttribute="top" constant="14" id="8mD-VP-wZA"/>
                             <constraint firstItem="4hi-VW-Tdf" firstAttribute="leading" secondItem="8PQ-xk-g3d" secondAttribute="leading" id="FUk-3D-XcL"/>
-                            <constraint firstItem="yqd-az-RtP" firstAttribute="leading" secondItem="8PQ-xk-g3d" secondAttribute="leading" constant="16" id="PSU-br-j0J"/>
-                            <constraint firstItem="yqd-az-RtP" firstAttribute="top" secondItem="8PQ-xk-g3d" secondAttribute="top" constant="14" id="SE7-wW-8Bz"/>
+                            <constraint firstItem="yqd-az-RtP" firstAttribute="leading" secondItem="qOG-gV-pru" secondAttribute="leading" constant="16" id="PSU-br-j0J"/>
                             <constraint firstItem="4hi-VW-Tdf" firstAttribute="bottom" secondItem="qOG-gV-pru" secondAttribute="bottom" id="eH9-CR-E7n"/>
-                            <constraint firstItem="4hi-VW-Tdf" firstAttribute="top" secondItem="qOG-gV-pru" secondAttribute="top" constant="72" id="geY-75-e5j"/>
+                            <constraint firstItem="4hi-VW-Tdf" firstAttribute="top" secondItem="8PQ-xk-g3d" secondAttribute="top" constant="80" id="geY-75-e5j"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="b5Q-46-QVH"/>
@@ -942,10 +957,17 @@
                                                                     <state key="normal" image="chevron.right.circle" catalog="system"/>
                                                                 </button>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="農產品折扣券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="95a-Xn-BYJ">
-                                                                    <rect key="frame" x="115" y="27" width="189" height="26"/>
+                                                                    <rect key="frame" x="115" y="13" width="189" height="26"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="23"/>
+                                                                    <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="23"/>
                                                                     <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XX農場" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUJ-hT-Jho">
+                                                                    <rect key="frame" x="115" y="43" width="170" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -968,6 +990,7 @@
                                                     <outlet property="commdityImage" destination="Ntq-7P-pW9" id="7ud-gb-YJY"/>
                                                     <outlet property="commdityLabel" destination="95a-Xn-BYJ" id="qkx-rf-pRT"/>
                                                     <outlet property="costLabel" destination="rFP-as-i8c" id="qQX-se-SVc"/>
+                                                    <outlet property="farmerNameLabel" destination="zUJ-hT-Jho" id="WMY-pn-gOT"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -1013,6 +1036,13 @@
                                     <constraint firstItem="dAo-f6-rCS" firstAttribute="top" secondItem="CUm-Dm-LPV" secondAttribute="top" constant="28" id="pS1-b5-oZT"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="我的農場" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pc6-74-OJw">
+                                <rect key="frame" x="86" y="36" width="121.5" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VRw-5s-KCR"/>
                         <color key="backgroundColor" red="0.87942069769999998" green="0.94882625340000004" blue="0.91345876459999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1052,50 +1082,50 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="香蕉" translatesAutoresizingMaskIntoConstraints="NO" id="C10-pq-WAS">
                                         <rect key="frame" x="0.0" y="0.0" width="107" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Image 29" translatesAutoresizingMaskIntoConstraints="NO" id="s7i-3k-CI0">
-                                        <rect key="frame" x="271" y="61" width="21" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="售價30/回饋3/串" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbR-B0-hoP">
                                         <rect key="frame" x="115" y="63" width="130" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="STYuanti-TC-Regular" family="Yuanti TC" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                        <color key="textColor" red="0.8707618117" green="0.71380020369476915" blue="0.077151711054838104" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abn-Zf-GSM">
-                                        <rect key="frame" x="302" y="33" width="27" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="cart"/>
-                                        <connections>
-                                            <action selector="creditBtn:" destination="CKG-v1-0De" eventType="touchUpInside" id="Ur4-xN-V0I"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="香蕉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iYE-rh-De5">
-                                        <rect key="frame" x="115" y="27" width="189" height="33"/>
+                                        <rect key="frame" x="115" y="13" width="189" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="STYuanti-TC-Regular" family="Yuanti TC" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLS-mh-YKv">
-                                        <rect key="frame" x="0.0" y="0.0" width="294" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                         <accessibility key="accessibilityConfiguration" identifier="banana"/>
                                         <connections>
                                             <action selector="IntroBtn:" destination="CKG-v1-0De" eventType="touchUpInside" id="Feu-3V-mbO"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XX農場1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-59-b1L">
+                                        <rect key="frame" x="117" y="44" width="177" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.97581782399999994" green="0.97581782399999994" blue="0.97581782399999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="XFY-eQ-FhU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="7"/>
+                                        <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -1105,103 +1135,106 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="鮮奶" translatesAutoresizingMaskIntoConstraints="NO" id="QKm-9O-9aG">
                                         <rect key="frame" x="0.0" y="0.0" width="107" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Image 29" translatesAutoresizingMaskIntoConstraints="NO" id="q7v-Al-GY6">
-                                        <rect key="frame" x="271" y="61" width="21" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="售價140/回饋14/瓶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kH-tV-kAC">
                                         <rect key="frame" x="115" y="63" width="141" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="STYuanti-TC-Regular" family="Yuanti TC" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                        <color key="textColor" red="0.82189530129999999" green="0.67368805409999999" blue="0.12516468759999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAo-8S-pks">
-                                        <rect key="frame" x="302" y="33" width="27" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="cart"/>
-                                        <connections>
-                                            <action selector="creditBtn:" destination="CKG-v1-0De" eventType="touchUpInside" id="YCE-t3-fM7"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="鮮奶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="AqW-7H-eFG">
-                                        <rect key="frame" x="115" y="27" width="189" height="33"/>
+                                        <rect key="frame" x="115" y="8" width="189" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="STYuanti-TC-Regular" family="Yuanti TC" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="STYuanti-TC-Bold" family="Yuanti TC" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJQ-AD-SXN">
-                                        <rect key="frame" x="0.0" y="0.0" width="294" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" identifier="milk"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="IntroBtn:" destination="CKG-v1-0De" eventType="touchUpInside" id="5Eo-eO-w2m"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XX農場2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itC-ge-Bdx">
+                                        <rect key="frame" x="115" y="43" width="177" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.97581782399999994" green="0.97581782399999994" blue="0.97581782399999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="g3V-am-3gq"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="7"/>
+                                        <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xia-3d-rMc">
                                 <rect key="frame" x="16" y="457" width="343" height="95"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="辣椒" translatesAutoresizingMaskIntoConstraints="NO" id="UJ0-AI-QRz">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="辣椒" translatesAutoresizingMaskIntoConstraints="NO" id="UJ0-AI-QRz">
                                         <rect key="frame" x="0.0" y="0.0" width="107" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Image 29" translatesAutoresizingMaskIntoConstraints="NO" id="4Hc-Xz-Hwo">
-                                        <rect key="frame" x="271" y="61" width="21" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="售價300/回饋30/瓶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWs-9a-SA5">
                                         <rect key="frame" x="115" y="63" width="149" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="STYuanti-TC-Regular" family="Yuanti TC" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemBlueColor"/>
+                                        <color key="textColor" red="0.77883499860000005" green="0.63825279469999996" blue="0.109474875" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNr-yz-MHY">
-                                        <rect key="frame" x="302" y="33" width="27" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="cart"/>
-                                        <connections>
-                                            <action selector="creditBtn:" destination="CKG-v1-0De" eventType="touchUpInside" id="FCR-su-hu2"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自製辣椒醬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="q2g-Ac-w2W">
-                                        <rect key="frame" x="115" y="27" width="189" height="33"/>
+                                        <rect key="frame" x="115" y="8" width="189" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="STYuanti-TC-Regular" family="Yuanti TC" pointSize="23"/>
+                                        <fontDescription key="fontDescription" name="STYuanti-TC-Bold" family="Yuanti TC" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8F-l3-2Om">
-                                        <rect key="frame" x="0.0" y="0.0" width="292" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration" identifier="chili"/>
                                         <connections>
                                             <action selector="IntroBtn:" destination="CKG-v1-0De" eventType="touchUpInside" id="Z4B-b1-A6I"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XX農場3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8PC-nu-Nif">
+                                        <rect key="frame" x="115" y="42" width="177" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.97581782399999994" green="0.97581782399999994" blue="0.97581782399999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="E5M-vz-Wum"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="7"/>
+                                        <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -1225,10 +1258,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmz-FO-23Y">
-                                <rect key="frame" x="250" y="604" width="107" height="38"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmz-FO-23Y">
+                                <rect key="frame" x="233" y="599" width="124" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99807113410000003" green="0.78780716660000005" blue="0.21935623879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="查看購物車"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="9ku-Yu-bcK" kind="presentation" destinationCreationSelector="shopToCheckout" modalPresentationStyle="fullScreen" id="3Rd-Sg-QaK"/>
                                 </connections>
@@ -1241,11 +1280,9 @@
                             <constraint firstItem="8kw-uY-frO" firstAttribute="top" secondItem="4Et-KL-GsG" secondAttribute="top" constant="27" id="0Zx-q3-PoV"/>
                             <constraint firstItem="YID-AB-5z8" firstAttribute="top" secondItem="evG-6l-T5H" secondAttribute="topMargin" constant="27" id="1cn-ZK-JkQ"/>
                             <constraint firstItem="8kw-uY-frO" firstAttribute="leading" secondItem="YID-AB-5z8" secondAttribute="trailing" constant="20" id="3X1-R0-uja"/>
-                            <constraint firstItem="4Et-KL-GsG" firstAttribute="bottom" secondItem="vmz-FO-23Y" secondAttribute="bottom" constant="25" id="8HD-zc-mFF"/>
                             <constraint firstItem="4Et-KL-GsG" firstAttribute="trailing" secondItem="7sR-9B-TWj" secondAttribute="trailing" constant="16" id="D7L-Ln-wKO"/>
                             <constraint firstItem="4Et-KL-GsG" firstAttribute="trailing" secondItem="Xia-3d-rMc" secondAttribute="trailing" constant="16" id="GB8-iz-bEH"/>
                             <constraint firstItem="YID-AB-5z8" firstAttribute="leading" secondItem="4Et-KL-GsG" secondAttribute="leading" constant="16" id="JQU-CZ-elp"/>
-                            <constraint firstItem="vmz-FO-23Y" firstAttribute="trailing" secondItem="4Et-KL-GsG" secondAttribute="trailing" constant="-18" id="W6c-ZO-cfv"/>
                             <constraint firstItem="7sR-9B-TWj" firstAttribute="leading" secondItem="4Et-KL-GsG" secondAttribute="leading" constant="16" id="WVk-Mv-Buw"/>
                             <constraint firstItem="cJq-2u-R7C" firstAttribute="top" secondItem="7sR-9B-TWj" secondAttribute="bottom" constant="75" id="WVr-Wb-Z3n"/>
                             <constraint firstItem="Xia-3d-rMc" firstAttribute="top" secondItem="cJq-2u-R7C" secondAttribute="bottom" constant="75" id="Wc0-Ly-RQy"/>
@@ -1277,73 +1314,248 @@
                                     <constraint firstAttribute="height" constant="250" id="8G4-NS-oih"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="販賣賣家：測試農場" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDG-Ty-ZuL">
-                                <rect key="frame" x="16" y="271" width="343" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易品項：鮮奶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HC6-5p-rgP">
-                                <rect key="frame" x="16" y="346" width="343" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="產        地：南投" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TsI-Wz-om2">
-                                <rect key="frame" x="16" y="420" width="343" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="運送方式：宅配 / 自取" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgH-9E-M0g">
-                                <rect key="frame" x="16" y="495" width="343" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="售        價：130" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYD-IV-h6w">
-                                <rect key="frame" x="16" y="569" width="343" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lx9-RW-eJW">
+                                <rect key="frame" x="0.0" y="225" width="375" height="444"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="香蕉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HC6-5p-rgP">
+                                        <rect key="frame" x="10" y="12" width="357" height="21"/>
+                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zOc-JP-Qld">
+                                        <rect key="frame" x="20" y="103" width="343" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Weq-YH-22D">
+                                        <rect key="frame" x="21" y="65" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="decrease"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="-">
+                                            <color key="titleColor" systemColor="systemGrayColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="quantityBtn:" destination="Qzx-ME-0Dy" eventType="touchUpInside" id="eJu-gB-yBS"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bqk-hj-rHQ">
+                                        <rect key="frame" x="59" y="65" width="35" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z5H-6i-Dhd">
+                                        <rect key="frame" x="107" y="65" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="increase"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" systemColor="systemGreenColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="quantityBtn:" destination="Qzx-ME-0Dy" eventType="touchUpInside" id="ocI-tO-XRV"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$130" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYD-IV-h6w">
+                                        <rect key="frame" x="316" y="72" width="47.5" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-15" translatesAutoresizingMaskIntoConstraints="NO" id="53B-zu-cbF">
+                                        <rect key="frame" x="0.0" y="124" width="375" height="227"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRh-62-X64">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g9p-aN-d1F">
+                                                        <rect key="frame" x="20" y="46" width="343" height="1"/>
+                                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宅配/面交" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33R-vE-XaJ">
+                                                        <rect key="frame" x="236" y="20" width="127" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="127" id="FWc-qn-Npf"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="運送方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgH-9E-M0g">
+                                                        <rect key="frame" x="26" y="20" width="115" height="18"/>
+                                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="17"/>
+                                                        <color key="textColor" red="0.83921568627450982" green="0.50353314662114257" blue="0.039201362991799327" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="33R-vE-XaJ" secondAttribute="trailing" constant="12" id="HVT-nT-A8H"/>
+                                                    <constraint firstItem="g9p-aN-d1F" firstAttribute="top" secondItem="33R-vE-XaJ" secondAttribute="bottom" constant="8" id="Mil-UC-8OI"/>
+                                                    <constraint firstItem="33R-vE-XaJ" firstAttribute="top" secondItem="bRh-62-X64" secondAttribute="top" constant="20" id="TU2-0d-pbt"/>
+                                                    <constraint firstItem="33R-vE-XaJ" firstAttribute="leading" secondItem="EgH-9E-M0g" secondAttribute="trailing" constant="95" id="Yd6-nw-kDf"/>
+                                                    <constraint firstItem="EgH-9E-M0g" firstAttribute="top" secondItem="bRh-62-X64" secondAttribute="top" constant="20" id="ZKV-1G-GHU"/>
+                                                    <constraint firstAttribute="bottom" secondItem="g9p-aN-d1F" secondAttribute="bottom" constant="21" id="hy3-bi-tP1"/>
+                                                    <constraint firstItem="EgH-9E-M0g" firstAttribute="leading" secondItem="bRh-62-X64" secondAttribute="leading" constant="26" id="iX9-TM-elE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="g9p-aN-d1F" secondAttribute="trailing" constant="12" id="mFe-3m-Aj2"/>
+                                                    <constraint firstItem="g9p-aN-d1F" firstAttribute="top" secondItem="EgH-9E-M0g" secondAttribute="bottom" constant="8" id="t3y-1c-lk0"/>
+                                                    <constraint firstItem="g9p-aN-d1F" firstAttribute="leading" secondItem="bRh-62-X64" secondAttribute="leading" constant="20" id="wUv-JY-dAX"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uDD-ws-kx3">
+                                                <rect key="frame" x="0.0" y="53" width="375" height="68"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="apy-U6-l0E">
+                                                        <rect key="frame" x="20" y="47" width="343" height="1"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="XX農場" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWg-VF-bbj">
+                                                        <rect key="frame" x="262" y="21" width="94" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="販賣農家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8a-LU-V9R">
+                                                        <rect key="frame" x="20" y="20" width="80" height="19"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="17"/>
+                                                        <color key="textColor" red="0.83921568629999999" green="0.50353314660000004" blue="0.039201362990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afr-lG-L6v">
+                                                <rect key="frame" x="0.0" y="106" width="375" height="68"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yG6-4p-1Fp">
+                                                        <rect key="frame" x="20" y="47" width="343" height="1"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="高雄市" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlJ-X1-v32">
+                                                        <rect key="frame" x="307" y="21" width="46" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商品產地" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2WS-DZ-uRq">
+                                                        <rect key="frame" x="20" y="20" width="80" height="19"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="17"/>
+                                                        <color key="textColor" red="0.83921568629999999" green="0.50353314660000004" blue="0.039201362990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Opz-XQ-Pvo">
+                                                <rect key="frame" x="0.0" y="159" width="375" height="68"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1qB-Jt-nm0">
+                                                        <rect key="frame" x="20" y="47" width="343" height="1"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                                    </view>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="★★★★☆" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XjI-I6-7qN">
+                                                        <rect key="frame" x="293" y="21" width="75" height="18"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                        <color key="textColor" systemColor="systemYellowColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商品評價" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKQ-aZ-siT">
+                                                        <rect key="frame" x="20" y="20" width="80" height="19"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="17"/>
+                                                        <color key="textColor" red="0.83921568629999999" green="0.50353314660000004" blue="0.039201362990000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="bRh-62-X64" secondAttribute="trailing" id="Cky-I4-nfh"/>
+                                            <constraint firstItem="bRh-62-X64" firstAttribute="top" secondItem="53B-zu-cbF" secondAttribute="top" id="HHu-wk-5ob"/>
+                                            <constraint firstItem="bRh-62-X64" firstAttribute="leading" secondItem="53B-zu-cbF" secondAttribute="leading" id="PQT-rp-nDN"/>
+                                            <constraint firstAttribute="bottom" secondItem="bRh-62-X64" secondAttribute="bottom" constant="159" id="X6m-70-0xT"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300g" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fv-wL-1Gx">
+                                        <rect key="frame" x="10" y="38" width="357" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91533535720000003" green="0.96253973250000002" blue="0.93421036010000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="53B-zu-cbF" secondAttribute="bottom" constant="93" id="89b-xG-hHj"/>
+                                    <constraint firstItem="53B-zu-cbF" firstAttribute="leading" secondItem="Lx9-RW-eJW" secondAttribute="leading" id="Fmt-Rs-Irx"/>
+                                    <constraint firstItem="6fv-wL-1Gx" firstAttribute="leading" secondItem="Lx9-RW-eJW" secondAttribute="leading" constant="10" id="KkK-oc-kng"/>
+                                    <constraint firstAttribute="trailing" secondItem="53B-zu-cbF" secondAttribute="trailing" id="UT8-i6-y1b"/>
+                                    <constraint firstItem="6fv-wL-1Gx" firstAttribute="top" secondItem="HC6-5p-rgP" secondAttribute="bottom" constant="5" id="im6-TM-5ne"/>
+                                    <constraint firstItem="HC6-5p-rgP" firstAttribute="top" secondItem="Lx9-RW-eJW" secondAttribute="top" constant="12" id="ooO-Ke-C9m"/>
+                                    <constraint firstAttribute="trailing" secondItem="6fv-wL-1Gx" secondAttribute="trailing" constant="8" id="q51-tv-JG0"/>
+                                    <constraint firstItem="HC6-5p-rgP" firstAttribute="leading" secondItem="Lx9-RW-eJW" secondAttribute="leading" constant="10" id="rz0-8t-fmj"/>
+                                    <constraint firstAttribute="trailing" secondItem="HC6-5p-rgP" secondAttribute="trailing" constant="8" id="sP2-83-x4B"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JTS-ZD-8Sf">
+                                <rect key="frame" x="16" y="577" width="343" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.78273159248815438" blue="0.21955063578211986" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="17"/>
+                                <state key="normal" title="加入購物車">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addToCartBtn:" destination="Qzx-ME-0Dy" eventType="touchUpInside" id="AIc-47-epr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kfM-Qw-bPh"/>
                         <color key="backgroundColor" red="0.89897710080000004" green="0.9556911588" blue="0.92382764819999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="EgH-9E-M0g" firstAttribute="top" secondItem="TsI-Wz-om2" secondAttribute="bottom" constant="58" id="0Ty-iF-Zet"/>
-                            <constraint firstItem="kfM-Qw-bPh" firstAttribute="trailing" secondItem="EgH-9E-M0g" secondAttribute="trailing" constant="16" id="0eg-hG-sSA"/>
-                            <constraint firstItem="kfM-Qw-bPh" firstAttribute="trailing" secondItem="BDG-Ty-ZuL" secondAttribute="trailing" constant="16" id="DK6-eX-V4F"/>
-                            <constraint firstItem="HC6-5p-rgP" firstAttribute="top" secondItem="BDG-Ty-ZuL" secondAttribute="bottom" constant="58" id="Fch-CM-ODs"/>
-                            <constraint firstItem="EgH-9E-M0g" firstAttribute="leading" secondItem="kfM-Qw-bPh" secondAttribute="leading" constant="16" id="HYw-q9-Qg9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JTS-ZD-8Sf" secondAttribute="trailing" id="AOt-q9-qzG"/>
+                            <constraint firstItem="JTS-ZD-8Sf" firstAttribute="leading" secondItem="bxr-Ds-6TK" secondAttribute="leadingMargin" id="Bon-d2-rlc"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="JTS-ZD-8Sf" secondAttribute="bottom" constant="20" id="Kd0-B9-Tbh"/>
+                            <constraint firstItem="Lx9-RW-eJW" firstAttribute="trailing" secondItem="kfM-Qw-bPh" secondAttribute="trailing" id="Nd4-jr-XL0"/>
+                            <constraint firstItem="Lx9-RW-eJW" firstAttribute="leading" secondItem="kfM-Qw-bPh" secondAttribute="leading" id="Nh5-6m-7mT"/>
                             <constraint firstItem="cm1-R5-PQH" firstAttribute="leading" secondItem="kfM-Qw-bPh" secondAttribute="leading" id="OjH-Km-9Wl"/>
-                            <constraint firstItem="pYD-IV-h6w" firstAttribute="top" secondItem="EgH-9E-M0g" secondAttribute="bottom" constant="57" id="UGD-tc-QvO"/>
                             <constraint firstItem="cm1-R5-PQH" firstAttribute="trailing" secondItem="kfM-Qw-bPh" secondAttribute="trailing" id="Uc1-2B-nPQ"/>
-                            <constraint firstItem="kfM-Qw-bPh" firstAttribute="trailing" secondItem="TsI-Wz-om2" secondAttribute="trailing" constant="16" id="Zyw-AB-5PF"/>
-                            <constraint firstItem="BDG-Ty-ZuL" firstAttribute="leading" secondItem="kfM-Qw-bPh" secondAttribute="leading" constant="16" id="b4O-k4-ATN"/>
-                            <constraint firstItem="HC6-5p-rgP" firstAttribute="leading" secondItem="kfM-Qw-bPh" secondAttribute="leading" constant="16" id="bJG-6x-GiZ"/>
-                            <constraint firstItem="kfM-Qw-bPh" firstAttribute="trailing" secondItem="pYD-IV-h6w" secondAttribute="trailing" constant="16" id="c3o-6n-F0b"/>
-                            <constraint firstItem="pYD-IV-h6w" firstAttribute="leading" secondItem="kfM-Qw-bPh" secondAttribute="leading" constant="16" id="cF6-Lw-Oge"/>
-                            <constraint firstItem="BDG-Ty-ZuL" firstAttribute="top" secondItem="cm1-R5-PQH" secondAttribute="bottom" constant="21" id="cbt-yg-bj3"/>
-                            <constraint firstItem="TsI-Wz-om2" firstAttribute="leading" secondItem="kfM-Qw-bPh" secondAttribute="leading" constant="16" id="go4-Vo-7BF"/>
-                            <constraint firstItem="TsI-Wz-om2" firstAttribute="top" secondItem="HC6-5p-rgP" secondAttribute="bottom" constant="57" id="pLS-Nw-EAf"/>
+                            <constraint firstAttribute="bottom" secondItem="Lx9-RW-eJW" secondAttribute="bottom" constant="-22" id="Uu0-Wo-ztM"/>
+                            <constraint firstItem="Lx9-RW-eJW" firstAttribute="top" secondItem="bxr-Ds-6TK" secondAttribute="top" constant="225" id="ZDq-7Y-IYh"/>
+                            <constraint firstItem="JTS-ZD-8Sf" firstAttribute="top" secondItem="cm1-R5-PQH" secondAttribute="bottom" constant="327" id="cbt-yg-bj3"/>
                             <constraint firstItem="cm1-R5-PQH" firstAttribute="top" secondItem="kfM-Qw-bPh" secondAttribute="top" id="xiL-2v-OqP"/>
-                            <constraint firstItem="kfM-Qw-bPh" firstAttribute="trailing" secondItem="HC6-5p-rgP" secondAttribute="trailing" constant="16" id="zzr-hR-g3g"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AM5-hc-EIT"/>
                     <connections>
                         <outlet property="commodityImage" destination="cm1-R5-PQH" id="zsm-gi-k1F"/>
-                        <outlet property="commodityLabel" destination="HC6-5p-rgP" id="2V0-j1-i2u"/>
-                        <outlet property="costLabel" destination="pYD-IV-h6w" id="34o-5s-Zny"/>
-                        <outlet property="deliverLabel" destination="EgH-9E-M0g" id="8B4-cc-uSG"/>
-                        <outlet property="placeLabel" destination="TsI-Wz-om2" id="zZr-vz-ucO"/>
-                        <outlet property="sellerLabel" destination="BDG-Ty-ZuL" id="vvz-kG-mkt"/>
+                        <outlet property="commodityLabel" destination="HC6-5p-rgP" id="r3Q-vJ-suV"/>
+                        <outlet property="deliverLabel" destination="33R-vE-XaJ" id="ndN-XM-jBk"/>
+                        <outlet property="measureLabel" destination="6fv-wL-1Gx" id="h4k-NV-LnD"/>
+                        <outlet property="placeLabel" destination="rlJ-X1-v32" id="Agc-kR-61H"/>
+                        <outlet property="priceLabel" destination="pYD-IV-h6w" id="jjH-UA-zhd"/>
+                        <outlet property="quantitiyTextField" destination="bqk-hj-rHQ" id="br8-sg-Sdm"/>
+                        <outlet property="sellerLabel" destination="iWg-VF-bbj" id="sat-vW-v8Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NsY-2S-BMy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2053.5999999999999" y="1709.5952023988007"/>
+            <point key="canvasLocation" x="2054" y="1710"/>
         </scene>
         <!--CreditVC-->
         <scene sceneID="86j-45-XZz">
@@ -1353,38 +1565,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="香蕉-------------------------------------x1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Td-DV-XtJ">
-                                <rect key="frame" x="22" y="156" width="331" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自製辣椒醬------------------------------x1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zab-MY-Ghn">
-                                <rect key="frame" x="22" y="390" width="331" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="總計：470" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaa-a6-WTG">
-                                <rect key="frame" x="22" y="505" width="80" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="回饋稻穗幣：47" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdT-96-Kkw">
-                                <rect key="frame" x="22" y="568" width="121" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F70-LW-13A">
-                                <rect key="frame" x="308" y="585" width="51" height="42"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="購買"/>
-                                <connections>
-                                    <action selector="buyBtn:" destination="9ku-Yu-bcK" eventType="touchUpInside" id="OiL-qy-Jd8"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVS-Xa-qKq">
                                 <rect key="frame" x="16" y="24" width="50" height="50"/>
                                 <constraints>
@@ -1405,37 +1585,311 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="鮮奶-------------------------------------x1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a0v-h9-AWh">
-                                <rect key="frame" x="22" y="273" width="331" height="17"/>
-                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="-9" translatesAutoresizingMaskIntoConstraints="NO" id="nb0-L6-98G">
+                                <rect key="frame" x="0.0" y="82" width="375" height="402"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dn3-GO-eNS">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KAW-CC-Pqq">
+                                                <rect key="frame" x="243" y="90" width="35.5" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="decrease"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="-">
+                                                    <color key="titleColor" systemColor="systemGrayColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="quantityBtn:" destination="9ku-Yu-bcK" eventType="touchUpInside" id="fvq-3S-nDm"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1aj-Gm-9LI">
+                                                <rect key="frame" x="285.5" y="90" width="35" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfF-MD-bcs">
+                                                <rect key="frame" x="327.5" y="89" width="35.5" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="increase"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="+">
+                                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="quantityBtn:" destination="9ku-Yu-bcK" eventType="touchUpInside" id="wjv-t2-BK5"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="eue-Mw-MrA">
+                                                <rect key="frame" x="128" y="87" width="91" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Io-FV-40n">
+                                                <rect key="frame" x="325" y="20" width="38" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <state key="normal" title="x">
+                                                    <color key="titleColor" red="0.94851714369999995" green="0.2285413389871597" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="香蕉" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ibc-hW-yR4">
+                                                <rect key="frame" x="128" y="28" width="189" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="23"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="香蕉" translatesAutoresizingMaskIntoConstraints="NO" id="epb-Lz-5LD">
+                                                <rect key="frame" x="20" y="20" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$25/300g/串" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dH-ni-kib">
+                                                <rect key="frame" x="128" y="65" width="235" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTo-qs-c5V">
+                                        <rect key="frame" x="0.0" y="131" width="375" height="140"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Akb-OR-bEO">
+                                                <rect key="frame" x="243" y="90" width="34.5" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="-">
+                                                    <color key="titleColor" systemColor="systemGrayColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="quantityBtn:" destination="9ku-Yu-bcK" eventType="touchUpInside" id="Uy3-qO-4g0"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AZD-3B-xt9">
+                                                <rect key="frame" x="285.5" y="90" width="35" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACv-Jr-e7V">
+                                                <rect key="frame" x="328.5" y="89" width="34.5" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="+">
+                                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="quantityBtn:" destination="9ku-Yu-bcK" eventType="touchUpInside" id="Zlb-H5-jIC"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="8tS-g6-e2Z">
+                                                <rect key="frame" x="128" y="87" width="91" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYE-5L-cfb">
+                                                <rect key="frame" x="325" y="20" width="38" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <state key="normal" title="x">
+                                                    <color key="titleColor" red="0.94851714369999995" green="0.22854133900000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="牛奶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="pS0-Nb-SlY">
+                                                <rect key="frame" x="128" y="28" width="189" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="23"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="鮮奶" translatesAutoresizingMaskIntoConstraints="NO" id="kLC-vB-rHY">
+                                                <rect key="frame" x="20" y="20" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$140/936ml/瓶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aM-q0-T5F">
+                                                <rect key="frame" x="128" y="65" width="235" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmH-47-7bR">
+                                        <rect key="frame" x="0.0" y="262" width="375" height="140"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohs-0e-7SK">
+                                                <rect key="frame" x="243" y="90" width="34.5" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="-">
+                                                    <color key="titleColor" systemColor="systemGrayColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="quantityBtn:" destination="9ku-Yu-bcK" eventType="touchUpInside" id="3OA-R9-VeM"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hc3-d1-CtE">
+                                                <rect key="frame" x="285.5" y="90" width="35" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqh-qj-z0Y">
+                                                <rect key="frame" x="328.5" y="89" width="34.5" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                <state key="normal" title="+">
+                                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="quantityBtn:" destination="9ku-Yu-bcK" eventType="touchUpInside" id="Bwj-O8-gVV"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NcO-3f-W7p">
+                                                <rect key="frame" x="325" y="20" width="38" height="39"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <state key="normal" title="x">
+                                                    <color key="titleColor" red="0.94851714369999995" green="0.22854133900000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </state>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="自製辣椒醬" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="tbO-hl-fZ6">
+                                                <rect key="frame" x="128" y="28" width="189" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="23"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="辣椒" translatesAutoresizingMaskIntoConstraints="NO" id="z8p-sb-CJr">
+                                                <rect key="frame" x="20" y="20" width="100" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$330/650g/罐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLf-kH-F4T">
+                                                <rect key="frame" x="128" y="65" width="235" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$330" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="mMZ-rb-YkB">
+                                                <rect key="frame" x="128" y="87" width="91" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rLX-6h-QYK">
+                                <rect key="frame" x="16" y="492" width="343" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iRh-B1-op6">
+                                <rect key="frame" x="16" y="546" width="343" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="回饋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Brg-Mf-ape">
+                                <rect key="frame" x="16" y="553" width="50" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="總價" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="VBN-AR-BkW">
+                                <rect key="frame" x="16" y="512" width="50" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$495 NTD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8l-yH-W4d">
+                                <rect key="frame" x="267" y="518" width="92" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="Group 8144" translatesAutoresizingMaskIntoConstraints="NO" id="pXd-g1-qa6">
+                                <rect key="frame" x="267" y="552" width="92" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evl-dV-YIG">
+                                <rect key="frame" x="294" y="559" width="21" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F70-LW-13A">
+                                <rect key="frame" x="86" y="605" width="203" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="25"/>
+                                <state key="normal" title="購買">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buyBtn:" destination="9ku-Yu-bcK" eventType="touchUpInside" id="OiL-qy-Jd8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MWF-Mm-Da5"/>
                         <color key="backgroundColor" red="0.89897710080000004" green="0.9556911588" blue="0.92382764819999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="gaa-a6-WTG" firstAttribute="leading" secondItem="MWF-Mm-Da5" secondAttribute="leading" constant="22" id="2R0-Gl-Swa"/>
-                            <constraint firstItem="rdT-96-Kkw" firstAttribute="leading" secondItem="MWF-Mm-Da5" secondAttribute="leading" constant="22" id="6tg-rB-a5e"/>
-                            <constraint firstItem="Zab-MY-Ghn" firstAttribute="leading" secondItem="MWF-Mm-Da5" secondAttribute="leading" constant="22" id="Aog-mZ-SBB"/>
+                            <constraint firstAttribute="bottom" secondItem="nb0-L6-98G" secondAttribute="bottom" constant="183" id="72c-v2-neZ"/>
                             <constraint firstItem="YVS-Xa-qKq" firstAttribute="top" secondItem="MWF-Mm-Da5" secondAttribute="top" constant="24" id="AuG-UE-DDM"/>
-                            <constraint firstItem="MWF-Mm-Da5" firstAttribute="bottom" secondItem="F70-LW-13A" secondAttribute="bottom" constant="40" id="JSH-Tl-FXr"/>
-                            <constraint firstItem="Zab-MY-Ghn" firstAttribute="top" secondItem="a0v-h9-AWh" secondAttribute="bottom" constant="100" id="KSZ-JV-1u6"/>
-                            <constraint firstItem="MWF-Mm-Da5" firstAttribute="trailing" secondItem="a0v-h9-AWh" secondAttribute="trailing" constant="22" id="NF3-eX-9QJ"/>
+                            <constraint firstItem="nb0-L6-98G" firstAttribute="top" secondItem="YVS-Xa-qKq" secondAttribute="bottom" constant="8" id="BYU-3P-HAJ"/>
+                            <constraint firstItem="nb0-L6-98G" firstAttribute="trailing" secondItem="MWF-Mm-Da5" secondAttribute="trailing" id="MzI-6V-Kay"/>
                             <constraint firstItem="SYt-3a-v9b" firstAttribute="leading" secondItem="YVS-Xa-qKq" secondAttribute="trailing" constant="20" id="NXS-G5-beh"/>
-                            <constraint firstItem="a0v-h9-AWh" firstAttribute="top" secondItem="4Td-DV-XtJ" secondAttribute="bottom" constant="100" id="O8K-cV-tgs"/>
-                            <constraint firstItem="rdT-96-Kkw" firstAttribute="top" secondItem="gaa-a6-WTG" secondAttribute="bottom" constant="46" id="Ud4-aE-M7k"/>
-                            <constraint firstItem="4Td-DV-XtJ" firstAttribute="top" secondItem="MWF-Mm-Da5" secondAttribute="top" constant="156" id="Uqh-Dn-AO9"/>
-                            <constraint firstItem="MWF-Mm-Da5" firstAttribute="trailing" secondItem="F70-LW-13A" secondAttribute="trailing" constant="16" id="bGW-FT-pnp"/>
-                            <constraint firstItem="MWF-Mm-Da5" firstAttribute="trailing" secondItem="4Td-DV-XtJ" secondAttribute="trailing" constant="22" id="cOT-2E-9fa"/>
-                            <constraint firstItem="4Td-DV-XtJ" firstAttribute="leading" secondItem="MWF-Mm-Da5" secondAttribute="leading" constant="22" id="dBM-X0-8r0"/>
-                            <constraint firstItem="a0v-h9-AWh" firstAttribute="leading" secondItem="MWF-Mm-Da5" secondAttribute="leading" constant="22" id="eUv-S1-tq7"/>
-                            <constraint firstItem="MWF-Mm-Da5" firstAttribute="trailing" secondItem="Zab-MY-Ghn" secondAttribute="trailing" constant="22" id="gPU-S9-VP0"/>
+                            <constraint firstItem="nb0-L6-98G" firstAttribute="leading" secondItem="MWF-Mm-Da5" secondAttribute="leading" id="qgX-Z5-NOW"/>
                             <constraint firstItem="YVS-Xa-qKq" firstAttribute="leading" secondItem="MWF-Mm-Da5" secondAttribute="leading" constant="16" id="rei-Jh-eT7"/>
-                            <constraint firstItem="gaa-a6-WTG" firstAttribute="top" secondItem="Zab-MY-Ghn" secondAttribute="bottom" constant="98" id="vEj-ej-NBN"/>
                             <constraint firstItem="SYt-3a-v9b" firstAttribute="top" secondItem="MWF-Mm-Da5" secondAttribute="top" constant="24" id="zwn-hr-Yyg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="BananaView" destination="Dn3-GO-eNS" id="ihZ-4B-EuM"/>
+                        <outlet property="ChiliView" destination="HmH-47-7bR" id="Ylb-AI-su6"/>
+                        <outlet property="MilkView" destination="xTo-qs-c5V" id="kxm-k3-iDw"/>
+                        <outlet property="priceLabel" destination="mMZ-rb-YkB" id="1Yr-uE-ZUl"/>
+                        <outlet property="quantitiyTextField" destination="hc3-d1-CtE" id="dYq-dc-cNY"/>
+                        <outlet property="returnLabel" destination="evl-dV-YIG" id="QqC-nY-EBy"/>
+                        <outlet property="totalLabel" destination="E8l-yH-W4d" id="x0h-kw-uqF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VvC-yJ-dYk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1466,8 +1920,8 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="稉稻(蓬萊)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glr-2e-YfC">
                                         <rect key="frame" x="33" y="157" width="100" height="17"/>
-                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="15"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選擇您想種植的稻米" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmK-Fm-5Xu">
@@ -1490,8 +1944,8 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="秈稻(在來)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qce-96-MqM">
                                         <rect key="frame" x="199" y="157" width="99" height="17"/>
-                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="15"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Bold" family="Taipei Sans TC Beta" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qth-ed-bjq">
@@ -1501,6 +1955,20 @@
                                             <action selector="confirmButtonPressed:" destination="4Rr-lF-6Ro" eventType="touchUpInside" id="Cb9-xB-JWB"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="易" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7Z-xd-KLl">
+                                        <rect key="frame" x="75" y="35" width="15" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="15"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="難" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQk-qM-ULP">
+                                        <rect key="frame" x="242" y="35" width="15" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="15"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
@@ -1570,48 +2038,59 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特報類型：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="iCC-Hb-Bg7">
-                                                <rect key="frame" x="8" y="26" width="311" height="90"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="90" id="5kw-3u-XcW"/>
-                                                </constraints>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="特報類型：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="iCC-Hb-Bg7">
+                                                <rect key="frame" x="8" y="22" width="311" height="90"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="18"/>
+                                                <color key="textColor" red="0.83581566809999996" green="0.54976183180000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="特報敘述：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="vHg-Li-09b">
+                                                <rect key="frame" x="8" y="126" width="311" height="125"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="特報敘述：" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="vHg-Li-09b">
-                                                <rect key="frame" x="8" y="176" width="311" height="125"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="125" id="uQQ-li-6NZ"/>
-                                                </constraints>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="影響區域：" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zPs-og-Cut">
+                                                <rect key="frame" x="8" y="264" width="311" height="110"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="影響區域：" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zPs-og-Cut">
-                                                <rect key="frame" x="8" y="361" width="311" height="110"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="110" id="LQT-Hh-MCD"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="影響機率：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LA8-24-kF4">
+                                                <rect key="frame" x="8" y="454" width="85" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
                                                 <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="影響威力：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfl-q3-FU2">
+                                                <rect key="frame" x="8" y="389" width="85" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50~150 / 經驗值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZX9-pC-lIM">
+                                                <rect key="frame" x="94" y="389" width="198" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemRedColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jE-Up-8Pc">
+                                                <rect key="frame" x="94" y="454" width="198" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemRedColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="zPs-og-Cut" secondAttribute="trailing" constant="8" id="20a-lV-sBf"/>
-                                            <constraint firstAttribute="trailing" secondItem="iCC-Hb-Bg7" secondAttribute="trailing" constant="8" id="3Af-v7-fHn"/>
-                                            <constraint firstItem="vHg-Li-09b" firstAttribute="top" secondItem="iCC-Hb-Bg7" secondAttribute="bottom" constant="60" id="4Lr-Zk-1Zg"/>
-                                            <constraint firstItem="iCC-Hb-Bg7" firstAttribute="leading" secondItem="V7K-9S-eJK" secondAttribute="leading" constant="8" id="HAI-OI-fo4"/>
-                                            <constraint firstItem="vHg-Li-09b" firstAttribute="leading" secondItem="V7K-9S-eJK" secondAttribute="leading" constant="8" id="IiU-lw-0hw"/>
-                                            <constraint firstItem="iCC-Hb-Bg7" firstAttribute="top" secondItem="V7K-9S-eJK" secondAttribute="top" constant="26" id="Lli-Kh-5S2"/>
-                                            <constraint firstItem="vHg-Li-09b" firstAttribute="leading" secondItem="V7K-9S-eJK" secondAttribute="leading" constant="8" id="bEx-vS-3YA"/>
-                                            <constraint firstAttribute="trailing" secondItem="vHg-Li-09b" secondAttribute="trailing" constant="8" id="cyz-OY-YVT"/>
-                                            <constraint firstItem="zPs-og-Cut" firstAttribute="top" secondItem="vHg-Li-09b" secondAttribute="bottom" constant="60" id="lte-lE-hit"/>
-                                            <constraint firstItem="zPs-og-Cut" firstAttribute="leading" secondItem="V7K-9S-eJK" secondAttribute="leading" constant="8" id="s66-Fo-tn8"/>
                                             <constraint firstItem="QC8-vc-p66" firstAttribute="centerY" secondItem="V7K-9S-eJK" secondAttribute="centerY" id="sh0-ux-MIZ"/>
-                                            <constraint firstAttribute="trailing" secondItem="vHg-Li-09b" secondAttribute="trailing" constant="8" id="soO-st-AfM"/>
                                             <constraint firstItem="QC8-vc-p66" firstAttribute="centerX" secondItem="V7K-9S-eJK" secondAttribute="centerX" id="x3C-Pb-0b4"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -1742,7 +2221,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="農家" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="jT7-ek-qOs">
                                         <rect key="frame" x="8" y="8" width="280" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1807,7 +2286,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" image="Group 8146" translatesAutoresizingMaskIntoConstraints="NO" id="cwc-gB-fhV">
                                         <rect key="frame" x="8" y="288" width="370" height="152"/>
@@ -1843,6 +2322,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="favoriteFrame" translatesAutoresizingMaskIntoConstraints="NO" id="x8R-Mk-KsG">
+                                <rect key="frame" x="278" y="168" width="81" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="ILG-6V-bok" appends="YES" id="bo6-MP-rDY"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="x5r-Mr-Zc1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1857,9 +2344,15 @@
                         <outlet property="farmerIntro" destination="Oq8-1p-THy" id="N1k-s1-vx6"/>
                         <outlet property="farmerName" destination="jT7-ek-qOs" id="arU-zb-Ht1"/>
                         <outlet property="farmerOpenTime" destination="mtd-Yq-vAX" id="F6y-3Y-GD5"/>
+                        <outlet property="favoriteView" destination="x8R-Mk-KsG" id="uiz-FV-Izc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2LJ-BK-jDN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ILG-6V-bok">
+                    <connections>
+                        <action selector="tap:" destination="5ye-oS-oni" id="te1-V6-zvh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2053.5999999999999" y="2390.5547226386807"/>
         </scene>
@@ -2123,6 +2616,13 @@
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" image="chevron.right" catalog="system"/>
                                                         </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="剩餘時間-7天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ako-H5-WPJ">
+                                                            <rect key="frame" x="18" y="46" width="131" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" systemColor="systemGrayColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <userDefinedRuntimeAttributes>
@@ -2147,12 +2647,13 @@
                                         <color key="backgroundColor" red="0.84293782709999998" green="0.87923353910000002" blue="0.33420461420000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="EventLabel" destination="2hT-6a-ut8" id="ru3-HT-466"/>
+                                            <outlet property="remainTimeLabel" destination="Ako-H5-WPJ" id="QnU-Dj-RyZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pY1-26-HCb">
-                                <rect key="frame" x="16" y="43" width="60" height="60"/>
+                                <rect key="frame" x="16" y="36" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="jNK-Vf-Xmj"/>
                                     <constraint firstAttribute="width" constant="60" id="wxu-Nj-cr7"/>
@@ -2163,7 +2664,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="建立顧客活動" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OF4-00-cH6">
-                                <rect key="frame" x="86" y="59" width="120" height="28"/>
+                                <rect key="frame" x="86" y="52" width="120" height="28"/>
                                 <fontDescription key="fontDescription" name="STYuanti-TC-Bold" family="Yuanti TC" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -2185,9 +2686,9 @@
                             <constraint firstAttribute="trailing" secondItem="pra-cb-jkd" secondAttribute="trailing" id="OCj-ZF-t6Q"/>
                             <constraint firstItem="OF4-00-cH6" firstAttribute="leading" secondItem="pY1-26-HCb" secondAttribute="trailing" constant="10" id="Te6-0P-Y1G"/>
                             <constraint firstAttribute="bottom" secondItem="pra-cb-jkd" secondAttribute="bottom" id="V5A-nQ-Vgf"/>
-                            <constraint firstItem="OF4-00-cH6" firstAttribute="top" secondItem="p1r-3J-Ped" secondAttribute="top" constant="59" id="Y87-tu-9Uf"/>
-                            <constraint firstItem="pra-cb-jkd" firstAttribute="top" secondItem="OF4-00-cH6" secondAttribute="bottom" constant="34" id="kKV-G1-vuG"/>
-                            <constraint firstItem="pY1-26-HCb" firstAttribute="top" secondItem="p1r-3J-Ped" secondAttribute="top" constant="43" id="okA-1C-HLN"/>
+                            <constraint firstItem="OF4-00-cH6" firstAttribute="top" secondItem="p1r-3J-Ped" secondAttribute="top" constant="52" id="Y87-tu-9Uf"/>
+                            <constraint firstItem="pra-cb-jkd" firstAttribute="top" secondItem="OF4-00-cH6" secondAttribute="bottom" constant="41" id="kKV-G1-vuG"/>
+                            <constraint firstItem="pY1-26-HCb" firstAttribute="top" secondItem="p1r-3J-Ped" secondAttribute="top" constant="36" id="okA-1C-HLN"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2572,16 +3073,10 @@
                                 <rect key="frame" x="16" y="126" width="343" height="521"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KmD-ZY-a97">
-                                        <rect key="frame" x="90" y="81" width="226" height="34"/>
+                                        <rect key="frame" x="90" y="111" width="226" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活動類型：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9I-l8-GhG">
-                                        <rect key="frame" x="8" y="195" width="75" height="15"/>
-                                        <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="760-VD-jSy">
                                         <rect key="frame" x="261" y="457" width="62" height="30"/>
                                         <state key="normal" title="建立活動"/>
@@ -2590,40 +3085,35 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提供點數：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RjC-HE-dfE">
-                                        <rect key="frame" x="10" y="405" width="75" height="15"/>
+                                        <rect key="frame" x="10" y="360" width="75" height="15"/>
                                         <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VPd-IL-Oy2">
-                                        <rect key="frame" x="90" y="186" width="226" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="困難度：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGI-Rc-4e9">
-                                        <rect key="frame" x="15" y="300" width="60" height="15"/>
+                                        <rect key="frame" x="15" y="240" width="60" height="15"/>
                                         <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dQ5-x0-6bG">
-                                        <rect key="frame" x="90" y="291" width="226" height="34"/>
+                                        <rect key="frame" x="90" y="231" width="226" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0y8-NC-2Yw">
-                                        <rect key="frame" x="90" y="396" width="226" height="34"/>
+                                        <rect key="frame" x="90" y="351" width="226" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活動名稱：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXi-hW-Ofn">
-                                        <rect key="frame" x="5" y="90" width="75" height="15"/>
+                                        <rect key="frame" x="8" y="120" width="75" height="15"/>
                                         <fontDescription key="fontDescription" name="TaipeiSansTCBeta-Regular" family="Taipei Sans TC Beta" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tKN-B8-24Q">
-                                        <rect key="frame" x="75" y="35" width="193.5" height="20"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tKN-B8-24Q">
+                                        <rect key="frame" x="74" y="54" width="193.5" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可分配經驗點數：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gun-bV-4hf">
                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="20"/>
@@ -2638,31 +3128,37 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Gun-bV-4hf" secondAttribute="bottom" id="0jY-IN-pnV"/>
+                                            <constraint firstItem="bVL-B6-Yhy" firstAttribute="top" secondItem="tKN-B8-24Q" secondAttribute="top" id="5B2-ZW-cQQ"/>
+                                            <constraint firstItem="Gun-bV-4hf" firstAttribute="leading" secondItem="tKN-B8-24Q" secondAttribute="leading" id="5RX-H5-s5n"/>
+                                            <constraint firstAttribute="bottom" secondItem="bVL-B6-Yhy" secondAttribute="bottom" id="fA6-sD-Z1o"/>
+                                            <constraint firstItem="Gun-bV-4hf" firstAttribute="top" secondItem="tKN-B8-24Q" secondAttribute="top" id="qbx-P6-kpR"/>
+                                            <constraint firstAttribute="trailing" secondItem="bVL-B6-Yhy" secondAttribute="trailing" id="w8t-9P-cHx"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="0y8-NC-2Yw" firstAttribute="top" secondItem="dQ5-x0-6bG" secondAttribute="bottom" constant="71" id="3qu-xL-Mj2"/>
+                                    <constraint firstItem="0y8-NC-2Yw" firstAttribute="top" secondItem="dQ5-x0-6bG" secondAttribute="bottom" constant="86" id="3qu-xL-Mj2"/>
                                     <constraint firstAttribute="bottom" secondItem="760-VD-jSy" secondAttribute="bottom" constant="34" id="5sd-am-KwN"/>
                                     <constraint firstItem="dQ5-x0-6bG" firstAttribute="leading" secondItem="DGI-Rc-4e9" secondAttribute="trailing" constant="15" id="6du-Jb-XeS"/>
-                                    <constraint firstItem="KmD-ZY-a97" firstAttribute="top" secondItem="f6t-oh-fgu" secondAttribute="top" constant="81" id="9ow-eQ-Awy"/>
-                                    <constraint firstItem="KmD-ZY-a97" firstAttribute="leading" secondItem="jXi-hW-Ofn" secondAttribute="trailing" constant="10" id="Bh9-dj-Z41"/>
-                                    <constraint firstItem="dQ5-x0-6bG" firstAttribute="top" secondItem="VPd-IL-Oy2" secondAttribute="bottom" constant="71" id="IS4-Qg-X4U"/>
-                                    <constraint firstItem="VPd-IL-Oy2" firstAttribute="leading" secondItem="S9I-l8-GhG" secondAttribute="trailing" constant="7" id="Jzd-F0-FHn"/>
+                                    <constraint firstItem="KmD-ZY-a97" firstAttribute="top" secondItem="f6t-oh-fgu" secondAttribute="top" constant="111" id="9ow-eQ-Awy"/>
+                                    <constraint firstItem="KmD-ZY-a97" firstAttribute="leading" secondItem="jXi-hW-Ofn" secondAttribute="trailing" constant="7" id="Bh9-dj-Z41"/>
+                                    <constraint firstAttribute="trailing" secondItem="tKN-B8-24Q" secondAttribute="trailing" constant="75.5" id="EGk-DC-TYt"/>
+                                    <constraint firstItem="dQ5-x0-6bG" firstAttribute="top" secondItem="KmD-ZY-a97" secondAttribute="bottom" constant="86" id="IS4-Qg-X4U"/>
                                     <constraint firstAttribute="trailing" secondItem="dQ5-x0-6bG" secondAttribute="trailing" constant="27" id="N8x-Ge-eRe"/>
+                                    <constraint firstItem="tKN-B8-24Q" firstAttribute="top" secondItem="f6t-oh-fgu" secondAttribute="top" constant="54" id="OBh-O2-kd1"/>
                                     <constraint firstItem="0y8-NC-2Yw" firstAttribute="leading" secondItem="RjC-HE-dfE" secondAttribute="trailing" constant="5" id="RT4-xn-n4X"/>
                                     <constraint firstAttribute="trailing" secondItem="KmD-ZY-a97" secondAttribute="trailing" constant="27" id="W1t-RY-kOB"/>
-                                    <constraint firstItem="jXi-hW-Ofn" firstAttribute="leading" secondItem="f6t-oh-fgu" secondAttribute="leading" constant="5" id="XmK-05-1yC"/>
+                                    <constraint firstItem="jXi-hW-Ofn" firstAttribute="leading" secondItem="f6t-oh-fgu" secondAttribute="leading" constant="8" id="XmK-05-1yC"/>
                                     <constraint firstAttribute="trailing" secondItem="760-VD-jSy" secondAttribute="trailing" constant="20" symbolic="YES" id="cfI-y9-36y"/>
                                     <constraint firstItem="DGI-Rc-4e9" firstAttribute="leading" secondItem="f6t-oh-fgu" secondAttribute="leading" constant="15" id="czs-SV-Pdm"/>
-                                    <constraint firstItem="jXi-hW-Ofn" firstAttribute="top" secondItem="f6t-oh-fgu" secondAttribute="top" constant="90" id="ems-cb-Lm1"/>
-                                    <constraint firstItem="S9I-l8-GhG" firstAttribute="leading" secondItem="f6t-oh-fgu" secondAttribute="leading" constant="8" id="fsi-WJ-eIi"/>
-                                    <constraint firstAttribute="trailing" secondItem="VPd-IL-Oy2" secondAttribute="trailing" constant="27" id="hqd-8n-pMa"/>
+                                    <constraint firstItem="jXi-hW-Ofn" firstAttribute="top" secondItem="f6t-oh-fgu" secondAttribute="top" constant="120" id="ems-cb-Lm1"/>
                                     <constraint firstAttribute="trailing" secondItem="0y8-NC-2Yw" secondAttribute="trailing" constant="27" id="i42-jP-dZM"/>
-                                    <constraint firstItem="DGI-Rc-4e9" firstAttribute="top" secondItem="S9I-l8-GhG" secondAttribute="bottom" constant="90" id="tPm-OU-rZ5"/>
-                                    <constraint firstItem="VPd-IL-Oy2" firstAttribute="top" secondItem="KmD-ZY-a97" secondAttribute="bottom" constant="71" id="vU5-Pv-wBC"/>
-                                    <constraint firstItem="RjC-HE-dfE" firstAttribute="top" secondItem="DGI-Rc-4e9" secondAttribute="bottom" constant="90" id="xXu-ue-CPk"/>
-                                    <constraint firstItem="S9I-l8-GhG" firstAttribute="top" secondItem="jXi-hW-Ofn" secondAttribute="bottom" constant="90" id="z33-e4-cI6"/>
+                                    <constraint firstItem="tKN-B8-24Q" firstAttribute="leading" secondItem="f6t-oh-fgu" secondAttribute="leading" constant="74" id="loM-eU-V0J"/>
+                                    <constraint firstItem="DGI-Rc-4e9" firstAttribute="top" secondItem="jXi-hW-Ofn" secondAttribute="bottom" constant="105" id="tPm-OU-rZ5"/>
+                                    <constraint firstItem="RjC-HE-dfE" firstAttribute="top" secondItem="DGI-Rc-4e9" secondAttribute="bottom" constant="105" id="xXu-ue-CPk"/>
                                     <constraint firstItem="RjC-HE-dfE" firstAttribute="leading" secondItem="f6t-oh-fgu" secondAttribute="leading" constant="10" id="z3U-Hf-x1K"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -2685,7 +3181,7 @@
                         <outlet property="expTextfield" destination="0y8-NC-2Yw" id="2I8-oh-BCV"/>
                         <outlet property="hardTextfield" destination="dQ5-x0-6bG" id="Yeb-nV-W1A"/>
                         <outlet property="nameTextfield" destination="KmD-ZY-a97" id="DFn-B0-4MF"/>
-                        <outlet property="typeTextfield" destination="VPd-IL-Oy2" id="NS9-oZ-euC"/>
+                        <outlet property="remainExpLabel" destination="bVL-B6-Yhy" id="MTP-ET-7uA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q7K-G5-hJO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2701,16 +3197,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="JQ3-ro-H3i" userLabel="Sign up">
-                                <rect key="frame" x="124.5" y="636" width="126.5" height="17"/>
+                                <rect key="frame" x="124.5" y="624" width="126.5" height="29"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已擁有帳號?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HlT-fR-MFW">
-                                        <rect key="frame" x="0.0" y="0.0" width="78.5" height="17"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="78.5" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W2v-YS-rs6">
-                                        <rect key="frame" x="83.5" y="0.0" width="43" height="17"/>
+                                        <rect key="frame" x="83.5" y="0.0" width="43" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="去登入"/>
                                         <connections>
@@ -2720,20 +3216,20 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="農家註冊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrI-OW-c76">
-                                <rect key="frame" x="29" y="38" width="161" height="0.0"/>
+                                <rect key="frame" x="29" y="38" width="161" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khH-cK-XGS" userLabel="完成註冊">
-                                <rect key="frame" x="207.5" y="586" width="137.5" height="45.5"/>
+                                <rect key="frame" x="207.5" y="574" width="137.5" height="45.5"/>
                                 <state key="normal" image="btn_farmerRegister"/>
                                 <connections>
                                     <action selector="registerPressed:" destination="5PF-bJ-LjK" eventType="touchUpInside" id="4Su-1y-4bz"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-18" translatesAutoresizingMaskIntoConstraints="NO" id="45A-ic-I9B">
-                                <rect key="frame" x="29" y="38" width="315" height="546"/>
+                                <rect key="frame" x="29" y="86" width="315" height="486"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQ0-4O-VQe">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="96"/>
@@ -2879,7 +3375,7 @@
                                         </subviews>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U1a-vE-FgQ">
-                                        <rect key="frame" x="0.0" y="390" width="315" height="156"/>
+                                        <rect key="frame" x="0.0" y="390" width="315" height="96"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="確認密碼*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBL-cI-W6L">
                                                 <rect key="frame" x="20" y="20" width="64" height="17"/>
@@ -2951,9 +3447,6 @@
         <designable name="fQO-IJ-hQB"/>
         <designable name="nfY-KV-QKM"/>
     </designables>
-    <inferredMetricsTieBreakers>
-        <segue reference="VuZ-7B-Id6"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Component 3 – 1" width="40" height="40"/>
         <image name="Group 8104" width="269" height="134"/>
@@ -2985,7 +3478,6 @@
         <image name="btn_shop" width="47" height="50.5"/>
         <image name="btn_warehouse" width="45" height="52"/>
         <image name="btn_weather" width="45" height="53"/>
-        <image name="cart" width="64" height="64"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="chevron.right.circle" catalog="system" width="128" height="121"/>
         <image name="circle" width="153" height="145"/>
@@ -2993,6 +3485,7 @@
         <image name="customicon" width="130.5" height="123.5"/>
         <image name="depositphotos_247872612-stock-illustration-no-image-available-icon-vector" width="600" height="600"/>
         <image name="farmericon" width="129" height="132"/>
+        <image name="favoriteFrame" width="74" height="74"/>
         <image name="gear" width="512" height="512"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="logo" width="262" height="168"/>
@@ -3013,9 +3506,6 @@
         <image name="辣椒" width="512" height="501"/>
         <image name="香蕉" width="2278" height="1624"/>
         <image name="鮮奶" width="750" height="500"/>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
@@ -3024,6 +3514,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3036,6 +3529,9 @@
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

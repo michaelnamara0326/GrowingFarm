@@ -25,9 +25,12 @@ class LoginVC: UIViewController{
     public override func viewDidLoad() {
         people.text=peopleLabelText
         self.hideKeyboardWhenTappedAround()
+        
     }
     override func viewDidAppear(_ animated: Bool) {
        userLoggedIn()
+        CityWeather().fetchWeather()
+        TyphoonManager().fetchTyphoon()
     }
     func userLoggedIn(){
         if let user=Auth.auth().currentUser  {
@@ -159,7 +162,7 @@ class LoginVC: UIViewController{
             FetchData().getCustomerInfo()
             FetchData().getCustomerGameData()
 //            cityPrice().fetchPrice()
-            cityArea().fetchArea()
+//            cityArea().fetchArea()
             CityWeather().fetchWeather()
             TyphoonManager().fetchTyphoon()
 //            updateUserInfo(userDocumentID)

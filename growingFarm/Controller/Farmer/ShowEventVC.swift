@@ -20,12 +20,7 @@ class ShowEventVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func createBtn(_ sender: UIButton) {
-        if(farmer.farmerGameDatas.Event.count == 5){
-            _ = SCLAlertView().showError("超出活動限制規定！", subTitle: "每一農家上限為五個活動")
-        }
-        else{
-            performSegue(withIdentifier: "showToCreate", sender: self)
-        }
+        performSegue(withIdentifier: "showToCreate", sender: self)
     }
 }
 extension ShowEventVC:UITableViewDelegate,UITableViewDataSource{

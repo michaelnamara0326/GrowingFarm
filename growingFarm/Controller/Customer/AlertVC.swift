@@ -14,7 +14,6 @@ class AlertVC: UIViewController {
     @IBOutlet weak var alertAreaLabel:UILabel!
     @IBOutlet weak var alertNoneLabel:UILabel!
     @IBOutlet weak var alertView: UIView!
-    @IBOutlet weak var priceView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         updateAlertView()
