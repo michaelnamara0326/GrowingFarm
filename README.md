@@ -1,7 +1,7 @@
 # growingFarm
 OpenDataCompetition APP
 
-!it propably can't build/run!
+❌暫無維護更新，可能無法build/run
 
 My initial prototype: https://xd.adobe.com/view/59624cd3-5fad-47aa-8014-c10545653341-0c31/grid/  
 Competition presentation: https://youtu.be/voXJLJrDGbw  
