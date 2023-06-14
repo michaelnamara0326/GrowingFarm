@@ -1,7 +1,7 @@
 # growingFarm
 OpenDataCompetition APP
 
-❌暫無維護更新，可能無法build/run
+❌暫無維護更新，可能無法build/run  
 ⭕️請直接參考影片介紹或查看在此repo中的程式碼
 
 My initial prototype: https://xd.adobe.com/view/59624cd3-5fad-47aa-8014-c10545653341-0c31/grid/  
